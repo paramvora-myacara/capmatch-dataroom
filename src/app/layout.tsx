@@ -5,7 +5,7 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: 'CapMatch Pitch Deck',
+  title: 'Capmatch Dataroom',
   description: 'CapMatch - Real estate lending platform and investment opportunities',
   icons: [
     { rel: 'icon', url: '/CapMatchLogo.png' },

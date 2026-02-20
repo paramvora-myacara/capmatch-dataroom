@@ -8,10 +8,13 @@ export default function AccessLogger() {
 
   useEffect(() => {
     if (!pathname || pathname === '/login') return;
-    fetch('/api/log-access', {
+    fetch('/api/log-activity', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ page: pathname, action: 'view' }),
+      body: JSON.stringify({
+        event_type: 'page_view',
+        metadata: { page: pathname },
+      }),
     }).catch(() => {});
   }, [pathname]);
 

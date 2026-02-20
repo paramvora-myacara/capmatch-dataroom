@@ -8,6 +8,7 @@ import Image from 'next/image';
 import { DATAROOM_SECTIONS } from '@/data-room/navigation';
 import { LogOut, FileText, MessageCircle, Menu, X } from 'lucide-react';
 import ContactUsModal from './ContactUsModal';
+import { createClient } from '@/lib/supabase/client';
 
 interface DataRoomLayoutProps {
   children: React.ReactNode;
@@ -19,7 +20,8 @@ export default function DataRoomLayout({ children }: DataRoomLayoutProps) {
   const [mobileNavOpen, setMobileNavOpen] = useState(false);
 
   const handleLogout = async () => {
-    await fetch('/api/auth/logout', { method: 'POST' });
+    const supabase = createClient();
+    await supabase.auth.signOut();
     window.location.href = '/login';
   };
 

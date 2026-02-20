@@ -9,4 +9,5 @@ export const DATAROOM_SECTIONS = [
   { title: 'IP + Data Rights', href: '/ip-data', slug: 'ip-data' },
   { title: 'Security + Privacy', href: '/security', slug: 'security' },
   { title: 'Team', href: '/team', slug: 'team' },
+  { title: 'Documents', href: '/documents', slug: 'documents' },
 ] as const;

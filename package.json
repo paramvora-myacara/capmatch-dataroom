@@ -6,12 +6,15 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "supabase:start": "supabase start",
+    "supabase:stop": "supabase stop",
+    "supabase:status": "supabase status"
   },
   "dependencies": {
-    "bcryptjs": "^3.0.3",
+    "@supabase/ssr": "^0.8.0",
+    "@supabase/supabase-js": "^2.97.0",
     "framer-motion": "^12.23.9",
-    "iron-session": "^8.0.4",
     "lucide-react": "^0.526.0",
     "next": "15.4.10",
     "next-themes": "^0.4.6",
@@ -19,7 +22,6 @@
     "react-dom": "19.1.0"
   },
   "devDependencies": {
-    "@types/bcryptjs": "^2.4.6",
     "@types/node": "^20.19.9",
     "@types/react": "^19.0.0",
     "@types/react-dom": "^19.0.0",

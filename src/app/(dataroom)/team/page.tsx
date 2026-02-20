@@ -116,7 +116,7 @@ export default function TeamPage() {
 
       <DocumentSection title="9.2 Engineering & Advisory">
         <p className="text-gray-700 text-sm mb-6">
-          Our technical and advisory teams bring deep domain expertise and engineering rigor to CapMatch's platform and client outcomes.
+          Our technical and advisory teams bring deep domain expertise and engineering rigor to CapMatch&apos;s platform and client outcomes.
         </p>
         <div className="space-y-6">
           {technicalStaff.map((member) => (

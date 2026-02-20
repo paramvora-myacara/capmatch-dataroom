@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import Link from 'next/link';
 import { createClient } from '@/lib/supabase/client';
 import { Upload, FileText, Download, Eye, X, Loader2 } from 'lucide-react';
@@ -25,7 +25,7 @@ export default function DocumentsPage() {
 
   const supabase = createClient();
 
-  const loadFiles = async () => {
+  const loadFiles = useCallback(async () => {
     setLoading(true);
     const { data, error } = await supabase.storage.from(BUCKET).list('', {
       limit: 500,
@@ -39,11 +39,11 @@ export default function DocumentsPage() {
       setFiles(raw as FileItem[]);
     }
     setLoading(false);
-  };
+  }, [supabase]);
 
   useEffect(() => {
     loadFiles();
-  }, []);
+  }, [loadFiles]);
 
   const handleUpload = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();

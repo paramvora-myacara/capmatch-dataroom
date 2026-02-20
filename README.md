@@ -1,36 +1,71 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# CapMatch Investor Data Room
 
-## Getting Started
+Login-protected investor diligence workspace for CapMatch pre-seed/seed round. Built with Next.js 15.
 
-First, run the development server:
+## Setup
+
+### 1. Install dependencies
+
+```bash
+npm install
+```
+
+### 2. Configure environment variables
+
+Copy `.env.example` to `.env.local` and set:
+
+```bash
+# Required: 32+ character secret for session encryption
+DATAROOM_SESSION_SECRET=your-secure-secret-min-32-chars
+
+# Required: Comma-separated allowed investor emails (lowercase)
+DATAROOM_ALLOWED_EMAILS=investor@fund.com,partner@vc.com
+
+# Required: Shared password for data room access
+DATAROOM_PASSWORD=your-password
+```
+
+### 3. Add documents
+
+Place diligence documents in `public/dataroom/`:
+
+- `pitch-deck.pdf`
+- `cap-table.xlsx`
+- `3yr-pnl.xlsx`
+- Formation docs, contracts, etc.
+
+Files are served at `/dataroom/filename` and are protected by auth.
+
+### 4. Run
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000). You'll be redirected to `/login` until authenticated.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Structure
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+| Route | Content |
+|-------|---------|
+| `/` | Read Me First — Index, Company Snapshot, Built vs In-Progress |
+| `/company` | Pitch deck, product one-pager, demo video |
+| `/product-tech` | Product + Tech Overview (single umbrella doc) |
+| `/market-strategy` | Market + Strategy Brief |
+| `/traction` | Traction Proof Pack |
+| `/financials` | Financial Overview, burn, runway, P&L |
+| `/corporate` | Formation, cap table, material contracts |
+| `/ip-data` | IP assignment, OSS inventory, data rights |
+| `/security` | Security, privacy, SOC2 roadmap |
+| `/team` | Leadership, org chart, hiring plan |
 
-## Learn More
+## Auth
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- Email allowlist + shared password
+- Session stored in encrypted cookie (7-day expiry)
+- Access logs: page views logged to console (Vercel function logs in production)
 
 ## Deploy on Vercel
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+1. Add env vars in Vercel project settings
+2. Deploy. Documents in `public/dataroom/` are included in the build

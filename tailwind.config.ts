@@ -6,37 +6,28 @@ const config: Config = {
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
-  darkMode: 'class',
   theme: {
     extend: {
       colors: {
-        "brand-primary": "#0D47A1",
-        "brand-secondary": "#1976D2",
-        "brand-accent": "#FFC107",
-        "brand-light": "#E3F2FD",
-        "brand-dark": "#002171",
-        "text-primary": "#212121",
-        "text-secondary": "#757575",
-        "bg-main": "#F7F9FC",
-        "bg-card": "#FFFFFF",
-        success: "#2E7D32",
-        warning: "#ED6C02",
-        error: "#D32F2F"
+        brand: {
+          50: '#eff6ff',
+          100: '#dbeafe',
+          200: '#bfdbfe',
+          300: '#93c5fd',
+          400: '#60a5fa',
+          500: '#3b82f6',
+          600: '#2563eb',
+          700: '#1d4ed8',
+          800: '#1e40af',
+          900: '#1e3a8a',
+        },
       },
       fontFamily: {
         sans: [
           "Inter", "system-ui", "-apple-system", "BlinkMacSystemFont",
           '"Segoe UI"', "Roboto", '"Helvetica Neue"', "Arial",
-          '"Noto Sans"', "sans-serif"
+          "sans-serif"
         ]
-      },
-      transitionDuration: {
-        '600': '600ms'
-      },
-      backgroundImage: {
-        "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
-        "gradient-conic":
-          "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
       keyframes: {
         fadeIn: {

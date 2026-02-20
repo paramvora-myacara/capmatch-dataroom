@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, Fragment, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 
 interface ContactUsModalProps {
   isOpen: boolean;
@@ -15,7 +15,6 @@ export default function ContactUsModal({ isOpen, onClose }: ContactUsModalProps)
   const [submitStatus, setSubmitStatus] = useState<'success' | 'error' | null>(null)
 
   useEffect(() => {
-    // Reset form on close
     if (!isOpen) {
       setFullName('')
       setEmail('')
@@ -33,21 +32,17 @@ export default function ContactUsModal({ isOpen, onClose }: ContactUsModalProps)
     try {
       const response = await fetch('/api/contact', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ fullName, email, message }),
       })
 
       if (response.ok) {
         setSubmitStatus('success')
-        setTimeout(() => {
-          onClose()
-        }, 3000)
+        setTimeout(() => { onClose() }, 3000)
       } else {
         setSubmitStatus('error')
       }
-    } catch (error) {
+    } catch {
       setSubmitStatus('error')
     } finally {
       setIsSubmitting(false)
@@ -57,79 +52,79 @@ export default function ContactUsModal({ isOpen, onClose }: ContactUsModalProps)
   if (!isOpen) return null
 
   return (
-    <div 
-      className="fixed inset-0 bg-black/30 backdrop-blur-sm z-40 flex items-center justify-center p-4 transition-opacity duration-300 animate-fadeIn"
+    <div
+      className="fixed inset-0 bg-black/20 z-40 flex items-center justify-center p-4 animate-fadeIn"
       onClick={onClose}
     >
-      <div 
-        className="bg-white dark:bg-gray-800 rounded-2xl shadow-2xl w-full max-w-lg m-4 transform transition-transform duration-300 animate-scaleIn"
+      <div
+        className="bg-white rounded-lg shadow-xl w-full max-w-md animate-scaleIn"
         onClick={(e) => e.stopPropagation()}
       >
-        <div className="p-6 md:p-8">
-          <div className="flex justify-between items-start">
-            <h2 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white">Schedule a Meeting</h2>
+        <div className="p-6">
+          <div className="flex justify-between items-start mb-5">
+            <h2 className="text-lg font-semibold text-gray-900">Schedule a Meeting</h2>
             <button
               onClick={onClose}
-              className="text-gray-400 hover:text-gray-600 dark:hover:text-gray-200 transition-colors"
+              className="text-gray-400 hover:text-gray-600 transition-colors"
             >
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" /></svg>
             </button>
           </div>
 
           {submitStatus === 'success' ? (
-            <div className="text-center py-12">
-              <h3 className="text-2xl font-bold text-green-500 mb-2">Thank You!</h3>
-              <p className="text-gray-600 dark:text-gray-300">Your message has been sent successfully. We'll be in touch soon.</p>
+            <div className="text-center py-8">
+              <h3 className="text-lg font-semibold text-gray-900 mb-1">Thank you</h3>
+              <p className="text-gray-500 text-sm">Your message has been sent. We&apos;ll be in touch soon.</p>
             </div>
           ) : (
-            <form onSubmit={handleSubmit} className="mt-6 space-y-4">
+            <form onSubmit={handleSubmit} className="space-y-4">
               <div>
-                <label htmlFor="full-name" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Full Name</label>
+                <label htmlFor="full-name" className="block text-[13px] font-medium text-gray-700 mb-1.5">Full Name</label>
                 <input
                   type="text"
                   id="full-name"
                   value={fullName}
                   onChange={(e) => setFullName(e.target.value)}
                   required
-                  className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition"
+                  className="w-full px-3.5 py-2.5 border border-gray-300 rounded-md text-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-colors"
                   placeholder="John Doe"
                 />
               </div>
               <div>
-                <label htmlFor="email" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Email</label>
+                <label htmlFor="contact-email" className="block text-[13px] font-medium text-gray-700 mb-1.5">Email</label>
                 <input
                   type="email"
-                  id="email"
+                  id="contact-email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   required
-                  className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition"
-                  placeholder="you@company.com"
+                  className="w-full px-3.5 py-2.5 border border-gray-300 rounded-md text-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-colors"
+                  placeholder="you@firm.com"
                 />
               </div>
               <div>
-                <label htmlFor="message" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Comments for Meeting</label>
+                <label htmlFor="contact-message" className="block text-[13px] font-medium text-gray-700 mb-1.5">Message</label>
                 <textarea
-                  id="message"
+                  id="contact-message"
                   value={message}
                   onChange={(e) => setMessage(e.target.value)}
                   required
-                  rows={4}
-                  className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition"
+                  rows={3}
+                  className="w-full px-3.5 py-2.5 border border-gray-300 rounded-md text-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-colors resize-none"
                   placeholder="I'd like to discuss..."
-                ></textarea>
+                />
               </div>
-              <div className="flex justify-end pt-2">
+              <div className="flex justify-end pt-1">
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="px-6 py-2.5 bg-blue-600 text-white font-semibold rounded-lg shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:bg-gray-400 disabled:cursor-not-allowed transition-all duration-300"
+                  className="px-4 py-2.5 bg-gray-900 text-white text-sm font-medium rounded-md hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-900 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
                 >
-                  {isSubmitting ? 'Submitting...' : 'Submit'}
+                  {isSubmitting ? 'Sending...' : 'Send'}
                 </button>
               </div>
               {submitStatus === 'error' && (
-                 <p className="text-red-500 text-sm text-center mt-4">An error occurred. Please try again.</p>
+                <p className="text-red-600 text-sm text-center">An error occurred. Please try again.</p>
               )}
             </form>
           )}
@@ -137,4 +132,4 @@ export default function ContactUsModal({ isOpen, onClose }: ContactUsModalProps)
       </div>
     </div>
   )
-} 
+}

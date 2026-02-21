@@ -9,7 +9,7 @@ export default function CompanyPage() {
       </header>
       
       <DocumentSection
-        title="1.1 Pitch Deck"
+        title="Pitch Deck"
         documents={[{ label: 'Pitch Deck (PDF)', href: '/dataroom/pitch-deck.pdf' }]}
       >
         <p className="text-gray-600 text-sm">
@@ -17,18 +17,21 @@ export default function CompanyPage() {
         </p>
       </DocumentSection>
 
-      <DocumentSection title="1.2 Product One-Pager">
-        <div className="w-full rounded-lg overflow-hidden border border-gray-200" style={{ height: '70vh' }}>
-          <iframe
-            src="https://capmatch.com"
-            title="CapMatch — Product Overview"
-            className="w-full h-full border-0"
-            allow="fullscreen"
-          />
+      <DocumentSection title="Product One-Pager">
+        {/* Break out of content column so one-pager can be wider and centered */}
+        <div className="relative left-1/2 -translate-x-1/2 w-[min(100vw,72rem)]">
+          <div className="w-full rounded-lg overflow-hidden border border-gray-200" style={{ height: '70vh' }}>
+            <iframe
+              src="https://capmatch.com"
+              title="CapMatch — Product Overview"
+              className="w-full h-full border-0"
+              allow="fullscreen"
+            />
+          </div>
         </div>
       </DocumentSection>
 
-      <DocumentSection title="1.3 Investor Memo">
+      <DocumentSection title="Investor Memo">
         <p className="text-gray-600 text-sm">[Add investor memo document — link when available]</p>
       </DocumentSection>
 

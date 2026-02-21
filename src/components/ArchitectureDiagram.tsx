@@ -4,82 +4,172 @@ import React, { useRef, useEffect, useState, useCallback } from "react";
 import mermaid from "mermaid";
 
 const DIAGRAM = `graph TB
-    subgraph "Client Layer"
+    subgraph Client["Client Layer"]
         Browser["🌐 Web Browser"]
     end
 
-    subgraph "Frontend — Next.js"
+    subgraph Frontend["Frontend — Next.js"]
         NextApp["⚛️ Next.js App Router<br/>(SSR / SSG)"]
-        APIRoutes["🔌 API Routes<br/>Project Resume · AI Q&A<br/>Meetings · Calendar · Docs"]
+        subgraph NextAPIs["Next.js API Routes"]
+            API_ProjectResume["Project Resume<br/>autofill · save-version · realtime-sanity-check"]
+            API_BorrowerResume["Borrower Resume<br/>autofill · save-version · realtime-sanity-check"]
+            API_AI["AI Q&A<br/>project-qa · borrower-qa · om-qa"]
+            API_OM["OM Insights<br/>generate-insights · field-access"]
+            API_Meetings["Meetings<br/>create · update · cancel · availability"]
+            API_Calendar["Calendar<br/>callback · disconnect"]
+            API_Daily["Daily.co<br/>room · meeting-token · delete-room"]
+            API_OnlyOffice["OnlyOffice<br/>config · callback"]
+            API_Other["Lenders · Security-logos"]
+        end
     end
 
-    subgraph "Backend — FastAPI (Python)"
-        FastAPI["🐍 FastAPI<br/>Auth · Projects · Chat<br/>Resume Processing · OM Insights"]
-        RAG["🧠 RAG Service<br/>LightRAG / Neo4j + PGVector"]
-        Middleware["🔐 Auth · CORS · Rate Limit"]
+    subgraph Backend["Backend — FastAPI"]
+        FastAPI["🐍 FastAPI Main Server<br/>Python 3.11 · Port 8000"]
+        subgraph BackendRouters["API Routers"]
+            R_ProjectResume["Project Resume<br/>/project-resume"]
+            R_BorrowerResume["Borrower Resume<br/>/borrower-resume"]
+            R_Webhooks["Webhooks<br/>trigger-refresh · daily"]
+            R_OM["OM Insights<br/>/projects/.../om"]
+            R_AI["AI Q&A<br/>/ai"]
+            R_Underwriting["Underwriting<br/>/underwriting"]
+            R_UnderwritingChat["Underwriting Chat<br/>/underwriting threads"]
+            R_Documents["Documents<br/>/documents"]
+            R_Auth["Auth<br/>/auth"]
+            R_Users["Users<br/>/users"]
+            R_Projects["Projects<br/>/projects"]
+            R_Chat["Chat<br/>/chat"]
+            R_Calendar["Calendar<br/>/calendar"]
+            R_Health["Health<br/>/health · /health/live · /health/ready"]
+        end
+        subgraph BackendMiddleware["Middleware"]
+            MW_Auth["🔐 Auth"]
+            MW_CORS["CORS"]
+            MW_RateLimit["Rate Limit"]
+            MW_Security["Security Headers"]
+            MW_GZip["GZip"]
+            MW_Cache["HTTP Cache"]
+            MW_Metrics["Metrics"]
+            MW_Perf["Performance"]
+        end
+        RAG["🧠 RAG Service<br/>LightRAG · Neo4j + PGVector"]
     end
 
-    subgraph "AI / LLM"
+    subgraph LenderMatching["Lender Matching"]
+        LenderMatchingCore["🤝 Lender Matching<br/>Matchmaking algorithm matches developers<br/>with lenders by filters · deal types · criteria"]
+        DeveloperFeatures["Developer / Project<br/>features & profile"]
+        LenderCriteria["Lender criteria<br/>buy-box · deal types · filters"]
+        MatchedLenders["Matched<br/>Lenders"]
+    end
+
+    subgraph AI["AI / LLM"]
         LiteLLM["🤖 LiteLLM Proxy<br/>Load Balancing · Model Routing"]
         Gemini["Gemini API"]
         Mistral["Mistral API"]
     end
 
-    subgraph "Data Layer — Supabase"
+    subgraph PlatformData["Data Layer — Supabase"]
         PlatformDB[("🗄️ PostgreSQL<br/>Users · Projects · Resumes · Chat")]
         Storage[("📦 Storage<br/>Documents · Images")]
         Auth[("🔑 Auth<br/>JWT · Accounts")]
     end
 
-    subgraph "Data Warehouse — Supabase"
-        WarehouseDB[("📚 PostgreSQL + PostGIS<br/>Census · BLS · HUD · FEMA")]
+    subgraph Warehouse["Data Warehouse — Supabase"]
+        WarehouseDB[("📚 PostgreSQL + PostGIS<br/>Census · BLS · HUD · FEMA · Marts")]
         DataLake[("☁️ Data Lake<br/>Raw API Responses")]
         VectorStore[("🧬 PGVector<br/>Document Chunks")]
     end
 
-    subgraph "ETL — Prefect"
+    subgraph ETL["ETL — Prefect"]
         Prefect["🎡 Prefect Orchestrator"]
         Ingest["⬇️ Ingest Flows"]
         Transform["✂️ Transform Flows"]
+        Mart["📊 Mart Flows"]
+        subgraph Sources["Data Sources"]
+            S_Census["Census Bureau"]
+            S_BLS["BLS"]
+            S_HUD["HUD"]
+            S_FEMA["FEMA"]
+            S_EPA["EPA"]
+            S_FRED["FRED"]
+            S_Redfin["Redfin"]
+        end
     end
 
-    subgraph "External"
-        APIs["🌐 Census · BLS · HUD<br/>FEMA · EPA · FRED · Redfin"]
-        Calendar["📅 Google Calendar"]
+    subgraph Infra["Backend Infrastructure"]
+        Neo4j[("🕸️ Neo4j<br/>Knowledge Graph")]
+        Redis[("⚡ Redis<br/>Rate Limit · Cache")]
+        Celery["⚙️ Celery<br/>Background Tasks"]
+    end
+
+    subgraph External["External"]
+        GoogleCal["📅 Google Calendar"]
         Daily["🎥 Daily.co"]
-        Email["📧 Resend"]
+        Resend["📧 Resend"]
+        Prometheus["📊 Prometheus<br/>/metrics"]
     end
 
-    Browser --> NextApp --> APIRoutes
-    APIRoutes --> FastAPI
-    FastAPI --> Middleware
-    FastAPI --> PlatformDB & Storage & Auth
+    subgraph Planned["Planned / Future"]
+        RefiRadar["📡 Refi Radar<br/>AI monitors market conditions & rates<br/>Alerts developers when refinance<br/>opportunity is favorable"]
+        RefiRadarSearch["🌐 Continuous<br/>Internet / Market Search"]
+        RefiRadarAlerts["🔔 Refinance<br/>Opportunity Alerts"]
+    end
+
+    Browser --> NextApp --> NextAPIs
+    API_ProjectResume & API_BorrowerResume & API_AI & API_OM & API_Meetings & API_Calendar & API_Daily & API_OnlyOffice --> FastAPI
+    FastAPI --> BackendRouters
+    FastAPI --> BackendMiddleware
     FastAPI --> RAG
-    RAG --> VectorStore
+    FastAPI --> PlatformDB & Storage & Auth
+    FastAPI --> Neo4j & Redis
+    RAG --> Neo4j & VectorStore
     FastAPI & RAG --> LiteLLM
     LiteLLM --> Gemini & Mistral
-    APIs --> Ingest --> DataLake
+    S_Census & S_BLS & S_HUD & S_FEMA & S_EPA & S_FRED & S_Redfin --> Ingest
+    Prefect --> Ingest --> DataLake
     DataLake --> Transform --> WarehouseDB
-    Prefect --> Ingest
+    Mart --> WarehouseDB
     WarehouseDB -.-> FastAPI
-    FastAPI --> Calendar & Daily
-    Calendar & Daily -.->|Webhooks| FastAPI
+    R_Webhooks --> Celery
+    FastAPI --> GoogleCal & Daily
+    GoogleCal & Daily -.->|Webhooks| FastAPI
+    FastAPI --> Prometheus
+    FastAPI --> Resend
 
-    classDef client fill:#e3f2fd,stroke:#1976d2,stroke-width:2px
-    classDef frontend fill:#fff3e0,stroke:#f57c00,stroke-width:2px
-    classDef backend fill:#f3e5f5,stroke:#7b1fa2,stroke-width:2px
-    classDef data fill:#e1f5fe,stroke:#0277bd,stroke-width:2px
-    classDef external fill:#fce4ec,stroke:#c2185b,stroke-width:2px
-    classDef llm fill:#e0f2f1,stroke:#00695c,stroke-width:2px
-    classDef etl fill:#f1f8e9,stroke:#558b2f,stroke-width:2px
+    PlatformDB --> DeveloperFeatures
+    DeveloperFeatures --> LenderMatchingCore
+    LenderCriteria --> LenderMatchingCore
+    LenderMatchingCore --> MatchedLenders
+    MatchedLenders --> FastAPI
+    FastAPI --> LenderMatchingCore
+
+    RefiRadarSearch -.->|"feeds"| RefiRadar
+    RefiRadar -.->|"AI analysis"| LiteLLM
+    RefiRadar -.->|"alerts"| RefiRadarAlerts
+    RefiRadarAlerts -.->|"notify users"| FastAPI
+    RefiRadarAlerts -.->|"email/push"| Resend
+    WarehouseDB -.->|"rates · market data"| RefiRadar
+
+    classDef client fill:#ffffff,stroke:#1976d2,stroke-width:2px
+    classDef frontend fill:#e8f4fc,stroke:#1976d2,stroke-width:2px
+    classDef backend fill:#bbdefb,stroke:#1565c0,stroke-width:2px
+    classDef data fill:#e3f2fd,stroke:#1976d2,stroke-width:2px
+    classDef external fill:#e3f2fd,stroke:#1565c0,stroke-width:2px
+    classDef llm fill:#e8f4fc,stroke:#1565c0,stroke-width:2px
+    classDef etl fill:#e3f2fd,stroke:#1565c0,stroke-width:2px
+    classDef infra fill:#ffffff,stroke:#1976d2,stroke-width:2px
+    classDef planned fill:#e8f4fc,stroke:#1565c0,stroke-width:2px,stroke-dasharray: 5 5
+    classDef matching fill:#bbdefb,stroke:#1565c0,stroke-width:2px
 
     class Browser client
-    class NextApp,APIRoutes frontend
-    class FastAPI,RAG,Middleware backend
+    class NextApp,NextAPIs,API_ProjectResume,API_BorrowerResume,API_AI,API_OM,API_Meetings,API_Calendar,API_Daily,API_OnlyOffice,API_Other frontend
+    class FastAPI,BackendRouters,R_ProjectResume,R_BorrowerResume,R_Webhooks,R_OM,R_AI,R_Underwriting,R_UnderwritingChat,R_Documents,R_Auth,R_Users,R_Projects,R_Chat,R_Calendar,R_Health,BackendMiddleware,MW_Auth,MW_CORS,MW_RateLimit,MW_Security,MW_GZip,MW_Cache,MW_Metrics,MW_Perf,RAG backend
     class PlatformDB,Storage,Auth,WarehouseDB,DataLake,VectorStore data
-    class APIs,Calendar,Daily,Email external
+    class GoogleCal,Daily,Resend,Prometheus external
     class LiteLLM,Gemini,Mistral llm
-    class Prefect,Ingest,Transform etl
+    class Prefect,Ingest,Transform,Mart,Sources,S_Census,S_BLS,S_HUD,S_FEMA,S_EPA,S_FRED,S_Redfin etl
+    class Neo4j,Redis,Celery infra
+    class RefiRadar,RefiRadarSearch,RefiRadarAlerts planned
+    class LenderMatchingCore,DeveloperFeatures,LenderCriteria,MatchedLenders matching
 `;
 
 mermaid.initialize({
@@ -89,8 +179,8 @@ mermaid.initialize({
   securityLevel: "loose",
 });
 
-const MIN_SCALE = 0.3;
-const MAX_SCALE = 3;
+const MIN_SCALE = 0.2;
+const MAX_SCALE = 8;
 
 export function ArchitectureDiagram() {
   const wrapperRef = useRef<HTMLDivElement>(null);
@@ -207,7 +297,7 @@ export function ArchitectureDiagram() {
           >
             <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M4 8h8" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/></svg>
           </button>
-          <span className="text-[11px] text-gray-500 font-medium tabular-nums w-10 text-center select-none">
+          <span className="text-[11px] text-gray-500 font-medium tabular-nums min-w-[3rem] text-center select-none">
             {Math.round(scale * 100)}%
           </span>
           <button
@@ -232,7 +322,7 @@ export function ArchitectureDiagram() {
       <div
         ref={wrapperRef}
         className="relative overflow-hidden"
-        style={{ height: "520px", cursor: isPanning ? "grabbing" : "grab" }}
+        style={{ height: "680px", cursor: isPanning ? "grabbing" : "grab" }}
         onPointerDown={onPointerDown}
         onPointerMove={onPointerMove}
         onPointerUp={onPointerUp}
@@ -244,7 +334,7 @@ export function ArchitectureDiagram() {
             transform: `translate(${translate.x}px, ${translate.y}px) scale(${scale})`,
             transformOrigin: "0 0",
             transition: isPanning ? "none" : "transform 0.15s ease-out",
-            minWidth: "800px",
+            minWidth: "2000px",
             padding: "24px",
           }}
         >

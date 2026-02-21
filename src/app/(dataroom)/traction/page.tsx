@@ -8,7 +8,7 @@ export default function TractionPage() {
         <h1 className="text-2xl font-semibold text-gray-900 tracking-tight">Traction Proof Pack</h1>
       </header>
       
-      <DocumentSection title="4.1 Traction Summary">
+      <DocumentSection title="Traction Summary">
         <div className="space-y-4">
           <div className="overflow-x-auto">
             <table className="w-full text-sm border border-gray-200 rounded-md overflow-hidden">
@@ -33,7 +33,7 @@ export default function TractionPage() {
       </DocumentSection>
 
       <DocumentSection
-        title="4.2 Signed Contracts"
+        title="Signed Contracts"
         documents={[
           { label: 'Deal contracts', href: '/dataroom/deal-contracts.pdf' },
           { label: 'Broker affiliate agreements', href: '/dataroom/broker-agreements.pdf' },
@@ -44,7 +44,7 @@ export default function TractionPage() {
         </p>
       </DocumentSection>
 
-      <DocumentSection title="4.3 Case Studies">
+      <DocumentSection title="Case Studies">
         <div className="space-y-6">
           {/* SoGood Apartments */}
           <div className="border border-gray-200 rounded-md p-5">
@@ -102,11 +102,11 @@ export default function TractionPage() {
         </div>
       </DocumentSection>
 
-      <DocumentSection title="4.4 Sanitized Deliverables">
+      <DocumentSection title="Sanitized Deliverables">
         <p className="text-gray-500 text-sm">[Show interactive package artifacts — what replaces static PDFs]</p>
       </DocumentSection>
 
-      <DocumentSection title="4.5 Testimonials / References">
+      <DocumentSection title="Testimonials / References">
         <p className="text-gray-500 text-sm">[Optional short quotes, emails, permissioned intros]</p>
       </DocumentSection>
 

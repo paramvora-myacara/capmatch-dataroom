@@ -9,21 +9,21 @@ export default function CorporatePage() {
       </header>
       
       <DocumentSection
-        title="6.1 Formation Docs"
+        title="Formation Docs"
         documents={[{ label: 'Certificate of Incorporation', href: '/dataroom/formation-cert.pdf' }, { label: 'Bylaws', href: '/dataroom/bylaws.pdf' }]}
       >
         <p className="text-gray-500 text-sm">[Add formation documents]</p>
       </DocumentSection>
 
       <DocumentSection
-        title="6.2 Board + Stockholder Consents"
+        title="Board + Stockholder Consents"
         documents={[{ label: 'Board minutes', href: '/dataroom/board-minutes.pdf' }]}
       >
         <p className="text-gray-500 text-sm">[Add consents and minutes]</p>
       </DocumentSection>
 
       <DocumentSection
-        title="6.3 Cap Table + Option Plan + Grants"
+        title="Cap Table + Option Plan + Grants"
         documents={[
           { label: 'Cap Table', href: '/dataroom/cap-table.xlsx' },
           { label: 'Option Plan', href: '/dataroom/option-plan.pdf' },
@@ -32,11 +32,11 @@ export default function CorporatePage() {
         <p className="text-gray-500 text-sm">[Add cap table and option plan — Carta export when available]</p>
       </DocumentSection>
 
-      <DocumentSection title="6.4 Prior Financings">
+      <DocumentSection title="Prior Financings">
         <p className="text-gray-500 text-sm">[SAFEs, notes, side letters — if any]</p>
       </DocumentSection>
 
-      <DocumentSection title="6.5 Material Contracts">
+      <DocumentSection title="Material Contracts">
         <ul className="list-disc list-inside text-gray-700 text-sm space-y-1">
           <li>Broker affiliate agreements (see Traction)</li>
           <li>Customer templates + signed examples</li>
@@ -44,11 +44,11 @@ export default function CorporatePage() {
         </ul>
       </DocumentSection>
 
-      <DocumentSection title="6.6 Insurance">
+      <DocumentSection title="Insurance">
         <p className="text-gray-500 text-sm">[Workers comp if applicable; D&amp;O at pre-seed optional]</p>
       </DocumentSection>
 
-      <DocumentSection title="6.7 Monthly Expense Report">
+      <DocumentSection title="Monthly Expense Report">
         <p className="text-gray-500 text-sm">[Link from Index — include here or in Financial Overview]</p>
       </DocumentSection>
 

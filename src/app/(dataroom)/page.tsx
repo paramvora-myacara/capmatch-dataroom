@@ -13,58 +13,39 @@ export default function IndexPage() {
 
       {/* Company Snapshot */}
       <section className="mb-12">
-        <h2 className="text-base font-semibold text-gray-900 mb-4 pb-2 border-b border-gray-200">Company Snapshot</h2>
-        <div className="text-[15px] text-gray-700 space-y-3">
+        <h2 className="text-base font-semibold text-gray-900 mb-4 pb-2 border-b border-gray-200">CapMatch Company Snapshot</h2>
+        <div className="text-[15px] text-gray-700 space-y-4">
           <p>
-            <strong>CapMatch</strong> is the operating system for CRE debt — bringing the financing workflow from document intake to closing into one secure platform.
+            <strong>CapMatch</strong> is the operating system for commercial real estate financing — from document intake to loan closing — with real adoption. We are powered by a proven incentive system for both commercial real estate brokers and lenders, and we activate distribution through broker networks and direct borrower demand.
           </p>
           <p>
-            We activate distribution through broker networks and direct borrower demand, and we&apos;re building toward AI-enabled matching that standardizes lender discovery and execution.
+            Our platform unifies fragmented workflows (email, PDFs, spreadsheets) into a single pipeline: borrower intake, AI-powered packaging and underwriting, lender matching, and closing. We are building toward AI-enabled matching that standardizes lender discovery and execution across a market of 3,000+ lenders with no common format.
           </p>
-        </div>
-      </section>
-
-      {/* Built vs In Progress */}
-      <section className="mb-12">
-        <h2 className="text-base font-semibold text-gray-900 mb-4 pb-2 border-b border-gray-200">What Exists Today vs. What&apos;s Next</h2>
-        <div className="grid md:grid-cols-3 gap-4">
-          <div className="border border-gray-200 rounded-md p-4">
-            <h3 className="text-[13px] font-semibold text-gray-900 mb-2 uppercase tracking-wide">Live today</h3>
-            <ul className="text-sm text-gray-600 space-y-1.5 list-disc list-inside">
-              <li>Platform workflow for deal intake, packaging, execution support</li>
-              <li>Broker distribution pipeline</li>
-              <li>$291M in loan volume, 4 brokerages, 7 projects in processing</li>
-            </ul>
-          </div>
-          <div className="border border-gray-200 rounded-md p-4">
-            <h3 className="text-[13px] font-semibold text-gray-900 mb-2 uppercase tracking-wide">In progress</h3>
-            <ul className="text-sm text-gray-600 space-y-1.5 list-disc list-inside">
-              <li>Lender matching module (in build)</li>
-              <li>Dependent on lender/buy-box data acquisition</li>
-            </ul>
-          </div>
-          <div className="border border-gray-200 rounded-md p-4">
-            <h3 className="text-[13px] font-semibold text-gray-900 mb-2 uppercase tracking-wide">Next</h3>
-            <ul className="text-sm text-gray-600 space-y-1.5 list-disc list-inside">
-              <li>Data acquisition + integration for lender matching</li>
-              <li>Productionize matching and outreach automation</li>
-            </ul>
-          </div>
+          <p>
+            <strong>Market:</strong> We focus on multifamily, Opportunity Zone, and development debt in a $1T+ CRE debt market. Target customers include sponsors, developers, and brokers who need faster, more transparent capital placement.
+          </p>
+          <p>
+            <strong>Traction:</strong> CapMatch has $291M in contracted loan volume across 7 deals in processing and 4 brokerages providing deal flow, with implied revenue at conversion (1% fee) of ~$2.9M. Leadership brings $2B+ in transaction volume experience and deep CRE and tech backgrounds.
+          </p>
         </div>
       </section>
 
       {/* Index */}
       <section className="mb-12">
         <h2 className="text-base font-semibold text-gray-900 mb-4 pb-2 border-b border-gray-200">Index</h2>
+        <p className="text-sm text-gray-500 mb-4">Jump to any section of the data room. Each link opens the corresponding part of the deck.</p>
         <div className="border border-gray-200 rounded-md divide-y divide-gray-100">
           {DATAROOM_SECTIONS.map((section) => (
             <Link
               key={section.slug}
               href={section.href}
-              className="flex items-center justify-between px-4 py-3 hover:bg-gray-50 transition-colors group"
+              className="block px-4 py-3 hover:bg-gray-50 transition-colors group"
             >
-              <span className="text-sm text-gray-700 group-hover:text-gray-900">{section.title}</span>
-              <span className="text-gray-300 group-hover:text-gray-500 text-xs">→</span>
+              <div className="flex items-center justify-between">
+                <span className="text-sm font-medium text-gray-900 group-hover:text-gray-700">{section.title}</span>
+                <span className="text-gray-300 group-hover:text-gray-500 text-xs shrink-0 ml-2">→</span>
+              </div>
+              <p className="text-xs text-gray-500 mt-1 pr-6">{section.description}</p>
             </Link>
           ))}
         </div>
@@ -73,23 +54,16 @@ export default function IndexPage() {
       {/* Fundraise Summary */}
       <section className="mb-12">
         <h2 className="text-base font-semibold text-gray-900 mb-4 pb-2 border-b border-gray-200">Fundraise</h2>
-        <div className="text-sm text-gray-700 space-y-2">
-          <p><strong>Target raise:</strong> $3.5M pre-seed/seed</p>
-          <p><strong>Valuation:</strong> TBD (target range $35–40M)</p>
-          <p><strong>Use of proceeds:</strong> See Financial Overview</p>
-          <p><strong>Contact:</strong> See Team page</p>
-        </div>
-      </section>
-
-      {/* Competitive Positioning */}
-      <section className="mb-12">
-        <h2 className="text-base font-semibold text-gray-900 mb-4 pb-2 border-b border-gray-200">Competitive Positioning</h2>
-        <div className="text-[15px] text-gray-700 space-y-3">
+        <div className="text-sm text-gray-700 space-y-4">
+          <p><strong>Target raise:</strong> $3.5M pre-seed / seed</p>
           <p>
-            Competitors do lending OR software. CapMatch is building the operating system for all CRE capital markets — occupying the high-automation, high-integration quadrant.
+            <strong>Use of funds:</strong> Product and engineering (lender matching module, lender/buy-box data integration, productionized AI matching); growth and distribution (broker and lender onboarding); and operations (security, compliance, SOC2 path).
           </p>
           <p>
-            First-mover advantage and ability to scale quickly position us ~18 months ahead. Each transaction trains our AI, creating a data moat. Winner-take-most dynamics (like Uber/Airbnb) favor the platform that reaches critical mass first.
+            <strong>Round focus:</strong> Pre-seed and seed investors. We are raising to scale contracted pipeline into repeatable platform revenue, expand broker and lender coverage, and solidify our position as the operating system for CRE debt.
+          </p>
+          <p>
+            <strong>Contact & next steps:</strong> For more detail, expression of interest, or to request access to this data room, visit <a href="https://invest.capmatch.com" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:text-blue-800 underline">invest.capmatch.com</a> or see the Team page for key contacts.
           </p>
         </div>
       </section>

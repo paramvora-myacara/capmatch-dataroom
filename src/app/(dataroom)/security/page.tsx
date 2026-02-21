@@ -8,7 +8,7 @@ export default function SecurityPage() {
         <h1 className="text-2xl font-semibold text-gray-900 tracking-tight">Security + Privacy + Compliance</h1>
       </header>
       
-      <DocumentSection title="8.1 Security Overview">
+      <DocumentSection title="Security Overview">
         <p className="text-gray-500 text-sm mb-3">
           [NEEDED — 2 pages: access controls, logging, incident response]
         </p>
@@ -18,17 +18,17 @@ export default function SecurityPage() {
         </ul>
       </DocumentSection>
 
-      <DocumentSection title="8.2 Privacy">
+      <DocumentSection title="Privacy">
         <p className="text-gray-500 text-sm">[Privacy policy, retention summary]</p>
       </DocumentSection>
 
-      <DocumentSection title="8.3 Regulatory Posture">
+      <DocumentSection title="Regulatory Posture">
         <p className="text-gray-500 text-sm">
           [1-page note: what we are/are not; where counsel is engaged. Lending licensing (CFL), Fair Lending (ECOA), Data Privacy (GDPR/CCPA).]
         </p>
       </DocumentSection>
 
-      <DocumentSection title="8.4 SOC2 Roadmap">
+      <DocumentSection title="SOC2 Roadmap">
         <p className="text-gray-500 text-sm">
           [1-page plan: current status → milestones → target window. Moving towards SOC2.]
         </p>

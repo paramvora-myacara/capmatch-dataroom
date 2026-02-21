@@ -9,7 +9,7 @@ export default function MarketStrategyPage() {
         <h1 className="text-2xl font-semibold text-gray-900 tracking-tight">Market + Strategy Brief</h1>
       </header>
       
-      <DocumentSection title="3.1 Market + Strategy Brief">
+      <DocumentSection title="Market + Strategy Brief">
         <div className="space-y-10">
 
           {/* ── Market Map ── */}

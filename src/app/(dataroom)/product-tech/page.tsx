@@ -10,7 +10,7 @@ export default function ProductTechPage() {
         <h1 className="text-2xl font-semibold text-gray-900 tracking-tight">Product + Tech Overview</h1>
       </header>
       
-      <DocumentSection title="2.1 Product + Tech Overview (Single Umbrella Doc)">
+      <DocumentSection title="Product + Tech Overview (Single Umbrella Doc)">
         <div className="space-y-10">
 
           {/* Built vs In Progress */}
@@ -36,7 +36,7 @@ export default function ProductTechPage() {
 
           {/* 1 — Product workflow pipeline */}
           <div>
-            <h3 className="font-semibold text-gray-900 mb-3">1. Product today — end-to-end workflow</h3>
+            <h3 className="font-semibold text-gray-900 mb-3">Product today — end-to-end workflow</h3>
             <div className="border border-gray-200 rounded-lg p-4">
               <div className="flex items-stretch gap-0">
                 {[
@@ -48,7 +48,7 @@ export default function ProductTechPage() {
                   <div key={s.step} className="flex items-stretch flex-1">
                     <div className="flex-1 text-center px-2">
                       <div className="w-8 h-8 rounded-full bg-gray-100 border border-gray-200 flex items-center justify-center mx-auto mb-2">
-                        <span className="text-xs font-bold text-gray-500">{i + 1}</span>
+                        <span className="w-2 h-2 rounded-full bg-gray-400" />
                       </div>
                       <p className="text-xs font-semibold text-gray-900 mb-0.5">{s.step}</p>
                       <p className="text-[11px] text-gray-500 leading-snug">{s.desc}</p>
@@ -64,7 +64,7 @@ export default function ProductTechPage() {
 
           {/* 2 — Roles */}
           <div>
-            <h3 className="font-semibold text-gray-900 mb-3">2. Workflow &amp; roles</h3>
+            <h3 className="font-semibold text-gray-900 mb-3">Workflow &amp; roles</h3>
             <div className="grid grid-cols-3 gap-3">
               {[
                 { role: 'Borrower', desc: 'Build profile once — reuse across every deal and lender' },
@@ -81,7 +81,7 @@ export default function ProductTechPage() {
 
           {/* 3 — Architecture */}
           <div>
-            <h3 className="font-semibold text-gray-900 mb-2">3. Architecture (high level)</h3>
+            <h3 className="font-semibold text-gray-900 mb-2">Architecture (high level)</h3>
             <p className="text-gray-700 text-sm mb-4">
               Three-repo monorepo: Next.js frontend (App Router, SSR/SSG), FastAPI backend (Python 3.11), and Supabase BaaS.
               Data flows through a Prefect ETL pipeline into a PostGIS-enabled data warehouse. AI capabilities powered by a
@@ -92,7 +92,7 @@ export default function ProductTechPage() {
 
           {/* 4 — Data Sources */}
           <div>
-            <h3 className="font-semibold text-gray-900 mb-2">4. Data sources &amp; provenance</h3>
+            <h3 className="font-semibold text-gray-900 mb-2">Data sources &amp; provenance</h3>
             <p className="text-gray-700 text-sm mb-3">
               Automated ingestion from 7+ federal and market data APIs via Prefect ETL flows (ingest → transform → mart). All data stored in a PostGIS-enabled PostgreSQL warehouse with full provenance tracking.
             </p>
@@ -119,7 +119,7 @@ export default function ProductTechPage() {
 
           {/* 5 — AI + Automation — stacked list */}
           <div>
-            <h3 className="font-semibold text-gray-900 mb-3">5. AI + automation</h3>
+            <h3 className="font-semibold text-gray-900 mb-3">AI + automation</h3>
             <div className="border border-gray-200 rounded-lg overflow-hidden divide-y divide-gray-100">
               {[
                 { title: 'LLM Gateway', desc: 'LiteLLM proxy — load balancing across Gemini + Mistral, per-model usage tracking, automatic fallback' },
@@ -139,7 +139,7 @@ export default function ProductTechPage() {
           {/* 6 — Engineering Ops */}
           <div className="border border-gray-200 rounded-lg overflow-hidden">
             <div className="bg-gray-50 px-4 py-2.5 border-b border-gray-200">
-              <h3 className="text-xs font-semibold text-gray-900 uppercase tracking-wide">6. Engineering Ops</h3>
+              <h3 className="text-xs font-semibold text-gray-900 uppercase tracking-wide">Engineering Ops</h3>
             </div>
             <div className="grid grid-cols-3 divide-x divide-gray-100">
               {[
@@ -164,7 +164,7 @@ export default function ProductTechPage() {
 
           {/* 7 — Roadmap */}
           <div>
-            <h3 className="font-semibold text-gray-900 mb-3">7. Roadmap (6–18 months)</h3>
+            <h3 className="font-semibold text-gray-900 mb-3">Roadmap (6–18 months)</h3>
             <div className="flex gap-3">
               {[
                 { phase: 'Now', label: 'Platform MVP, first deals' },
@@ -188,7 +188,7 @@ export default function ProductTechPage() {
         </div>
       </DocumentSection>
 
-      <DocumentSection title="2.2 Platform Screenshots / Walkthrough">
+      <DocumentSection title="Platform Screenshots / Walkthrough">
         <HowItWorksSection />
       </DocumentSection>
 

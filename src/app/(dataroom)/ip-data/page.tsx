@@ -9,18 +9,18 @@ export default function IpDataPage() {
       </header>
       
       <DocumentSection
-        title="7.1 IP Assignment"
+        title="IP Assignment"
         documents={[{ label: 'IP Assignment (employee/contractor)', href: '/dataroom/ip-assignment.pdf' }]}
       >
         <p className="text-gray-500 text-sm">[Add IP assignment agreements]</p>
       </DocumentSection>
 
-      <DocumentSection title="7.2 Open-Source Inventory">
+      <DocumentSection title="Open-Source Inventory">
         <p className="text-gray-500 text-sm mb-2">[License snapshot of dependencies]</p>
         <p className="text-gray-600 text-xs">Key stack: Next.js, React, TypeScript, Tailwind</p>
       </DocumentSection>
 
-      <DocumentSection title="7.3 Data Rights Summary">
+      <DocumentSection title="Data Rights Summary">
         <ul className="list-disc list-inside text-gray-700 text-sm space-y-1.5">
           <li><strong>What data is used today:</strong> Deal data, borrower/project info, ingestion pipelines</li>
           <li><strong>License terms:</strong> [NEEDED — Legal]</li>

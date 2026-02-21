@@ -81,9 +81,10 @@ const technicalStaff = [
     name: 'Vatsal Hariramani',
     role: 'Engineering',
     content: [
-      'Vatsal is a builder and entrepreneur focused on complex problems at the intersection of technology and real-world impact.',
-      'His background spans AI/ML, IoT, automation, and robotics.',
-      'At CapMatch he contributes to product and engineering with an emphasis on moving from concept to scalable solutions.',
+      'Vatsal Hariramani is an engineer and former founder working at the intersection of AI, hardware, and real-world systems.',
+      'He studied Computer Science and Engineering at IIT Mandi and completed a semester abroad at TU Munich. His background spans AI/ML, IoT, automation, and robotics, with a focus on building reliable, production-grade technology.',
+      'Prior to CapMatch, Vatsal founded a venture-backed medtech startup supported by Emergent Ventures, where he built intelligent monitoring and embedded systems designed to address reliability and continuous care challenges in neonatal and clinical environments, particularly in remote and infrastructure-constrained settings, including deployments across challenging terrains such as the Himalayas.',
+      'At CapMatch, he contributes across product and engineering.',
     ],
   },
 ];
@@ -95,7 +96,7 @@ export default function TeamPage() {
         <h1 className="text-2xl font-semibold text-gray-900 tracking-tight">Team</h1>
       </header>
       
-      <DocumentSection title="9.1 Leadership">
+      <DocumentSection title="Leadership">
         <p className="text-gray-700 text-sm mb-6">
           $6B+ in combined transaction volume and 20+ years of expertise in real estate, lending, and technology.
         </p>
@@ -114,7 +115,7 @@ export default function TeamPage() {
         </div>
       </DocumentSection>
 
-      <DocumentSection title="9.2 Engineering & Advisory">
+      <DocumentSection title="Engineering & Advisory">
         <p className="text-gray-700 text-sm mb-6">
           Our technical and advisory teams bring deep domain expertise and engineering rigor to CapMatch&apos;s platform and client outcomes.
         </p>

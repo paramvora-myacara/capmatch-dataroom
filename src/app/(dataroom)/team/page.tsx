@@ -133,21 +133,6 @@ export default function TeamPage() {
         </div>
       </DocumentSection>
 
-      <DocumentSection title="9.3 Team Overview">
-        <ul className="list-disc list-inside text-gray-700 text-sm space-y-1">
-          <li><strong>Current team size:</strong> 10</li>
-          <li><strong>Roles filled:</strong> Chief Market Advisor, Head of Growth, Head of Communications, VP Communications, VP Engineering, Head of Investor Relations</li>
-        </ul>
-      </DocumentSection>
-
-      <DocumentSection title="9.4 Hiring Plan">
-        <p className="text-gray-500 text-sm">[Top 3 roles — e.g. Sr. Engineer, GTM, Customer Success]</p>
-      </DocumentSection>
-
-      <DocumentSection title="9.5 Resumes">
-        <p className="text-gray-500 text-sm">[Add resumes as downloads when available]</p>
-      </DocumentSection>
-
       <p className="text-sm text-gray-500">
         <Link href="/" className="text-gray-600 hover:text-gray-900 hover:underline">← Back to Index</Link>
       </p>

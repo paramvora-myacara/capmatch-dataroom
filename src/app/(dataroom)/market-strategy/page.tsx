@@ -1,5 +1,6 @@
 import DocumentSection from '@/components/DocumentSection';
 import Link from 'next/link';
+import CompetitiveAnalysisGraph from '@/components/CompetitiveAnalysisGraph';
 
 export default function MarketStrategyPage() {
   return (
@@ -37,20 +38,28 @@ export default function MarketStrategyPage() {
           {/* ── ICP ── */}
           <div>
             <h3 className="font-semibold text-gray-900 mb-3">ICP (Ideal Customer Profile)</h3>
-            <div className="grid grid-cols-2 gap-3">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
               <div className="border border-gray-200 rounded-lg p-4">
-                <p className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-2">Borrower Segments</p>
-                <div className="flex flex-wrap gap-1.5">
+                <p className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-2">Borrower segments</p>
+                <div className="flex flex-col gap-1.5">
                   {['Multifamily', 'Opportunity Zone', 'Development'].map((s) => (
-                    <span key={s} className="text-xs font-medium bg-gray-100 text-gray-700 border border-gray-200 px-2.5 py-1 rounded-full">{s}</span>
+                    <span key={s} className="text-xs font-medium bg-gray-100 text-gray-700 border border-gray-200 px-2.5 py-1.5 rounded-full w-fit">{s}</span>
                   ))}
                 </div>
               </div>
               <div className="border border-gray-200 rounded-lg p-4">
-                <p className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-2">Lender Segments</p>
-                <div className="flex flex-wrap gap-1.5">
+                <p className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-2">Lender segments</p>
+                <div className="flex flex-col gap-1.5">
                   {['Banks', 'Debt Funds', 'Agencies'].map((s) => (
-                    <span key={s} className="text-xs font-medium bg-gray-100 text-gray-700 border border-gray-200 px-2.5 py-1 rounded-full">{s}</span>
+                    <span key={s} className="text-xs font-medium bg-gray-100 text-gray-700 border border-gray-200 px-2.5 py-1.5 rounded-full w-fit">{s}</span>
+                  ))}
+                </div>
+              </div>
+              <div className="border border-gray-200 rounded-lg p-4">
+                <p className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-2">Deal type</p>
+                <div className="flex flex-col gap-1.5">
+                  {['Ground up', 'Refinance'].map((s) => (
+                    <span key={s} className="text-xs font-medium bg-gray-100 text-gray-700 border border-gray-200 px-2.5 py-1.5 rounded-full w-fit">{s}</span>
                   ))}
                 </div>
               </div>
@@ -60,6 +69,17 @@ export default function MarketStrategyPage() {
           {/* ── Competitive Landscape ── */}
           <div>
             <h3 className="font-semibold text-gray-900 mb-3">Competitive landscape</h3>
+            <div className="mb-6">
+              <CompetitiveAnalysisGraph />
+            </div>
+            <div className="text-[15px] text-gray-700 space-y-3 mb-6">
+              <p>
+                Competitors do lending OR software. CapMatch is building the operating system for all CRE capital markets — occupying the high-automation, high-integration quadrant.
+              </p>
+              <p>
+                First-mover advantage and ability to scale quickly position us ~18 months ahead. Each transaction trains our AI, creating a data moat. Winner-take-most dynamics (like Uber/Airbnb) favor the platform that reaches critical mass first.
+              </p>
+            </div>
             <div className="overflow-hidden border border-gray-200 rounded-lg">
               <table className="w-full text-sm">
                 <thead>

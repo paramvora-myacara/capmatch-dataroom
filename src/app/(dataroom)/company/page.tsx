@@ -18,13 +18,16 @@ export default function CompanyPage() {
       </DocumentSection>
 
       <DocumentSection title="1.2 Product One-Pager">
-        <div className="w-full rounded-lg overflow-hidden border border-gray-200" style={{ height: '70vh' }}>
-          <iframe
-            src="https://capmatch.com"
-            title="CapMatch — Product Overview"
-            className="w-full h-full border-0"
-            allow="fullscreen"
-          />
+        {/* Break out of content column so one-pager can be wider and centered */}
+        <div className="relative left-1/2 -translate-x-1/2 w-[min(100vw,72rem)]">
+          <div className="w-full rounded-lg overflow-hidden border border-gray-200" style={{ height: '70vh' }}>
+            <iframe
+              src="https://capmatch.com"
+              title="CapMatch — Product Overview"
+              className="w-full h-full border-0"
+              allow="fullscreen"
+            />
+          </div>
         </div>
       </DocumentSection>
 

@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { DATAROOM_SECTIONS } from '@/data-room/navigation';
+import CompetitiveAnalysisGraph from '@/components/CompetitiveAnalysisGraph';
 
 export default function IndexPage() {
   return (
@@ -75,7 +76,6 @@ export default function IndexPage() {
         <h2 className="text-base font-semibold text-gray-900 mb-4 pb-2 border-b border-gray-200">Fundraise</h2>
         <div className="text-sm text-gray-700 space-y-2">
           <p><strong>Target raise:</strong> $3.5M pre-seed/seed</p>
-          <p><strong>Valuation:</strong> TBD (target range $35–40M)</p>
           <p><strong>Use of proceeds:</strong> See Financial Overview</p>
           <p><strong>Contact:</strong> See Team page</p>
         </div>
@@ -84,6 +84,9 @@ export default function IndexPage() {
       {/* Competitive Positioning */}
       <section className="mb-12">
         <h2 className="text-base font-semibold text-gray-900 mb-4 pb-2 border-b border-gray-200">Competitive Positioning</h2>
+        <div className="mb-6">
+          <CompetitiveAnalysisGraph />
+        </div>
         <div className="text-[15px] text-gray-700 space-y-3">
           <p>
             Competitors do lending OR software. CapMatch is building the operating system for all CRE capital markets — occupying the high-automation, high-integration quadrant.

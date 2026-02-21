@@ -2,16 +2,13 @@
 
 import { useEffect, useState, useCallback } from 'react';
 import Link from 'next/link';
-import { createClient } from '@/lib/supabase/client';
 import { Upload, FileText, Download, Eye, X, Loader2 } from 'lucide-react';
-
-const BUCKET = 'dataroom-documents';
 
 type FileItem = {
   name: string;
-  id: string;
-  created_at: string;
-  updated_at: string;
+  id?: string;
+  created_at?: string;
+  updated_at?: string;
   metadata?: { mimetype?: string };
 };
 
@@ -23,23 +20,22 @@ export default function DocumentsPage() {
   const [viewUrl, setViewUrl] = useState<string | null>(null);
   const [viewName, setViewName] = useState<string | null>(null);
 
-  const supabase = createClient();
-
   const loadFiles = useCallback(async () => {
     setLoading(true);
-    const { data, error } = await supabase.storage.from(BUCKET).list('', {
-      limit: 500,
-      sortBy: { column: 'created_at', order: 'desc' },
-    });
-    if (error) {
-      console.error(error);
+    try {
+      const res = await fetch('/api/documents');
+      if (!res.ok) {
+        setFiles([]);
+        return;
+      }
+      const data = await res.json();
+      setFiles(data.files ?? []);
+    } catch {
       setFiles([]);
-    } else {
-      const raw = (data ?? []).filter((f) => f.name && !f.name.endsWith('/'));
-      setFiles(raw as FileItem[]);
+    } finally {
+      setLoading(false);
     }
-    setLoading(false);
-  }, [supabase]);
+  }, []);
 
   useEffect(() => {
     loadFiles();
@@ -53,39 +49,48 @@ export default function DocumentsPage() {
     if (!file) return;
     setUploadError('');
     setUploading(true);
-    const path = `${Date.now()}-${file.name.replace(/[^a-zA-Z0-9._-]/g, '_')}`;
-    const { error } = await supabase.storage.from(BUCKET).upload(path, file, {
-      cacheControl: '3600',
-      upsert: false,
-    });
-    if (error) {
-      setUploadError(error.message);
+    try {
+      const formData = new FormData();
+      formData.append('file', file);
+      const res = await fetch('/api/documents/upload', {
+        method: 'POST',
+        body: formData,
+      });
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok) {
+        setUploadError(data.error || 'Upload failed');
+        return;
+      }
+      input.value = '';
+      await loadFiles();
+    } finally {
       setUploading(false);
-      return;
     }
-    setUploading(false);
-    input.value = '';
-    await loadFiles();
+  };
+
+  const getSignedUrl = async (path: string): Promise<string | null> => {
+    const res = await fetch('/api/documents/signed-url', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ path }),
+    });
+    const data = await res.json().catch(() => ({}));
+    return res.ok && data.url ? data.url : null;
   };
 
   const handleView = async (path: string, name: string) => {
-    const { data, error } = await supabase.storage.from(BUCKET).createSignedUrl(path, 3600);
-    if (error) {
-      console.error(error);
-      return;
-    }
-    if (data?.signedUrl) {
+    const url = await getSignedUrl(path);
+    if (url) {
       setViewName(name);
-      setViewUrl(data.signedUrl);
+      setViewUrl(url);
     }
   };
 
   const handleDownload = async (path: string, name: string) => {
-    const { data, error } = await supabase.storage.from(BUCKET).createSignedUrl(path, 3600);
-    if (error) return;
-    if (data?.signedUrl) {
+    const url = await getSignedUrl(path);
+    if (url) {
       const a = document.createElement('a');
-      a.href = data.signedUrl;
+      a.href = url;
       a.download = name;
       a.target = '_blank';
       a.rel = 'noopener noreferrer';

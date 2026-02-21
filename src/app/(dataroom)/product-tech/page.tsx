@@ -8,21 +8,24 @@ export default function ProductTechPage() {
     <article>
       <header className="mb-10">
         <h1 className="text-2xl font-semibold text-gray-900 tracking-tight">Product + Tech Overview</h1>
+        <p className="text-gray-600 text-sm mt-2">
+          The platform is built from three core repositories: Frontend, Backend, and ETL Pipeline.
+        </p>
       </header>
       
       <DocumentSection title="Product + Tech Overview (Single Umbrella Doc)">
         <div className="space-y-10">
 
-          {/* Built vs In Progress */}
+          {/* Built vs In Progress vs Upcoming */}
           <div className="border border-gray-200 rounded-lg overflow-hidden">
             <div className="bg-gray-50 px-4 py-2.5 border-b border-gray-200">
-              <h3 className="text-xs font-semibold text-gray-900 uppercase tracking-wide">Built vs In Progress</h3>
+              <h3 className="text-xs font-semibold text-gray-900 uppercase tracking-wide">Built vs In Progress vs Upcoming</h3>
             </div>
             <div className="grid md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-gray-100">
               {[
-                { title: 'Built now', items: ['Packaging/workflows', 'Core platform', 'Current data ingestion', 'Automation, evaluation approach'] },
-                { title: 'In progress', items: ['Lender matching module'] },
-                { title: 'Planned next', items: ['Purchase + integration of lender/buy-box data', 'Productionize matching'] },
+                { title: 'Built now', items: ['Frontend: Next.js App Router (SSR/SSG), API routes for project/borrower resume, AI Q&A, meetings, calendar, Daily.co, OnlyOffice', 'Backend: FastAPI, auth, project/borrower resume APIs, underwriting, RAG (LightRAG + Neo4j + PGVector), document handling, Celery background tasks', 'ETL Pipeline: Prefect ingest → transform → marts; 15+ data sources (Census, BLS, HUD, FEMA, EPA, FRED, Redfin, NHGIS, etc.); PostGIS-enabled warehouse and data lake', 'Packaging/workflows, core platform, automation and evaluation approach'] },
+                { title: 'In progress', items: ['Lender matching module (matchmaking algorithm, developer/lender criteria, buy-box integration)'] },
+                { title: 'Planned next', items: ['Purchase and integration of lender/buy-box data', 'Productionize matching at scale', 'Refi Radar: AI-driven refinance opportunity alerts'] },
               ].map((col) => (
                 <div key={col.title} className="p-4">
                   <h4 className="font-medium text-gray-900 text-sm mb-2">{col.title}</h4>
@@ -34,9 +37,9 @@ export default function ProductTechPage() {
             </div>
           </div>
 
-          {/* 1 — Product workflow pipeline */}
+          {/* 1. Product workflow pipeline */}
           <div>
-            <h3 className="font-semibold text-gray-900 mb-3">Product today — end-to-end workflow</h3>
+            <h3 className="font-semibold text-gray-900 mb-3">Product today: end-to-end workflow</h3>
             <div className="border border-gray-200 rounded-lg p-4">
               <div className="flex items-stretch gap-0">
                 {[
@@ -62,12 +65,12 @@ export default function ProductTechPage() {
             </div>
           </div>
 
-          {/* 2 — Roles */}
+          {/* 2. Roles */}
           <div>
             <h3 className="font-semibold text-gray-900 mb-3">Workflow &amp; roles</h3>
             <div className="grid grid-cols-3 gap-3">
               {[
-                { role: 'Borrower', desc: 'Build profile once — reuse across every deal and lender' },
+                { role: 'Borrower', desc: 'Build profile once; reuse across every deal and lender' },
                 { role: 'Advisor / Broker', desc: 'Manage unlimited deals with workflow automation' },
                 { role: 'Lender', desc: 'Receive standardized, queryable deal packages' },
               ].map((r) => (
@@ -79,22 +82,20 @@ export default function ProductTechPage() {
             </div>
           </div>
 
-          {/* 3 — Architecture */}
+          {/* 3. Architecture */}
           <div>
             <h3 className="font-semibold text-gray-900 mb-2">Architecture (high level)</h3>
             <p className="text-gray-700 text-sm mb-4">
-              Three-repo monorepo: Next.js frontend (App Router, SSR/SSG), FastAPI backend (Python 3.11), and Supabase BaaS.
-              Data flows through a Prefect ETL pipeline into a PostGIS-enabled data warehouse. AI capabilities powered by a
-              LiteLLM proxy routing to Gemini and Mistral models, with RAG via Neo4j knowledge graphs and PGVector.
+              Three core repositories: a Next.js frontend (App Router, SSR/SSG), a FastAPI backend (Python 3.11), and a Prefect-based ETL pipeline. The frontend and backend use Supabase as BaaS (PostgreSQL, Auth, Storage). Data flows through the ETL pipeline into a PostGIS-enabled data warehouse and data lake. AI is powered by a LiteLLM proxy routing to Gemini and Mistral, with RAG via LightRAG (Neo4j knowledge graph and PGVector).
             </p>
             <ArchitectureDiagram />
           </div>
 
-          {/* 4 — Data Sources */}
+          {/* 4. Data Sources */}
           <div>
             <h3 className="font-semibold text-gray-900 mb-2">Data sources &amp; provenance</h3>
             <p className="text-gray-700 text-sm mb-3">
-              Automated ingestion from 7+ federal and market data APIs via Prefect ETL flows (ingest → transform → mart). All data stored in a PostGIS-enabled PostgreSQL warehouse with full provenance tracking.
+              Automated ingestion from 15+ federal and market data APIs via Prefect ETL flows (ingest, transform, mart). All data stored in a PostGIS-enabled PostgreSQL warehouse with full provenance tracking.
             </p>
             <div className="border border-gray-200 rounded-lg overflow-hidden">
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-px bg-gray-100">
@@ -117,14 +118,14 @@ export default function ProductTechPage() {
             </div>
           </div>
 
-          {/* 5 — AI + Automation — stacked list */}
+          {/* 5. AI + automation */}
           <div>
             <h3 className="font-semibold text-gray-900 mb-3">AI + automation</h3>
             <div className="border border-gray-200 rounded-lg overflow-hidden divide-y divide-gray-100">
               {[
-                { title: 'LLM Gateway', desc: 'LiteLLM proxy — load balancing across Gemini + Mistral, per-model usage tracking, automatic fallback' },
-                { title: 'Document Intelligence', desc: 'OCR (multi-engine) → LLM field extraction → 150+ sanity rules → structured deal data' },
-                { title: 'RAG / Deal Brain', desc: 'Neo4j knowledge graph + PGVector embeddings — per-project "deal brain" for natural-language Q&A' },
+                { title: 'LLM Gateway', desc: 'LiteLLM proxy: load balancing across Gemini and Mistral, per-model usage tracking, automatic fallback' },
+                { title: 'Document Intelligence', desc: 'OCR (multi-engine), LLM field extraction, 150+ sanity rules, structured deal data' },
+                { title: 'RAG / Deal Brain', desc: 'LightRAG with Neo4j knowledge graph and PGVector embeddings; per-project "deal brain" for natural-language Q&A' },
                 { title: 'OM Generation', desc: 'Automated offering memoranda with section templates, financial calculations, and narrative generation' },
                 { title: 'Guardrails', desc: 'Human-in-the-loop review, backward sanity checks, field constraints, source metadata tracing' },
               ].map((c) => (
@@ -136,16 +137,16 @@ export default function ProductTechPage() {
             </div>
           </div>
 
-          {/* 6 — Engineering Ops */}
+          {/* 6. Engineering Ops */}
           <div className="border border-gray-200 rounded-lg overflow-hidden">
             <div className="bg-gray-50 px-4 py-2.5 border-b border-gray-200">
               <h3 className="text-xs font-semibold text-gray-900 uppercase tracking-wide">Engineering Ops</h3>
             </div>
             <div className="grid grid-cols-3 divide-x divide-gray-100">
               {[
-                { title: 'Repositories', items: ['Frontend — Next.js 15 / TS', 'Backend — FastAPI / Python 3.11', 'Dataroom — Next.js'] },
-                { title: 'Infrastructure', items: ['Supabase (PG + Auth + Storage)', 'GCP Cloud Functions', 'Redis (rate limit + cache)'] },
-                { title: 'Deployment & CI', items: ['Docker + Vercel + GCP', 'GitHub Actions CI/CD', 'LiteLLM usage monitoring'] },
+                { title: 'Repositories', items: ['Frontend: Next.js 15 / TypeScript (App Router, Vercel)', 'Backend: FastAPI / Python 3.11 (Docker, GCP)', 'ETL Pipeline: Prefect / Python (lake, warehouse, marts)'] },
+                { title: 'Infrastructure', items: ['Supabase (PostgreSQL, Auth, Storage)', 'Neo4j (knowledge graph for RAG)', 'Redis (rate limit, cache)', 'Prefect server + worker (GCP or self-hosted)'] },
+                { title: 'Deployment & CI', items: ['Docker (Backend), Vercel (Frontend)', 'GitHub Actions CI/CD (Backend deploy workflow)', 'LiteLLM usage monitoring'] },
               ].map((col) => (
                 <div key={col.title} className="p-4">
                   <p className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-2">{col.title}</p>
@@ -162,9 +163,9 @@ export default function ProductTechPage() {
             </div>
           </div>
 
-          {/* 7 — Roadmap */}
+          {/* 7. Roadmap */}
           <div>
-            <h3 className="font-semibold text-gray-900 mb-3">Roadmap (6–18 months)</h3>
+            <h3 className="font-semibold text-gray-900 mb-3">Roadmap (6 to 18 months)</h3>
             <div className="flex gap-3">
               {[
                 { phase: 'Now', label: 'Platform MVP, first deals' },

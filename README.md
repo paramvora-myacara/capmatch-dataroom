@@ -41,7 +41,7 @@ Place diligence documents in `public/dataroom/`:
 - `cap-table.xlsx`
 - etc.
 
-Files are served at `/dataroom/filename` and are protected by auth. You can also use the **Documents** section (Supabase Storage bucket `dataroom-documents`) for uploads.
+Files are served at `/dataroom/filename` and are protected by auth.
 
 ### 5. Run the app
 
@@ -65,7 +65,6 @@ Open [http://localhost:3000](http://localhost:3000). You'll be redirected to `/l
 | `/ip-data` | IP assignment, OSS inventory, data rights |
 | `/security` | Security, privacy, SOC2 roadmap |
 | `/team` | Leadership, org chart, hiring plan |
-| `/documents` | Upload and view documents (Supabase Storage) |
 
 ## Auth & tracking
 

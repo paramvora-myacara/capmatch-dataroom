@@ -12,7 +12,7 @@ const steps = [
 		title: "One Vault. One Truth.",
 		shortTitle: "Secure Vault",
 		description:
-			"Upload your entire deal package — rent rolls, T12s, appraisals — into a secure, centralized vault. No more email attachments. No more version chaos.",
+			"Upload your entire deal package - rent rolls, T12s, appraisals - into a secure, centralized vault. No more email attachments. No more version chaos.",
 		localVideoSrc: "/Landing-Page/HowItWorksClips/Clip2.mp4",
 	},
 	{
@@ -30,7 +30,7 @@ const steps = [
 		localVideoSrc: "/Landing-Page/HowItWorksClips/Clip3.mp4",
 	},
 	{
-		title: "From Documents to Data — Automatically.",
+		title: "From Documents to Data - Automatically.",
 		shortTitle: "AutoFill",
 		description:
 			"AutoFill extracts data directly from uploaded documents and cites its sources. Hover over any field to see exactly where the value came from.",
@@ -40,7 +40,7 @@ const steps = [
 		title: "AI Speed. Human Oversight.",
 		shortTitle: "AI Agent",
 		description:
-			"Let AI draft the financial picture from your P&L and help resolve data conflicts in real time. You stay in control — refine, adjust, and verify every output.",
+			"Let AI draft the financial picture from your P&L and help resolve data conflicts in real time. You stay in control - refine, adjust, and verify every output.",
 		localVideoSrc: "/Landing-Page/HowItWorksClips/Clip5.mp4",
 	},
 	{
@@ -245,7 +245,7 @@ export function HowItWorksSection() {
 		setProgressPct(0);
 	}, [total]);
 
-	/* Intersection observer — only play when visible */
+	/* Intersection observer - only play when visible */
 	useEffect(() => {
 		const el = containerRef.current;
 		if (!el) return;

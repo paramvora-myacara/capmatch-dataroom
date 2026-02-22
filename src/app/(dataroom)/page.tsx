@@ -7,7 +7,7 @@ export default function IndexPage() {
       <header className="mb-12">
         <h1 className="text-2xl font-semibold text-gray-900 mb-2 tracking-tight">CapMatch Investor Data Room</h1>
         <p className="text-gray-500 text-sm">
-          Login-protected diligence workspace — pre-seed / seed round. First-pass review: 30–45 minutes.
+          Login-protected diligence workspace - pre-seed / seed round. First-pass review: 30–45 minutes.
         </p>
       </header>
 
@@ -16,7 +16,7 @@ export default function IndexPage() {
         <h2 className="text-base font-semibold text-gray-900 mb-4 pb-2 border-b border-gray-200">CapMatch Company Snapshot</h2>
         <div className="text-[15px] text-gray-700 space-y-4">
           <p>
-            <strong>CapMatch</strong> is the operating system for commercial real estate financing — from document intake to loan closing — with real adoption. We are powered by a proven incentive system for both commercial real estate brokers and lenders, and we activate distribution through broker networks and direct borrower demand.
+            <strong>CapMatch</strong> is the operating system for commercial real estate financing - from document intake to loan closing - with real adoption. We are powered by a proven incentive system for both commercial real estate brokers and lenders, and we activate distribution through broker networks and direct borrower demand.
           </p>
           <p>
             Our platform unifies fragmented workflows (email, PDFs, spreadsheets) into a single pipeline: borrower intake, AI-powered packaging and underwriting, lender matching, and closing. We are building toward AI-enabled matching that standardizes lender discovery and execution across a market of 3,000+ lenders with no common format.

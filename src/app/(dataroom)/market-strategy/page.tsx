@@ -145,6 +145,14 @@ export default function MarketStrategyPage() {
                 <span className="w-1.5 h-1.5 rounded-full bg-gray-400 mt-1.5 flex-shrink-0" />
                 <div className="text-sm text-gray-700">
                   <strong>$957B refi wave.</strong> COVID-era originations are maturing in a large wave. Borrowers and brokers are actively looking for refinancing options, which creates a natural pipeline for a platform that can package and place deals efficiently.
+                  <span className="block mt-1.5 text-xs text-gray-500">
+                    Sources:{' '}
+                    <a href="https://www.reddit.com/r/Economics/comments/1aqceej/about_929_billion_commercial_mortgages_will/#:~:text=I%20know%20a%20lot%20of,short%203%2D5%20year%20lengths." target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:text-blue-800 hover:underline">Reddit</a>
+                    {' · '}
+                    <a href="https://cred-iq.com/blog/2025/11/21/explosive-growth-in-cre-clo-leads-yoy-new-issuance-growth-in-all-sectors/#:~:text=Cap%20rates%20held%20flat%20nationally,%244.8T%20looming%20through%202027%2B." target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:text-blue-800 hover:underline">CRED iQ</a>
+                    {' · '}
+                    <a href="https://alternativecreditinvestor.com/2025/03/07/borrowers-get-creative-as-957bn-of-cre-debt-matures-in-2025/#:~:text=%E2%80%9CThe%20market%20should%20expect%20the,%2C%E2%80%9D%20adds%20Cricco%2DLizza." target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:text-blue-800 hover:underline">Alternative Credit Investor</a>
+                  </span>
                 </div>
               </div>
               <div className="flex items-start gap-2">

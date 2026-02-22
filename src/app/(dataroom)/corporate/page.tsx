@@ -29,11 +29,11 @@ export default function CorporatePage() {
           { label: 'Option Plan', href: '/dataroom/option-plan.pdf' },
         ]}
       >
-        <p className="text-gray-500 text-sm">[Add cap table and option plan — Carta export when available]</p>
+        <p className="text-gray-500 text-sm">[Add cap table and option plan - Carta export when available]</p>
       </DocumentSection>
 
       <DocumentSection title="Prior Financings">
-        <p className="text-gray-500 text-sm">[SAFEs, notes, side letters — if any]</p>
+        <p className="text-gray-500 text-sm">[SAFEs, notes, side letters - if any]</p>
       </DocumentSection>
 
       <DocumentSection title="Material Contracts">
@@ -49,7 +49,7 @@ export default function CorporatePage() {
       </DocumentSection>
 
       <DocumentSection title="Monthly Expense Report">
-        <p className="text-gray-500 text-sm">[Link from Index — include here or in Financial Overview]</p>
+        <p className="text-gray-500 text-sm">[Link from Index - include here or in Financial Overview]</p>
       </DocumentSection>
 
       <p className="text-sm text-gray-500">

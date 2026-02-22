@@ -34,8 +34,22 @@ export default function CompetitiveAnalysisGraph() {
         <div className="absolute top-1/2 left-0 h-0.5 w-full bg-gray-300 -translate-y-1/2" />
         <p className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-full py-2 text-sm md:text-base font-semibold text-teal-600">AI-DRIVEN</p>
         <p className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-full py-2 text-sm md:text-base font-semibold text-red-500">MANUAL</p>
-        <p className="absolute bottom-1/2 left-2 mb-1 text-sm md:text-base font-semibold text-red-500">FRAGMENTED</p>
-        <p className="absolute bottom-1/2 right-2 mb-1 text-sm md:text-base font-semibold text-teal-600 text-right">UNIFIED</p>
+        <p className="absolute bottom-1/2 left-2 mb-1 text-sm md:text-base font-semibold text-red-500">TOOL BASED</p>
+        <p className="absolute bottom-1/2 right-2 mb-1 text-sm md:text-base font-semibold text-teal-600 text-right">PLATFORM</p>
+
+        {/* AI-driven, tool-based quadrant (top-left) */}
+        <div className="absolute top-2 left-2 w-[48%] pr-2 pt-1">
+          <p className="text-[11px] md:text-xs text-gray-600 leading-snug">
+            <span className="font-semibold text-gray-700">AI-driven, tool-based:</span> SaaS tools or AI agents that embed into existing workflows and ecosystems.
+          </p>
+        </div>
+
+        {/* AI-driven, platform quadrant (top-right) */}
+        <div className="absolute top-2 right-2 w-[48%] pl-2 pt-1 text-right">
+          <p className="text-[11px] md:text-xs text-gray-600 leading-snug">
+            <span className="font-semibold text-gray-700">AI-driven, platform:</span> Full end-to-end platforms rather than point solutions.
+          </p>
+        </div>
 
         {competitors.map((c) => {
           const yPos = (c.automation - 5) / 5;

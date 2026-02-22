@@ -40,7 +40,7 @@ export default function TractionPage() {
         ]}
       >
         <p className="text-gray-500 text-sm">
-          [Add signed contracts to <code>public/dataroom/</code> — sanitize PII]
+          [Add signed contracts to <code>public/dataroom/</code> - sanitize PII]
         </p>
       </DocumentSection>
 
@@ -60,7 +60,7 @@ export default function TractionPage() {
             </p>
             <div className="text-sm text-gray-700">
               <span className="font-medium text-gray-900">CapMatch Impact: </span>
-              Built a living underwriting model — reconciled conflicting assumptions across residential and commercial income, modeled Innovation Center lease escalations, and enabled lenders to toggle tax exemption scenarios in real time. Lender questions resolved during live calls instead of 24-48 hour turnaround.
+              Built a living underwriting model - reconciled conflicting assumptions across residential and commercial income, modeled Innovation Center lease escalations, and enabled lenders to toggle tax exemption scenarios in real time. Lender questions resolved during live calls instead of 24-48 hour turnaround.
             </div>
           </div>
 
@@ -74,7 +74,7 @@ export default function TractionPage() {
               <span className="text-xs font-medium text-blue-600 bg-blue-50 px-2 py-1 rounded whitespace-nowrap">$31.5M Senior Debt</span>
             </div>
             <p className="text-sm text-gray-700 mb-3">
-              144-unit Class A multifamily with 29,007 SF commercial. Conflicting data across BPO, Excel models, and trailing financials. Multi-year tax abatement required two distinct valuation methodologies — blended cap rate vs. NPV-adjusted.
+              144-unit Class A multifamily with 29,007 SF commercial. Conflicting data across BPO, Excel models, and trailing financials. Multi-year tax abatement required two distinct valuation methodologies - blended cap rate vs. NPV-adjusted.
             </p>
             <div className="text-sm text-gray-700">
               <span className="font-medium text-gray-900">CapMatch Impact: </span>
@@ -92,18 +92,18 @@ export default function TractionPage() {
               <span className="text-xs font-medium text-blue-600 bg-blue-50 px-2 py-1 rounded whitespace-nowrap">$30.1M Equity</span>
             </div>
             <p className="text-sm text-gray-700 mb-3">
-              177-unit, 508-bed purpose-built student housing (99% complete, 60%+ pre-leased). Specialized underwriting — beds vs. units, academic calendar leases, enrollment-driven demand. Opportunity Zone structuring with capital deployment deadline.
+              177-unit, 508-bed purpose-built student housing (99% complete, 60%+ pre-leased). Specialized underwriting - beds vs. units, academic calendar leases, enrollment-driven demand. Opportunity Zone structuring with capital deployment deadline.
             </p>
             <div className="text-sm text-gray-700">
               <span className="font-medium text-gray-900">CapMatch Impact: </span>
-              Built investor-ready intelligence layer — bed-level economics across 7 unit types, competitive supply analysis (only 162 PBSH beds built since 2017 for 15,200+ students), and dynamic OZ tax benefit modeling. Investor diligence questions resolved in live conversations instead of overnight turnaround.
+              Built investor-ready intelligence layer - bed-level economics across 7 unit types, competitive supply analysis (only 162 PBSH beds built since 2017 for 15,200+ students), and dynamic OZ tax benefit modeling. Investor diligence questions resolved in live conversations instead of overnight turnaround.
             </div>
           </div>
         </div>
       </DocumentSection>
 
       <DocumentSection title="Sanitized Deliverables">
-        <p className="text-gray-500 text-sm">[Show interactive package artifacts — what replaces static PDFs]</p>
+        <p className="text-gray-500 text-sm">[Show interactive package artifacts - what replaces static PDFs]</p>
       </DocumentSection>
 
       <DocumentSection title="Testimonials / References">

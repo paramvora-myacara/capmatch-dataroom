@@ -17,21 +17,98 @@ export default function ProductTechPage() {
         <div className="space-y-10">
 
           {/* Built vs In Progress vs Upcoming */}
-          <div className="border border-gray-200 rounded-lg overflow-hidden">
-            <div className="bg-gray-50 px-4 py-2.5 border-b border-gray-200">
-              <h3 className="text-xs font-semibold text-gray-900 uppercase tracking-wide">Built vs In Progress vs Upcoming</h3>
+          <div className="border border-gray-200 rounded-xl overflow-hidden bg-white shadow-sm">
+            <div className="bg-gray-50/80 px-5 py-3 border-b border-gray-200">
+              <h3 className="text-xs font-semibold text-gray-700 uppercase tracking-wider">Built vs In Progress vs Upcoming</h3>
             </div>
             <div className="grid md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-gray-100">
               {[
-                { title: 'Built now', items: ['Frontend: Next.js App Router (SSR/SSG), API routes for project/borrower resume, AI Q&A, meetings, calendar, Daily.co, OnlyOffice', 'Backend: FastAPI, auth, project/borrower resume APIs, underwriting, RAG (LightRAG + Neo4j + PGVector), document handling, Celery background tasks', 'ETL Pipeline: Prefect ingest → transform → marts; 15+ data sources (Census, BLS, HUD, FEMA, EPA, FRED, Redfin, NHGIS, etc.); PostGIS-enabled warehouse and data lake', 'Packaging/workflows, core platform, automation and evaluation approach'] },
-                { title: 'In progress', items: ['Lender matching module (matchmaking algorithm, developer/lender criteria, buy-box integration)'] },
-                { title: 'Planned next', items: ['Purchase and integration of lender/buy-box data', 'Productionize matching at scale', 'Refi Radar: AI-driven refinance opportunity alerts'] },
+                {
+                  title: 'Built now',
+                  titleClass: 'text-emerald-700',
+                  items: [
+                    {
+                      label: 'Frontend',
+                      points: [
+                        'Next.js App Router (SSR/SSG)',
+                        'API routes for project/borrower resume, AI Q&A, meetings, calendar',
+                        'Daily.co, OnlyOffice',
+                      ],
+                    },
+                    {
+                      label: 'Backend',
+                      points: [
+                        'FastAPI, auth',
+                        'Project/borrower resume APIs, underwriting',
+                        'RAG (LightRAG + Neo4j + PGVector), document handling',
+                        'Celery background tasks',
+                      ],
+                    },
+                    {
+                      label: 'ETL Pipeline',
+                      points: [
+                        'Prefect ingest → transform → marts',
+                        '15+ data sources (Census, BLS, HUD, FEMA, EPA, FRED, Redfin, NHGIS, etc.)',
+                        'PostGIS-enabled warehouse and data lake',
+                      ],
+                    },
+                    {
+                      label: 'Platform',
+                      points: [
+                        'Packaging and workflows',
+                        'Core platform',
+                        'Automation and evaluation approach',
+                      ],
+                    },
+                  ],
+                },
+                {
+                  title: 'In progress',
+                  titleClass: 'text-amber-700',
+                  items: [
+                    {
+                      label: 'Lender matching',
+                      points: [
+                        'Matchmaking algorithm',
+                        'Developer/lender criteria',
+                        'Buy-box integration',
+                      ],
+                    },
+                  ],
+                },
+                {
+                  title: 'Planned next',
+                  titleClass: 'text-slate-600',
+                  items: [
+                    { text: 'Purchase and integration of lender/buy-box data' },
+                    { text: 'Productionize matching at scale' },
+                    { text: 'Refi Radar: AI-driven refinance opportunity alerts' },
+                  ],
+                },
               ].map((col) => (
-                <div key={col.title} className="p-4">
-                  <h4 className="font-medium text-gray-900 text-sm mb-2">{col.title}</h4>
-                  <ul className="list-disc list-inside text-gray-600 text-sm space-y-1">
-                    {col.items.map((it) => <li key={it}>{it}</li>)}
-                  </ul>
+                <div key={col.title} className="p-5 md:min-h-[200px]">
+                  <h4 className={`font-semibold text-sm mb-3 ${(col as { titleClass?: string }).titleClass ?? 'text-gray-900'}`}>{col.title}</h4>
+                  <div className="space-y-3">
+                    {col.items.map((item: { label?: string; text?: string; points?: string[] }, i: number) => (
+                      <div key={i} className="text-gray-600 text-sm leading-relaxed">
+                        {'points' in item && item.points ? (
+                          <div className="space-y-1">
+                            <span className="font-medium text-gray-800">{item.label}</span>
+                            <ul className="mt-1 space-y-0.5 pl-0 list-none">
+                              {item.points.map((p, j) => (
+                                <li key={j} className="flex items-start gap-2">
+                                  <span className="text-gray-400 mt-1.5 shrink-0">·</span>
+                                  <span>{p}</span>
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
+                        ) : (
+                          <span>{item.text}</span>
+                        )}
+                      </div>
+                    ))}
+                  </div>
                 </div>
               ))}
             </div>

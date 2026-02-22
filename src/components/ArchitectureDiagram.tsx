@@ -8,7 +8,7 @@ const DIAGRAM = `graph TB
         Browser["🌐 Web Browser"]
     end
 
-    subgraph Frontend["Frontend — Next.js"]
+    subgraph Frontend["Frontend - Next.js"]
         NextApp["⚛️ Next.js App Router<br/>(SSR / SSG)"]
         subgraph NextAPIs["Next.js API Routes"]
             API_ProjectResume["Project Resume<br/>autofill · save-version · realtime-sanity-check"]
@@ -23,7 +23,7 @@ const DIAGRAM = `graph TB
         end
     end
 
-    subgraph Backend["Backend — FastAPI"]
+    subgraph Backend["Backend - FastAPI"]
         FastAPI["🐍 FastAPI Main Server<br/>Python 3.11 · Port 8000"]
         subgraph BackendRouters["API Routers"]
             R_ProjectResume["Project Resume<br/>/project-resume"]
@@ -67,19 +67,19 @@ const DIAGRAM = `graph TB
         Mistral["Mistral API"]
     end
 
-    subgraph PlatformData["Data Layer — Supabase"]
+    subgraph PlatformData["Data Layer - Supabase"]
         PlatformDB[("🗄️ PostgreSQL<br/>Users · Projects · Resumes · Chat")]
         Storage[("📦 Storage<br/>Documents · Images")]
         Auth[("🔑 Auth<br/>JWT · Accounts")]
     end
 
-    subgraph Warehouse["Data Warehouse — Supabase"]
+    subgraph Warehouse["Data Warehouse - Supabase"]
         WarehouseDB[("📚 PostgreSQL + PostGIS<br/>Census · BLS · HUD · FEMA · Marts")]
         DataLake[("☁️ Data Lake<br/>Raw API Responses")]
         VectorStore[("🧬 PGVector<br/>Document Chunks")]
     end
 
-    subgraph ETL["ETL — Prefect"]
+    subgraph ETL["ETL - Prefect"]
         Prefect["🎡 Prefect Orchestrator"]
         Ingest["⬇️ Ingest Flows"]
         Transform["✂️ Transform Flows"]

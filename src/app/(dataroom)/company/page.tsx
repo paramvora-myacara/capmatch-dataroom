@@ -23,7 +23,7 @@ export default function CompanyPage() {
           <div className="w-full rounded-lg overflow-hidden border border-gray-200" style={{ height: '70vh' }}>
             <iframe
               src="https://capmatch.com"
-              title="CapMatch — Product Overview"
+              title="CapMatch - Product Overview"
               className="w-full h-full border-0"
               allow="fullscreen"
             />
@@ -32,7 +32,7 @@ export default function CompanyPage() {
       </DocumentSection>
 
       <DocumentSection title="Investor Memo">
-        <p className="text-gray-600 text-sm">[Add investor memo document — link when available]</p>
+        <p className="text-gray-600 text-sm">[Add investor memo document - link when available]</p>
       </DocumentSection>
 
       <p className="text-sm text-gray-500">

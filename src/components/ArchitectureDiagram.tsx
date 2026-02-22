@@ -149,25 +149,24 @@ const DIAGRAM = `graph TB
     MatchedLenders --> FastAPI
     FastAPI --> LenderMatchingCore
 
-    classDef outer fill:#bbdefb,stroke:#1565c0,stroke-width:2px,color:#1a1a1a
-    classDef inner fill:#e3f2fd,stroke:#1565c0,stroke-width:2px,color:#1a1a1a
-    classDef light fill:#f0f7ff,stroke:#1565c0,stroke-width:2px,color:#1a1a1a
-
-    class Browser,NextApp,NextAPIs,API_ProjectResume,API_BorrowerResume,API_AI,API_OM,API_Meetings,API_Calendar,API_Daily,API_OnlyOffice,API_Other inner
-    class FastAPI,BackendRouters,R_ProjectResume,R_BorrowerResume,R_Webhooks,R_OM,R_AI,R_Underwriting,R_UnderwritingChat,R_Documents,R_Auth,R_Users,R_Projects,R_Chat,R_Calendar,R_Health,BackendMiddleware,MW_Auth,MW_CORS,MW_RateLimit,MW_Security,MW_GZip,MW_Cache,MW_Metrics,MW_Perf,InfoExtractor inner
-    class PlatformDB,Storage,Auth inner
-    class GoogleCal,Daily,Resend,Prometheus light
-    class LiteLLM,Gemini,Mistral inner
-    class Prefect,Ingest,Transform,Mart,Sources,S_Census,S_BLS,S_HUD,S_FEMA,S_EPA,S_FRED,S_Redfin,S_NHGIS,S_FHFA,S_CDFI,S_Other inner
-    class Redis,Celery light
-    class LenderMatchingCore,DeveloperFeatures,LenderCriteria,MatchedLenders inner
-    class WarehouseDB,DataLake,GeoIndex inner
-    class Neo4j,VectorStore inner
+    classDef default fill:#e3f2fd,stroke:#1565c0,stroke-width:2px,color:#1a1a1a
 `;
 
 mermaid.initialize({
   startOnLoad: false,
-  theme: "default",
+  theme: "base",
+  themeVariables: {
+    primaryColor: "#e3f2fd",
+    primaryBorderColor: "#1565c0",
+    primaryTextColor: "#1a1a1a",
+    secondaryColor: "#e3f2fd",
+    tertiaryColor: "#e3f2fd",
+    lineColor: "#1565c0",
+    clusterBkg: "#f0f7ff",
+    clusterBorder: "#1565c0",
+    edgeLabelBackground: "#ffffff",
+    nodeTextColor: "#1a1a1a",
+  },
   flowchart: { curve: "basis", htmlLabels: true },
   securityLevel: "loose",
 });

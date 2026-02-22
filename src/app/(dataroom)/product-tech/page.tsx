@@ -119,48 +119,51 @@ export default function ProductTechPage() {
               </p>
             </div>
 
-            <div className="p-5 space-y-4">
-              {/* LLM Gateway */}
-              <div className="border border-gray-100 rounded-lg p-4 bg-gray-50/50">
-                <h4 className="text-sm font-semibold text-gray-900 mb-1">LLM Gateway</h4>
-                <p className="text-xs text-gray-500 mb-2">LiteLLM Proxy: multi-model routing and load balancing</p>
-                <p className="text-sm text-gray-700 leading-relaxed">
-                  All LLM calls route through a self-hosted LiteLLM proxy that load-balances across Gemini and Mistral models using 13+ API keys. The gateway provides per-model usage tracking, automatic fallback between providers, and centralized rate-limit management. This architecture keeps the application layer model-agnostic; switching or adding providers requires zero code changes.
-                </p>
+            <div className="p-5">
+              {/* 2x2 grid for the four core AI services */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                {/* LLM Gateway */}
+                <div className="border border-gray-100 rounded-lg p-4 bg-gray-50/50">
+                  <h4 className="text-sm font-semibold text-gray-900 mb-1">LLM Gateway</h4>
+                  <p className="text-[11px] text-gray-500 font-medium mb-2">LiteLLM Proxy: multi-model routing and load balancing</p>
+                  <p className="text-xs text-gray-600 leading-relaxed">
+                    All LLM calls route through a self-hosted LiteLLM proxy that load-balances across Gemini and Mistral models using 13+ API keys. The gateway provides per-model usage tracking, automatic fallback between providers, and centralized rate-limit management. This architecture keeps the application layer model-agnostic; switching or adding providers requires zero code changes.
+                  </p>
+                </div>
+
+                {/* Document Intelligence */}
+                <div className="border border-gray-100 rounded-lg p-4 bg-gray-50/50">
+                  <h4 className="text-sm font-semibold text-gray-900 mb-1">Document Intelligence Pipeline</h4>
+                  <p className="text-[11px] text-gray-500 font-medium mb-2">OCR, LLM extraction, dynamic schema discovery, and sanity checking</p>
+                  <p className="text-xs text-gray-600 leading-relaxed">
+                    Uploaded documents go through a multi-engine OCR pipeline that handles PDFs, images, and scanned files. The system then classifies each document for relevance to specific deal subsections and performs LLM-powered field extraction with dynamic schema discovery, meaning it adapts to whatever fields appear in the document rather than relying on rigid templates. Extracted data passes through 150+ backward sanity rules that cross-check values (e.g., verifying that reported NOI matches the sum of income minus expenses), field-type constraints, and confidence-scored conflict resolution when multiple documents provide conflicting values. Source metadata is preserved so every extracted field traces back to its origin document and page.
+                  </p>
+                </div>
+
+                {/* Information Extractor */}
+                <div className="border border-gray-100 rounded-lg p-4 bg-gray-50/50">
+                  <h4 className="text-sm font-semibold text-gray-900 mb-1">Information Extractor</h4>
+                  <p className="text-[11px] text-gray-500 font-medium mb-2">LightRAG with Neo4j knowledge graph and PGVector embeddings</p>
+                  <p className="text-xs text-gray-600 leading-relaxed">
+                    Each project gets its own &quot;deal brain&quot;: a per-project knowledge graph built from all uploaded documents. Documents are chunked, embedded via PGVector, and linked in a Neo4j knowledge graph that captures entity relationships (properties, sponsors, lenders, financial metrics). Users and internal services can then ask natural-language questions about any deal and get answers grounded in the actual deal documents, with source citations.
+                  </p>
+                </div>
+
+                {/* OM / Deal Package Generation */}
+                <div className="border border-gray-100 rounded-lg p-4 bg-gray-50/50">
+                  <h4 className="text-sm font-semibold text-gray-900 mb-1">Deal Package Generation</h4>
+                  <p className="text-[11px] text-gray-500 font-medium mb-2">Automated OM sections, financial tables, and narrative content</p>
+                  <p className="text-xs text-gray-600 leading-relaxed">
+                    CapMatch generates Offering Memoranda and deal packages through a modular generator system. Individual generators produce rent rolls, T12 financials, pro forma projections, sponsor bios, sources and uses tables, capital expenditure schedules, SREO summaries, and personal financial statements. An orchestrator coordinates these generators, routing extracted data through financial calculations and LLM-driven narrative generation to produce complete, lender-ready outputs. Each section is dynamically filled based on the actual deal data, not static templates.
+                  </p>
+                </div>
               </div>
 
-              {/* Document Intelligence */}
-              <div className="border border-gray-100 rounded-lg p-4 bg-gray-50/50">
-                <h4 className="text-sm font-semibold text-gray-900 mb-1">Document Intelligence Pipeline</h4>
-                <p className="text-xs text-gray-500 mb-2">OCR, LLM extraction, dynamic schema discovery, and sanity checking</p>
-                <p className="text-sm text-gray-700 leading-relaxed">
-                  Uploaded documents go through a multi-engine OCR pipeline that handles PDFs, images, and scanned files. The system then classifies each document for relevance to specific deal subsections and performs LLM-powered field extraction with dynamic schema discovery, meaning it adapts to whatever fields appear in the document rather than relying on rigid templates. Extracted data passes through 150+ backward sanity rules that cross-check values (e.g., verifying that reported NOI matches the sum of income minus expenses), field-type constraints, and confidence-scored conflict resolution when multiple documents provide conflicting values. Source metadata is preserved so every extracted field traces back to its origin document and page.
-                </p>
-              </div>
-
-              {/* Information Extractor */}
-              <div className="border border-gray-100 rounded-lg p-4 bg-gray-50/50">
-                <h4 className="text-sm font-semibold text-gray-900 mb-1">Information Extractor</h4>
-                <p className="text-xs text-gray-500 mb-2">LightRAG with Neo4j knowledge graph and PGVector embeddings</p>
-                <p className="text-sm text-gray-700 leading-relaxed">
-                  Each project gets its own &quot;deal brain&quot;: a per-project knowledge graph built from all uploaded documents. Documents are chunked, embedded via PGVector, and linked in a Neo4j knowledge graph that captures entity relationships (properties, sponsors, lenders, financial metrics). Users and internal services can then ask natural-language questions about any deal and get answers grounded in the actual deal documents, with source citations.
-                </p>
-              </div>
-
-              {/* OM / Deal Package Generation */}
-              <div className="border border-gray-100 rounded-lg p-4 bg-gray-50/50">
-                <h4 className="text-sm font-semibold text-gray-900 mb-1">Deal Package Generation</h4>
-                <p className="text-xs text-gray-500 mb-2">Automated OM sections, financial tables, and narrative content</p>
-                <p className="text-sm text-gray-700 leading-relaxed">
-                  CapMatch generates Offering Memoranda and deal packages through a modular generator system. Individual generators produce rent rolls, T12 financials, pro forma projections, sponsor bios, sources and uses tables, capital expenditure schedules, SREO summaries, and personal financial statements. An orchestrator coordinates these generators, routing extracted data through financial calculations and LLM-driven narrative generation to produce complete, lender-ready outputs. Each section is dynamically filled based on the actual deal data, not static templates.
-                </p>
-              </div>
-
-              {/* Guardrails */}
+              {/* Guardrails — full-width */}
               <div className="border border-gray-100 rounded-lg p-4 bg-gray-50/50">
                 <h4 className="text-sm font-semibold text-gray-900 mb-1">Guardrails &amp; Quality Assurance</h4>
-                <p className="text-xs text-gray-500 mb-2">Human-in-the-loop review, sanity checks, and source tracing</p>
-                <p className="text-sm text-gray-700 leading-relaxed">
+                <p className="text-[11px] text-gray-500 font-medium mb-2">Human-in-the-loop review, sanity checks, and source tracing</p>
+                <p className="text-xs text-gray-600 leading-relaxed">
                   Every AI-generated output goes through quality gates before reaching a user. Backward sanity checks compare extracted financial values against computed totals and flag discrepancies. Confidence scores from extraction inform conflict resolution when multiple documents disagree. Field constraints enforce data-type and range validation. Users can review, edit, and override any AI-generated value, and all changes are tracked with version history. Source metadata traces every value back to its origin document.
                 </p>
               </div>

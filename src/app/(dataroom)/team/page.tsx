@@ -48,24 +48,32 @@ const technicalStaff = [
   {
     name: 'Aryan Jain',
     role: 'Engineering',
-    oneLine: 'Strong systems thinking and detail-oriented approach to robust technical solutions; former founder of a venture-backed AI-enabled product company. Key contributor to CapMatch\'s engineering foundation.',
+    oneLine: 'Former founder of a venture-backed AI product company, building intelligent automation tools for enterprise workflows. IIT Madras graduate. Contributes across backend systems and data infrastructure at CapMatch.',
     education: 'IIT Madras',
+    relevantExperienceYears: 1,
+    showRelevantExperience: true,
   },
   {
     name: 'Sarthak Karandikar',
     role: 'Engineering',
-    oneLine: 'Applies technology and systematic thinking to complex CRE and platform problems; co-founder of Existence (Sentient AI assistant, 700+ GitHub stars). Deep background in AI, open-source, and startups.',
+    oneLine: 'Former founder of an AI startup that built multiple products, including an open-source personal assistant with 700+ GitHub stars. Background in AI systems, open-source tooling, and early-stage ventures. Contributes across product, engineering, and content at CapMatch.',
+    relevantExperienceYears: 1,
+    showRelevantExperience: true,
   },
   {
     name: 'Kabeer Ahmed Merchant',
     role: 'Engineering',
-    oneLine: 'Focused on solving hard CRE problems by rebuilding workflows from first principles. Co-founder of Existence; deep experience in AI, ML, and systems design; works with investors and operators to align technology with outcomes.',
+    oneLine: 'Previously co-founded an AI startup, shipping several products including an open-source personal assistant that gained 700+ stars on GitHub. Deep experience in AI/ML, systems design, and full-stack engineering. Works across product, engineering, and content at CapMatch.',
+    relevantExperienceYears: 1,
+    showRelevantExperience: true,
   },
   {
     name: 'Vatsal Hariramani',
     role: 'Engineering',
     oneLine: 'Former founder of a venture-backed MedTech startup, supported by Emergent Ventures, building intelligent monitoring and embedded systems for reliability and continuous care in neonatal and clinical environments, including deployments in remote and challenging settings such as the Himalayas. Holds a granted Indian utility patent for the same. Contributes across product and engineering at CapMatch.',
     education: 'IIT Mandi; TU Munich (semester abroad)',
+    relevantExperienceYears: 1,
+    showRelevantExperience: true,
   },
 ];
 

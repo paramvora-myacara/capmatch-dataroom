@@ -77,9 +77,7 @@ export default function ProductTechPage() {
               Automated ingestion from 20+ federal, market, and environmental data APIs via Prefect ETL flows (ingest, transform, mart). All data is stored in a PostGIS-enabled PostgreSQL warehouse with full provenance tracking. Every record is georeferenced and queryable by census tract, county, and MSA.
             </p>
 
-            {/* Active data sources */}
-            <h4 className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-2">Active Sources</h4>
-            <div className="border border-gray-200 rounded-lg overflow-hidden mb-4">
+            <div className="border border-gray-200 rounded-lg overflow-hidden">
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-px bg-gray-100">
                 {[
                   { name: 'Census Bureau', desc: 'Demographics, housing, income by geography' },
@@ -98,6 +96,10 @@ export default function ProductTechPage() {
                   { name: 'USGS', desc: 'Geological and topographic data' },
                   { name: 'NPS', desc: 'National Park Service proximity data' },
                   { name: 'GoodJobsFirst', desc: 'Subsidies, incentives, tax abatements' },
+                  { name: 'CoStar', desc: 'Commercial property analytics and comps' },
+                  { name: 'Yardi Matrix', desc: 'Multifamily market intelligence and rents' },
+                  { name: 'Capitalize', desc: 'CRE loan and capital markets data' },
+                  { name: 'LightBox', desc: 'Parcel-level property and ownership data' },
                 ].map((s) => (
                   <div key={s.name} className="bg-white p-3">
                     <p className="text-xs font-semibold text-gray-900 mb-0.5">{s.name}</p>
@@ -106,87 +108,20 @@ export default function ProductTechPage() {
                 ))}
               </div>
             </div>
-
-            {/* Coming soon sources */}
-            <h4 className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-2">Coming Soon</h4>
-            <div className="border border-gray-200 rounded-lg overflow-hidden mb-4">
-              <div className="grid grid-cols-2 sm:grid-cols-3 gap-px bg-gray-100">
-                {[
-                  { name: 'CoStar', desc: 'Commercial property analytics and comps' },
-                  { name: 'Yardi Matrix', desc: 'Multifamily market intelligence and rents' },
-                  { name: 'Capitalize', desc: 'CRE loan and capital markets data' },
-                ].map((s) => (
-                  <div key={s.name} className="bg-white p-3 relative">
-                    <p className="text-xs font-semibold text-gray-900 mb-0.5">{s.name}</p>
-                    <p className="text-[11px] text-gray-500 leading-snug">{s.desc}</p>
-                    <span className="absolute top-2 right-2 text-[9px] font-medium text-amber-600 bg-amber-50 border border-amber-200 px-1.5 py-0.5 rounded-full">Soon</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* Data flow diagram */}
-            <h4 className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-2">Data Flow: From Source to Queryable Schema</h4>
-            <div className="border border-gray-200 rounded-lg p-5 bg-gray-50/50">
-              <div className="flex flex-col gap-3">
-                {/* Row 1: Sources */}
-                <div className="flex items-center gap-2 flex-wrap">
-                  <span className="text-[11px] font-semibold text-gray-500 w-20 shrink-0">Sources</span>
-                  <div className="flex gap-1.5 flex-wrap flex-1">
-                    {['Census', 'BLS', 'HUD', 'FEMA', 'EPA', 'FRED', 'Redfin', 'NHGIS', 'FHFA', 'CDFI'].map((s) => (
-                      <span key={s} className="text-[10px] font-medium bg-blue-50 text-blue-700 border border-blue-200 px-2 py-1 rounded">{s}</span>
-                    ))}
-                  </div>
-                </div>
-                <div className="flex items-center gap-2 pl-20">
-                  <span className="text-gray-300 text-xs">↓</span>
-                  <span className="text-[10px] text-gray-400">Raw API calls via Prefect flows</span>
-                </div>
-                {/* Row 2: Lake */}
-                <div className="flex items-center gap-2">
-                  <span className="text-[11px] font-semibold text-gray-500 w-20 shrink-0">Data Lake</span>
-                  <div className="border border-gray-200 rounded bg-white px-3 py-1.5 flex-1">
-                    <span className="text-[11px] text-gray-600">Raw API responses preserved in Supabase Storage (full provenance)</span>
-                  </div>
-                </div>
-                <div className="flex items-center gap-2 pl-20">
-                  <span className="text-gray-300 text-xs">↓</span>
-                  <span className="text-[10px] text-gray-400">Transform flows: clean, normalize, georeference</span>
-                </div>
-                {/* Row 3: Warehouse */}
-                <div className="flex items-center gap-2">
-                  <span className="text-[11px] font-semibold text-gray-500 w-20 shrink-0">Warehouse</span>
-                  <div className="border border-gray-200 rounded bg-white px-3 py-1.5 flex-1">
-                    <span className="text-[11px] text-gray-600">PostGIS-enabled PostgreSQL: georeferenced by census tract, county, MSA</span>
-                  </div>
-                </div>
-                <div className="flex items-center gap-2 pl-20">
-                  <span className="text-gray-300 text-xs">↓</span>
-                  <span className="text-[10px] text-gray-400">Mart flows: join, aggregate, create query-ready views</span>
-                </div>
-                {/* Row 4: Mart */}
-                <div className="flex items-center gap-2">
-                  <span className="text-[11px] font-semibold text-gray-500 w-20 shrink-0">Marts</span>
-                  <div className="flex gap-1.5 flex-wrap flex-1">
-                    {['Demographics', 'Employment', 'Housing', 'Environment', 'Market Trends', 'Risk'].map((m) => (
-                      <span key={m} className="text-[10px] font-medium bg-emerald-50 text-emerald-700 border border-emerald-200 px-2 py-1 rounded">{m}</span>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            </div>
           </div>
 
           {/* 5. AI + automation (expanded) */}
-          <div>
-            <h3 className="font-semibold text-gray-900 mb-2">AI + Automation</h3>
-            <p className="text-gray-700 text-sm mb-4">
-              AI and automation are embedded throughout the CapMatch stack. Every stage of the deal lifecycle, from document intake to package generation, is augmented by purpose-built AI services.
-            </p>
+          <div className="border border-gray-200 rounded-lg overflow-hidden">
+            <div className="bg-gray-50 px-5 py-3 border-b border-gray-200">
+              <h3 className="text-sm font-semibold text-gray-900">AI + Automation</h3>
+              <p className="text-gray-500 text-xs mt-0.5">
+                AI and automation are embedded throughout the CapMatch stack. Every stage of the deal lifecycle, from document intake to package generation, is augmented by purpose-built AI services.
+              </p>
+            </div>
 
-            <div className="space-y-6">
+            <div className="p-5 space-y-4">
               {/* LLM Gateway */}
-              <div className="border border-gray-200 rounded-lg p-5">
+              <div className="border border-gray-100 rounded-lg p-4 bg-gray-50/50">
                 <h4 className="text-sm font-semibold text-gray-900 mb-1">LLM Gateway</h4>
                 <p className="text-xs text-gray-500 mb-2">LiteLLM Proxy: multi-model routing and load balancing</p>
                 <p className="text-sm text-gray-700 leading-relaxed">
@@ -195,7 +130,7 @@ export default function ProductTechPage() {
               </div>
 
               {/* Document Intelligence */}
-              <div className="border border-gray-200 rounded-lg p-5">
+              <div className="border border-gray-100 rounded-lg p-4 bg-gray-50/50">
                 <h4 className="text-sm font-semibold text-gray-900 mb-1">Document Intelligence Pipeline</h4>
                 <p className="text-xs text-gray-500 mb-2">OCR, LLM extraction, dynamic schema discovery, and sanity checking</p>
                 <p className="text-sm text-gray-700 leading-relaxed">
@@ -203,9 +138,9 @@ export default function ProductTechPage() {
                 </p>
               </div>
 
-              {/* RAG */}
-              <div className="border border-gray-200 rounded-lg p-5">
-                <h4 className="text-sm font-semibold text-gray-900 mb-1">RAG / Deal Brain</h4>
+              {/* Information Extractor */}
+              <div className="border border-gray-100 rounded-lg p-4 bg-gray-50/50">
+                <h4 className="text-sm font-semibold text-gray-900 mb-1">Information Extractor</h4>
                 <p className="text-xs text-gray-500 mb-2">LightRAG with Neo4j knowledge graph and PGVector embeddings</p>
                 <p className="text-sm text-gray-700 leading-relaxed">
                   Each project gets its own &quot;deal brain&quot;: a per-project knowledge graph built from all uploaded documents. Documents are chunked, embedded via PGVector, and linked in a Neo4j knowledge graph that captures entity relationships (properties, sponsors, lenders, financial metrics). Users and internal services can then ask natural-language questions about any deal and get answers grounded in the actual deal documents, with source citations.
@@ -213,7 +148,7 @@ export default function ProductTechPage() {
               </div>
 
               {/* OM / Deal Package Generation */}
-              <div className="border border-gray-200 rounded-lg p-5">
+              <div className="border border-gray-100 rounded-lg p-4 bg-gray-50/50">
                 <h4 className="text-sm font-semibold text-gray-900 mb-1">Deal Package Generation</h4>
                 <p className="text-xs text-gray-500 mb-2">Automated OM sections, financial tables, and narrative content</p>
                 <p className="text-sm text-gray-700 leading-relaxed">
@@ -222,7 +157,7 @@ export default function ProductTechPage() {
               </div>
 
               {/* Guardrails */}
-              <div className="border border-gray-200 rounded-lg p-5">
+              <div className="border border-gray-100 rounded-lg p-4 bg-gray-50/50">
                 <h4 className="text-sm font-semibold text-gray-900 mb-1">Guardrails &amp; Quality Assurance</h4>
                 <p className="text-xs text-gray-500 mb-2">Human-in-the-loop review, sanity checks, and source tracing</p>
                 <p className="text-sm text-gray-700 leading-relaxed">

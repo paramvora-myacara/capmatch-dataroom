@@ -83,6 +83,7 @@ function SlideVideo({
 }) {
 	const videoRef = useRef<HTMLVideoElement>(null);
 	const [progress, setProgress] = useState(0);
+	const [isLoading, setIsLoading] = useState(true);
 
 	const handleTimeUpdate = useCallback(() => {
 		const video = videoRef.current;
@@ -97,13 +98,21 @@ function SlideVideo({
 		onComplete?.();
 	}, [onComplete]);
 
+	const handleCanPlay = useCallback(() => {
+		setIsLoading(false);
+	}, []);
+
 	useEffect(() => {
 		const video = videoRef.current;
 		if (!video) return;
 		if (isActive) {
+			setIsLoading(true);
 			video.currentTime = 0;
 			setProgress(0);
 			onProgress?.(0);
+			if (video.readyState >= 3) {
+				setIsLoading(false);
+			}
 			video.play().catch(() => {});
 		} else {
 			video.pause();
@@ -119,7 +128,19 @@ function SlideVideo({
 
 	if (step.localVideoSrc) {
 		return (
-			<div className="w-full rounded-lg overflow-hidden border border-gray-200 bg-black">
+			<div className="w-full rounded-lg overflow-hidden border border-gray-200 bg-black relative">
+				{/* Loading skeleton */}
+				{isLoading && (
+					<div className="absolute inset-0 z-10 flex items-center justify-center bg-gray-100">
+						<div className="absolute inset-0 bg-gradient-to-r from-gray-100 via-gray-200 to-gray-100 animate-pulse" />
+						<div className="relative flex flex-col items-center gap-2 text-gray-400">
+							<svg className="w-10 h-10 animate-pulse" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+								<path strokeLinecap="round" strokeLinejoin="round" d="M5.25 5.653c0-.856.917-1.398 1.667-.986l11.54 6.347a1.125 1.125 0 0 1 0 1.972l-11.54 6.347a1.125 1.125 0 0 1-1.667-.986V5.653Z" />
+							</svg>
+							<span className="text-xs font-medium">Loading video...</span>
+						</div>
+					</div>
+				)}
 				<video
 					ref={videoRef}
 					className="w-full aspect-video object-cover"
@@ -127,8 +148,10 @@ function SlideVideo({
 					title={step.title}
 					playsInline
 					muted
+					preload="auto"
 					onTimeUpdate={handleTimeUpdate}
 					onEnded={handleEnded}
+					onCanPlayThrough={handleCanPlay}
 				/>
 				<div className="w-full h-[3px] bg-gray-800">
 					<div

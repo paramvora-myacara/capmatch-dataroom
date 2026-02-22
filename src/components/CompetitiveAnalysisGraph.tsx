@@ -20,7 +20,7 @@ const competitors: Competitor[] = [
     automation: 8,
     integration: 8,
     logoUrl: '/CapMatchLogo.png',
-    positionOffset: { x: 4, y: -5 },
+    positionOffset: { x: 4, y: 5 },
   },
   {
     name: 'Agrippa',
@@ -220,6 +220,20 @@ export default function CompetitiveAnalysisGraph() {
         <div className="absolute top-2 right-2 w-[48%] pl-2 pt-1 text-right">
           <p className="text-[11px] md:text-xs text-gray-600 leading-snug">
             <span className="font-semibold text-gray-700">AI-driven, platform:</span> Full end-to-end platforms rather than point solutions.
+          </p>
+        </div>
+
+        {/* Manual, tool-based quadrant (bottom-left) */}
+        <div className="absolute bottom-2 left-2 w-[48%] pr-2 pb-1">
+          <p className="text-[11px] md:text-xs text-gray-600 leading-snug">
+            <span className="font-semibold text-gray-700">Manual, tool-based:</span> Traditional databases, listing services, and spreadsheet-driven processes with little automation.
+          </p>
+        </div>
+
+        {/* Manual, platform quadrant (bottom-right) */}
+        <div className="absolute bottom-2 right-2 w-[48%] pl-2 pb-1 text-right">
+          <p className="text-[11px] md:text-xs text-gray-600 leading-snug">
+            <span className="font-semibold text-gray-700">Manual, platform:</span> Integrated marketplaces and platforms that consolidate workflows but rely on manual inputs and human coordination.
           </p>
         </div>
 

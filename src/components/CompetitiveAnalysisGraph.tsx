@@ -17,15 +17,15 @@ type Competitor = {
 const competitors: Competitor[] = [
   {
     name: 'CapMatch',
-    automation: 8,
-    integration: 8,
+    automation: 8.2,
+    integration: 8.2,
     logoUrl: '/CapMatchLogo.png',
-    positionOffset: { x: 4, y: 5 },
+    positionOffset: { x: 0, y: 0 },
   },
   {
     name: 'Agrippa',
-    automation: 8.0,
-    integration: 6.5,
+    automation: 7.8,
+    integration: 6.8,
     logoUrl: '/logos/AgrippaLogo.png',
     positionOffset: { x: -5, y: 3 },
     description:
@@ -37,7 +37,7 @@ const competitors: Competitor[] = [
     integration: 5.5,
     logoUrl: '/logos/LevLogo.jpg',
     description:
-      'AI-driven platform that matches CRE borrowers with lenders while automating workflows and providing real-time credit data for efficient deal sourcing.',
+      'A workflow automation tool that CRE professionals use to manage and accelerate their own financing processes.',
     positionOffset: { x: 10, y: -3 },
   },
   {
@@ -56,15 +56,7 @@ const competitors: Competitor[] = [
     description:
       'An AI-driven lease intelligence tool that automates lease reviews, abstractions, risk identification, and comparisons for lawyers, asset managers, and CRE professionals.',
   },
-  {
-    name: 'Cherre',
-    automation: 6.8,
-    integration: 6.0,
-    logoUrl: '/logos/cherreLogo.png',
-    description:
-      'A leading real estate data management and intelligence platform that connects fragmented property and market data for analysis, reporting, decision-making, and AI-driven insights.',
-    positionOffset: { x: 0, y: -2 },
-  },
+
   {
     name: 'CompStak',
     automation: 5.8,
@@ -75,16 +67,16 @@ const competitors: Competitor[] = [
   },
   {
     name: 'CBRE',
-    automation: 1,
-    integration: 9.1,
+    automation: 2.0,
+    integration: 6.8,
     logoUrl: '/logos/CBRELogo.png',
     description:
       "The world's largest commercial real estate services and investment firm, providing brokerage, property management, leasing, valuation, consulting, and facilities management globally.",
   },
   {
     name: 'JLL',
-    automation: 2.2,
-    integration: 8.5,
+    automation: 2.8,
+    integration: 8.8,
     logoUrl: '/logos/JLLLogo.jpg',
     description:
       'Global CRE services firm providing capital markets advisory, financing solutions, and investment management for diverse property types.',
@@ -159,8 +151,8 @@ const competitors: Competitor[] = [
   },
   {
     name: 'LoopNet',
-    automation: 1.8,
-    integration: 2,
+    automation: 2.2,
+    integration: 2.2,
     logoUrl: '/logos/LoopNetLogo.png',
     description:
       'The leading online marketplace for commercial real estate, where users search, list, and advertise properties for sale or lease (part of CoStar Group).',
@@ -171,7 +163,7 @@ const competitors: Competitor[] = [
     integration: 3.5,
     logoUrl: '/logos/cadastral.jpeg',
     description:
-      'AI-powered platform for commercial real estate property research, due diligence, and analytics.',
+      "Builds AI agents that 'speak real estate,' automating end-to-end workflows like T-12 analysis, lease abstraction, and loan compliance.",
     positionOffset: { x: -5, y: -3 },
   },
   {
@@ -183,7 +175,7 @@ const competitors: Competitor[] = [
       'AI-driven property evaluation and risk scoring platform for commercial real estate portfolios.',
     positionOffset: { x: 0, y: 5 },
   },
-];  
+];
 
 // Deterministic jitter from name to spread overlapping logos (same quadrant)
 function jitterFromName(name: string): { dx: number; dy: number } {
@@ -266,13 +258,13 @@ export default function CompetitiveAnalysisGraph() {
                   <div className="absolute left-1/2 top-full -translate-x-1/2 border-4 border-transparent border-t-white" />
                 </div>
               )}
-              <div className={`relative ${isCapMatch ? 'w-32 h-16 md:w-48 md:h-24' : isAgrippa ? 'w-20 h-10 md:w-32 md:h-16' : 'w-14 h-7 md:w-24 md:h-12'}`}>
+              <div className={`relative ${isCapMatch ? 'w-[144px] h-[72px]' : isAgrippa ? 'w-[88px] h-[44px]' : 'w-[64px] h-[32px]'}`}>
                 {c.logoUrl && (
                   <Image
                     src={c.logoUrl}
                     alt={`${c.name} logo`}
                     fill
-                    sizes={isCapMatch ? '(max-width: 768px) 128px, 192px' : isAgrippa ? '(max-width: 768px) 80px, 128px' : '(max-width: 768px) 56px, 96px'}
+                    sizes={isCapMatch ? '144px' : isAgrippa ? '88px' : '64px'}
                     style={{ objectFit: 'contain' }}
                     className={isCapMatch ? 'drop-shadow-lg' : ''}
                     unoptimized

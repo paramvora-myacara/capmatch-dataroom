@@ -54,17 +54,17 @@ const technicalStaff = [
     name: 'Aryan Jain',
     role: 'Engineering',
     content: [
-      'Aryan brings strong systems thinking and a thorough, detail-oriented approach to building robust technical solutions.',
-      'He excels at breaking down complex problems into clear architectures and has a keen eye for edge cases and long-term maintainability.',
-      'His combination of technical depth and structured reasoning makes him a key contributor to CapMatch\'s engineering foundation.',
+      'Aryan brings strong systems thinking and a thorough, detail-oriented approach to building robust technical solutions. He excels at breaking down complex problems into clear architectures and has a keen eye for edge cases and long-term maintainability.',
+      'He founded and led a venture-backed company out of college—building an AI-enabled email product and later UsePRD, an app for implementation plans for coding agents—before selling the product and returning remaining funds to pursue a larger opportunity.',
+      'His combination of technical depth, founder experience, and structured reasoning makes him a key contributor to CapMatch\'s engineering foundation.',
     ],
   },
   {
     name: 'Sarthak Karandikar',
     role: 'Engineering',
     content: [
-      'Sarthak focuses on applying technology and systematic thinking to complex commercial real estate and platform problems.',
-      'He has experience across startups and open-source development, with a strong interest in AI and in building tools that improve how the industry operates.',
+      'Sarthak focuses on applying technology and systematic thinking to complex commercial real estate and platform problems. He has a deep technical background across AI, open-source development, and startups, with a strong interest in building tools that improve how the industry operates.',
+      'As co-founder of Existence, he led development of Sentient—an AI personal assistant that reached 700+ GitHub stars and 300+ active users and generated revenue—with a focus on coding and product. He has co-authored research papers and been granted an Indian patent for an AI project.',
       'He is committed to clear communication and to shipping solutions that create measurable impact.',
     ],
   },
@@ -72,8 +72,8 @@ const technicalStaff = [
     name: 'Kabeer Ahmed Merchant',
     role: 'Engineering',
     content: [
-      'Kabeer is focused on solving hard, overlooked problems in commercial real estate by rebuilding workflows from first principles and applying technology where it delivers real value.',
-      'He has deep experience in AI, machine learning, data science, and systems design, with a focus on how complex systems fail and how to rebuild them more reliably.',
+      'Kabeer is focused on solving hard, overlooked problems in commercial real estate by rebuilding workflows from first principles and applying technology where it delivers real value. He has been coding since he was 12 and has deep experience in AI, machine learning, data science, statistics, cybersecurity, and systems design—with a persistent focus on how complex systems fail and how to rebuild them more reliably.',
+      'As co-founder of Existence, he helped build Sentient, an AI personal assistant that reached 700+ GitHub stars and 300+ active users and generated revenue, with a focus on content creation and video production. He has co-authored three research papers, been granted an Indian patent for an AI project, and scaled content to thousands of followers and millions of views.',
       'He works closely with investors, developers, and operators to align technology with business outcomes.',
     ],
   },

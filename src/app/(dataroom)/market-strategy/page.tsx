@@ -118,19 +118,39 @@ export default function MarketStrategyPage() {
           <div>
             <h3 className="font-semibold text-gray-900 mb-3">Go-to-market</h3>
             <p className="text-gray-700 text-sm mb-4">
-              We activate demand through three channels: broker-led deal flow, direct borrower acquisition, and proactive refinance timing (Refi Radar). Each channel reinforces the others and drives volume onto the platform.
+              We activate demand through two core channels: broker-led deal flow and direct borrower acquisition. Each reinforces the other and drives volume onto the platform.
             </p>
-            <div className="grid grid-cols-3 gap-3">
+            <p className="text-gray-700 text-sm mb-4">
+              We have already onboarded four brokerages without spending a dollar on go-to-market. That is early validation that our value proposition and channel strategy resonate before we scale paid acquisition.
+            </p>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               {[
                 { title: 'Broker Activation', desc: 'The founding team brings deep CRE and capital markets relationships, so we do not start from zero. We sign affiliate and referral partnerships with brokers who want better packaging and placement for their borrowers. Brokers keep their economics while gaining workflow automation and access to a broader lender set, which in turn brings more deal flow onto CapMatch.' },
                 { title: 'Direct Borrower', desc: 'We acquire borrowers directly by offering clear platform value: one profile, one package, and placement across many lenders without re-keying or re-formatting. Borrowers get faster execution and transparency; we earn outcomes-based revenue when deals close. Direct acquisition also builds brand and pulls in brokers who see the results.' },
-                { title: 'Refi Radar', desc: 'Refi Radar uses market and rate data to identify when a refinance is likely to be favorable for a given property or sponsor. We surface proactive refinance timing alerts so we can reach borrowers before they start searching. That positions CapMatch as the natural first stop when the refi wave and maturities drive demand.' },
               ].map((item) => (
                 <div key={item.title} className="border border-gray-200 rounded-lg p-4">
                   <p className="text-xs font-semibold text-gray-900 mb-2">{item.title}</p>
                   <p className="text-xs text-gray-500 leading-relaxed">{item.desc}</p>
                 </div>
               ))}
+            </div>
+          </div>
+
+          {/* Refi Radar */}
+          <div>
+            <h3 className="font-semibold text-gray-900 mb-3">Refi Radar</h3>
+            <p className="text-gray-700 text-sm mb-4">
+              Refi Radar uses market and rate data to identify when a refinance is likely to be favorable for a given property or sponsor. We surface proactive refinance timing alerts so we can reach borrowers before they start searching. That positions CapMatch as the natural first stop when the refi wave and maturities drive demand.
+            </p>
+            <div className="relative left-1/2 -translate-x-1/2 w-[min(100vw,72rem)]">
+              <div className="w-full rounded-lg overflow-hidden border border-gray-200" style={{ height: '70vh' }}>
+                <iframe
+                  src="https://www.capmatch.com/refi-radar"
+                  title="CapMatch Refi Radar"
+                  className="w-full h-full border-0"
+                  allow="fullscreen"
+                />
+              </div>
             </div>
           </div>
 
@@ -145,14 +165,6 @@ export default function MarketStrategyPage() {
                 <span className="w-1.5 h-1.5 rounded-full bg-gray-400 mt-1.5 flex-shrink-0" />
                 <div className="text-sm text-gray-700">
                   <strong>$957B refi wave.</strong> COVID-era originations are maturing in a large wave. Borrowers and brokers are actively looking for refinancing options, which creates a natural pipeline for a platform that can package and place deals efficiently.
-                  <span className="block mt-1.5 text-xs text-gray-500">
-                    Sources:{' '}
-                    <a href="https://www.reddit.com/r/Economics/comments/1aqceej/about_929_billion_commercial_mortgages_will/#:~:text=I%20know%20a%20lot%20of,short%203%2D5%20year%20lengths." target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:text-blue-800 hover:underline">Reddit</a>
-                    {' · '}
-                    <a href="https://cred-iq.com/blog/2025/11/21/explosive-growth-in-cre-clo-leads-yoy-new-issuance-growth-in-all-sectors/#:~:text=Cap%20rates%20held%20flat%20nationally,%244.8T%20looming%20through%202027%2B." target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:text-blue-800 hover:underline">CRED iQ</a>
-                    {' · '}
-                    <a href="https://alternativecreditinvestor.com/2025/03/07/borrowers-get-creative-as-957bn-of-cre-debt-matures-in-2025/#:~:text=%E2%80%9CThe%20market%20should%20expect%20the,%2C%E2%80%9D%20adds%20Cricco%2DLizza." target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:text-blue-800 hover:underline">Alternative Credit Investor</a>
-                  </span>
                 </div>
               </div>
               <div className="flex items-start gap-2">
@@ -168,38 +180,12 @@ export default function MarketStrategyPage() {
                 </div>
               </div>
             </div>
-          </div>
-
-          {/* Path to $10M */}
-          <div>
-            <h3 className="font-semibold text-gray-900 mb-3">Path to $10M Annual Revenue</h3>
-            <p className="text-gray-700 text-sm mb-4">
-              We model a path to $10M ARR using a 1% fee on closed loan volume with an 80% net revenue blend after broker payouts. The math below shows that 25 closed loans per year at an average of roughly $400K revenue per loan gets us there, requiring about 1.9% share of the addressable loan set (HMDA 2024: 1,307 loans over $50M). This is achievable with the broker and borrower channels we are activating and the refi wave in place.
+            <p className="text-xs text-gray-500 mt-4">
+              Sources:{' '}
+              <a href="https://www.spglobal.com/market-intelligence/en/news-insights/research/cre-maturity-wall-reaches-950b-in-2024-peaks-in-2027" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:text-blue-800 hover:underline">S&P Global Market Intelligence</a>
+              {' · '}
+              <a href="https://www.jpmorgan.com/insights/real-estate/commercial-real-estate/commercial-real-estate-trends" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:text-blue-800 hover:underline">J.P. Morgan</a>
             </p>
-            <div className="border border-gray-200 rounded-lg overflow-hidden">
-              <div className="bg-gray-50 px-4 py-3 border-b border-gray-200">
-                <div className="flex items-center justify-between">
-                  <span className="text-sm font-medium text-gray-700">Target</span>
-                  <span className="text-lg font-bold text-gray-900">$10M ARR</span>
-                </div>
-              </div>
-              <div className="px-4 py-4 space-y-3">
-                {[
-                  ['Loans per year', '25'],
-                  ['Revenue per loan (1% fee × 80% blend)', '~$400K'],
-                  ['Market share required', '1.91%'],
-                  ['Addressable loans >$50M (2024 HMDA)', '1,307'],
-                ].map(([label, val], i, arr) => (
-                  <div key={label}>
-                    <div className="flex items-center justify-between text-sm">
-                      <span className="text-gray-600">{label}</span>
-                      <span className="font-semibold text-gray-900">{val}</span>
-                    </div>
-                    {i < arr.length - 1 && <div className="w-full h-px bg-gray-100 mt-3" />}
-                  </div>
-                ))}
-              </div>
-            </div>
           </div>
 
         </div>

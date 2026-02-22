@@ -106,10 +106,6 @@ export default function TractionPage() {
         <p className="text-gray-500 text-sm">[Show interactive package artifacts - what replaces static PDFs]</p>
       </DocumentSection>
 
-      <DocumentSection title="Testimonials / References">
-        <p className="text-gray-500 text-sm">[Optional short quotes, emails, permissioned intros]</p>
-      </DocumentSection>
-
       <p className="text-sm text-gray-500">
         <Link href="/" className="text-gray-600 hover:text-gray-900 hover:underline">← Back to Index</Link>
       </p>

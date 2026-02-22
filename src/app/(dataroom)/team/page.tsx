@@ -12,6 +12,15 @@ const teamMembers = [
     ],
   },
   {
+    name: 'Param Vora',
+    role: 'Chief Technology Officer',
+    content: [
+      'Former CTO of Solarcheckr, where he drove a 650% increase in financing approvals and led the company through a successful acquisition.',
+      'Built advanced AI copilots and automation pipelines as Director of AI at The Cool Down, which grew to over 60 million monthly visits and became the fastest-growing U.S. media brand in early 2025.',
+      'With 7+ years in machine learning and a master\'s in AI, he leads CapMatch\'s technology vision across underwriting, automation, and investor intelligence.',
+    ],
+  },
+  {
     name: 'Todd Vitzthum',
     role: 'Co-Founder & Executive Chairman',
     content: [
@@ -27,15 +36,6 @@ const teamMembers = [
       'Corporate & Securities Partner at Lucosky Brookman LLP, advising family offices, private equity funds, and high-net-worth clients on real estate, finance, and corporate structuring.',
       'Nationally recognized OZ expert and "California Trailblazer," with deep experience in QOF/QOZB formation, SEC compliance, and complex capital stack negotiations.',
       'As Chief Legal Officer at ACARA Management, he leads legal strategy for fund deployment, regulatory alignment, and Opportunity Zone execution.',
-    ],
-  },
-  {
-    name: 'Param Vora',
-    role: 'Chief Technology Officer',
-    content: [
-      'Former CTO of Solarcheckr, where he drove a 650% increase in financing approvals and led the company through a successful acquisition.',
-      'Built advanced AI copilots and automation pipelines as Director of AI at The Cool Down, which grew to over 60 million monthly visits and became the fastest-growing U.S. media brand in early 2025.',
-      'With 7+ years in machine learning and a master\'s in AI, he leads CapMatch\'s technology vision across underwriting, automation, and investor intelligence.',
     ],
   },
 ];
@@ -81,7 +81,7 @@ const technicalStaff = [
     name: 'Vatsal Hariramani',
     role: 'Engineering',
     content: [
-      'Vatsal Hariramani is an engineer and former founder working at the intersection of AI, hardware, and real-world systems.',
+      'Vatsal is an engineer and former founder experienced in building at the intersection of AI, hardware, and real-world systems.',
       'He studied Computer Science and Engineering at IIT Mandi and completed a semester abroad at TU Munich. His background spans AI/ML, IoT, automation, and robotics, with a focus on building reliable, production-grade technology.',
       'Prior to CapMatch, Vatsal founded a venture-backed medtech startup supported by Emergent Ventures, where he built intelligent monitoring and embedded systems designed to address reliability and continuous care challenges in neonatal and clinical environments, particularly in remote and infrastructure-constrained settings, including deployments across challenging terrains such as the Himalayas.',
       'At CapMatch, he contributes across product and engineering.',

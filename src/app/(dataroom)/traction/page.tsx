@@ -103,7 +103,27 @@ export default function TractionPage() {
       </DocumentSection>
 
       <DocumentSection title="Sanitized Deliverables">
-        <p className="text-gray-500 text-sm">[Show interactive package artifacts - what replaces static PDFs]</p>
+        <div className="space-y-4">
+          <p className="text-sm text-gray-700">
+            The following is an OM (offering memorandum) generated for a live deal on our platform: SoGood Apartments, a ground-up mixed-use project in Dallas, TX. The deal has an $18 million loan value.
+          </p>
+          <div className="rounded-lg overflow-hidden border border-gray-200 bg-gray-50">
+            <video
+              className="w-full"
+              controls
+              preload="metadata"
+              autoPlay
+              loop
+              muted
+            >
+              <source src="/OMDeliverable.mp4" type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
+            <p className="px-3 py-2 text-xs text-gray-500 bg-gray-50 border-t border-gray-100">
+              Interactive OM  — sample of what we provide to commercial lenders.
+            </p>
+          </div>
+        </div>
       </DocumentSection>
 
       <SectionNav />

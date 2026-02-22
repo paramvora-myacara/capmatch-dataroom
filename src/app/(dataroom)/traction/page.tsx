@@ -1,5 +1,5 @@
 import DocumentSection from '@/components/DocumentSection';
-import Link from 'next/link';
+import SectionNav from '@/components/SectionNav';
 
 export default function TractionPage() {
   return (
@@ -40,7 +40,7 @@ export default function TractionPage() {
         ]}
       >
         <p className="text-gray-500 text-sm">
-          [Add signed contracts to <code>public/dataroom/</code> — sanitize PII]
+          [Add signed contracts to <code>public/dataroom/</code> - sanitize PII]
         </p>
       </DocumentSection>
 
@@ -60,7 +60,7 @@ export default function TractionPage() {
             </p>
             <div className="text-sm text-gray-700">
               <span className="font-medium text-gray-900">CapMatch Impact: </span>
-              Built a living underwriting model — reconciled conflicting assumptions across residential and commercial income, modeled Innovation Center lease escalations, and enabled lenders to toggle tax exemption scenarios in real time. Lender questions resolved during live calls instead of 24-48 hour turnaround.
+              Built a living underwriting model: reconciled conflicting assumptions across residential and commercial income, modeled Innovation Center lease escalations, and enabled lenders to toggle tax exemption scenarios in real time. Lender questions resolved during live calls instead of 24 to 48 hour turnaround.
             </div>
           </div>
 
@@ -74,7 +74,7 @@ export default function TractionPage() {
               <span className="text-xs font-medium text-blue-600 bg-blue-50 px-2 py-1 rounded whitespace-nowrap">$31.5M Senior Debt</span>
             </div>
             <p className="text-sm text-gray-700 mb-3">
-              144-unit Class A multifamily with 29,007 SF commercial. Conflicting data across BPO, Excel models, and trailing financials. Multi-year tax abatement required two distinct valuation methodologies — blended cap rate vs. NPV-adjusted.
+              144-unit Class A multifamily with 29,007 SF commercial. Conflicting data across BPO, Excel models, and trailing financials. Multi-year tax abatement required two distinct valuation methodologies: blended cap rate vs. NPV-adjusted.
             </p>
             <div className="text-sm text-gray-700">
               <span className="font-medium text-gray-900">CapMatch Impact: </span>
@@ -92,27 +92,41 @@ export default function TractionPage() {
               <span className="text-xs font-medium text-blue-600 bg-blue-50 px-2 py-1 rounded whitespace-nowrap">$30.1M Equity</span>
             </div>
             <p className="text-sm text-gray-700 mb-3">
-              177-unit, 508-bed purpose-built student housing (99% complete, 60%+ pre-leased). Specialized underwriting — beds vs. units, academic calendar leases, enrollment-driven demand. Opportunity Zone structuring with capital deployment deadline.
+              177-unit, 508-bed purpose-built student housing (99% complete, 60%+ pre-leased). Specialized underwriting: beds vs. units, academic calendar leases, enrollment-driven demand. Opportunity Zone structuring with capital deployment deadline.
             </p>
             <div className="text-sm text-gray-700">
               <span className="font-medium text-gray-900">CapMatch Impact: </span>
-              Built investor-ready intelligence layer — bed-level economics across 7 unit types, competitive supply analysis (only 162 PBSH beds built since 2017 for 15,200+ students), and dynamic OZ tax benefit modeling. Investor diligence questions resolved in live conversations instead of overnight turnaround.
+              Built investor-ready intelligence layer: bed-level economics across 7 unit types, competitive supply analysis (only 162 PBSH beds built since 2017 for 15,200+ students), and dynamic OZ tax benefit modeling. Investor diligence questions resolved in live conversations instead of overnight turnaround.
             </div>
           </div>
         </div>
       </DocumentSection>
 
       <DocumentSection title="Sanitized Deliverables">
-        <p className="text-gray-500 text-sm">[Show interactive package artifacts — what replaces static PDFs]</p>
+        <div className="space-y-4">
+          <p className="text-sm text-gray-700">
+            The following is an OM (offering memorandum) generated for a live deal on our platform: SoGood Apartments, a ground-up mixed-use project in Dallas, TX. The deal has an $18 million loan value.
+          </p>
+          <div className="rounded-lg overflow-hidden border border-gray-200 bg-gray-50">
+            <video
+              className="w-full"
+              controls
+              preload="metadata"
+              autoPlay
+              loop
+              muted
+            >
+              <source src="/OMDeliverable.mp4" type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
+            <p className="px-3 py-2 text-xs text-gray-500 bg-gray-50 border-t border-gray-100">
+              Interactive OM  — sample of what we provide to commercial lenders.
+            </p>
+          </div>
+        </div>
       </DocumentSection>
 
-      <DocumentSection title="Testimonials / References">
-        <p className="text-gray-500 text-sm">[Optional short quotes, emails, permissioned intros]</p>
-      </DocumentSection>
-
-      <p className="text-sm text-gray-500">
-        <Link href="/" className="text-gray-600 hover:text-gray-900 hover:underline">← Back to Index</Link>
-      </p>
+      <SectionNav />
     </article>
   );
 }

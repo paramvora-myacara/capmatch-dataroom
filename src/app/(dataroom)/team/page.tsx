@@ -1,42 +1,39 @@
 import DocumentSection from '@/components/DocumentSection';
-import Link from 'next/link';
+import SectionNav from '@/components/SectionNav';
 
 const teamMembers = [
   {
     name: 'Dr. Jeff Richmond',
-    role: 'Co-Founder & CEO',
-    content: [
-      'Drove $2B+ in annual transaction volume through strategic business development and growth leadership at eXp Realty.',
-      'Co-founder of CapMatch and OZ Listings, delivering AI-powered capital markets solutions for multifamily and Opportunity Zone investments.',
-      'Chief Operating Partner at ACARA Management, a private equity firm focused on OZ development and capital structuring.',
-    ],
+    role: 'Chief Executive Officer',
+    oneLine: 'Drives AI-powered capital markets for multifamily and Opportunity Zone investments at CapMatch and OZ Listings. Former growth leadership at eXp Realty ($2B+ annual volume) and Chief Operating Partner at ACARA Management.',
+    relevantExperienceYears: 15,
+    companies: 'eXp Realty, ACARA Management, OZ Listings, CapMatch',
+  },
+  {
+    name: 'Param Vora',
+    role: 'Chief Technology Officer & Chief Operating Officer',
+    oneLine: 'Leads CapMatch\'s technology vision across underwriting, automation, and investor intelligence. Former CTO of Solarcheckr (650% increase in financing approvals, successful acquisition); Director of AI at The Cool Down (60M+ monthly visits, fastest-growing U.S. media brand in early 2025).',
+    relevantExperienceYears: 3,
+    companies: 'Solarcheckr, The Cool Down, Urbaness',
   },
   {
     name: 'Todd Vitzthum',
-    role: 'Co-Founder & Executive Chairman',
-    content: [
-      'Executed over $3B in commercial real estate transactions across a 20+ year career, with senior leadership roles at Greystone, Cushman & Wakefield, and CBRE.',
-      'As Managing Partner at ACARA Management, he leads multifamily investment strategy and oversees Opportunity Zone deployment across the firm\'s portfolio.',
-      'Co-founder of CapMatch and OZ Listings, he drives the creation of tech-enabled capital platforms and national real estate marketplaces.',
-    ],
+    role: 'Executive Chairman',
+    oneLine: 'Executed over $3B in commercial real estate transactions. Drives tech-enabled capital platforms at CapMatch and OZ Listings. Managing Partner at ACARA Management leading multifamily investment strategy and Opportunity Zone deployment.',
+    relevantExperienceYears: 23,
+    companies: 'Greystone, Cushman & Wakefield, CBRE, ACARA Management',
   },
   {
     name: 'Michael Krueger',
     role: 'Chief Legal Officer',
-    content: [
-      'Corporate & Securities Partner at Lucosky Brookman LLP, advising family offices, private equity funds, and high-net-worth clients on real estate, finance, and corporate structuring.',
-      'Nationally recognized OZ expert and "California Trailblazer," with deep experience in QOF/QOZB formation, SEC compliance, and complex capital stack negotiations.',
-      'As Chief Legal Officer at ACARA Management, he leads legal strategy for fund deployment, regulatory alignment, and Opportunity Zone execution.',
-    ],
+    oneLine: 'Nationally recognized OZ expert and California Trailblazer; Corporate & Securities Partner at Lucosky Brookman LLP. Chief Legal Officer at ACARA Management leading legal strategy for fund deployment, regulatory alignment, and Opportunity Zone execution.',
+    relevantExperienceYears: 10,
   },
   {
-    name: 'Param Vora',
-    role: 'Chief Technology Officer',
-    content: [
-      'Former CTO of Solarcheckr, where he drove a 650% increase in financing approvals and led the company through a successful acquisition.',
-      'Built advanced AI copilots and automation pipelines as Director of AI at The Cool Down, which grew to over 60 million monthly visits and became the fastest-growing U.S. media brand in early 2025.',
-      'With 7+ years in machine learning and a master\'s in AI, he leads CapMatch\'s technology vision across underwriting, automation, and investor intelligence.',
-    ],
+    name: 'Gregory J. Kapust',
+    role: 'Advisory',
+    oneLine: 'Brings strategic and operational expertise to CapMatch\'s leadership and growth initiatives.',
+    relevantExperienceYears: 1,
   },
 ];
 
@@ -44,48 +41,39 @@ const technicalStaff = [
   {
     name: 'Cody Field',
     role: 'Capital Markets Advisory',
-    content: [
-      'Strategic and entrepreneurial mortgage banker with demonstrated expertise in structuring and brokering commercial, industrial, and multifamily real estate assets.',
-      'Draws from an uncommon background as yacht Captain to build consensus and communicate clearly.',
-      'An insightful partner with excellent problem-solving skills and a talent for building collaborative and inclusive relationships in dynamic, fast-paced working environments.',
-    ],
+    oneLine: 'Strategic mortgage banker with expertise in structuring and brokering commercial, industrial, and multifamily real estate; builds consensus and collaborates effectively with an uncommon background as yacht Captain.',
+    relevantExperienceYears: 20,
+    showRelevantExperience: true,
   },
   {
     name: 'Aryan Jain',
     role: 'Engineering',
-    content: [
-      'Aryan brings strong systems thinking and a thorough, detail-oriented approach to building robust technical solutions.',
-      'He excels at breaking down complex problems into clear architectures and has a keen eye for edge cases and long-term maintainability.',
-      'His combination of technical depth and structured reasoning makes him a key contributor to CapMatch\'s engineering foundation.',
-    ],
+    oneLine: 'Former founder of a venture-backed AI product company, building intelligent automation tools for enterprise workflows. IIT Madras graduate. Contributes across backend systems and data infrastructure at CapMatch.',
+    education: 'IIT Madras',
+    relevantExperienceYears: 1,
+    showRelevantExperience: true,
   },
   {
     name: 'Sarthak Karandikar',
     role: 'Engineering',
-    content: [
-      'Sarthak focuses on applying technology and systematic thinking to complex commercial real estate and platform problems.',
-      'He has experience across startups and open-source development, with a strong interest in AI and in building tools that improve how the industry operates.',
-      'He is committed to clear communication and to shipping solutions that create measurable impact.',
-    ],
+    oneLine: 'Former founder of an AI startup that built multiple products, including an open-source personal assistant with 700+ GitHub stars. Background in AI systems, open-source tooling, and early-stage ventures. Contributes across product, engineering, and content at CapMatch.',
+    relevantExperienceYears: 1,
+    showRelevantExperience: true,
   },
   {
     name: 'Kabeer Ahmed Merchant',
     role: 'Engineering',
-    content: [
-      'Kabeer is focused on solving hard, overlooked problems in commercial real estate by rebuilding workflows from first principles and applying technology where it delivers real value.',
-      'He has deep experience in AI, machine learning, data science, and systems design, with a focus on how complex systems fail and how to rebuild them more reliably.',
-      'He works closely with investors, developers, and operators to align technology with business outcomes.',
-    ],
+    oneLine: 'Previously co-founded an AI startup, shipping several products including an open-source personal assistant that gained 700+ stars on GitHub. Deep experience in AI/ML, systems design, and full-stack engineering. Works across product, engineering, and content at CapMatch.',
+    relevantExperienceYears: 1,
+    showRelevantExperience: true,
   },
   {
     name: 'Vatsal Hariramani',
     role: 'Engineering',
-    content: [
-      'Vatsal Hariramani is an engineer and former founder working at the intersection of AI, hardware, and real-world systems.',
-      'He studied Computer Science and Engineering at IIT Mandi and completed a semester abroad at TU Munich. His background spans AI/ML, IoT, automation, and robotics, with a focus on building reliable, production-grade technology.',
-      'Prior to CapMatch, Vatsal founded a venture-backed medtech startup supported by Emergent Ventures, where he built intelligent monitoring and embedded systems designed to address reliability and continuous care challenges in neonatal and clinical environments, particularly in remote and infrastructure-constrained settings, including deployments across challenging terrains such as the Himalayas.',
-      'At CapMatch, he contributes across product and engineering.',
-    ],
+    oneLine: 'Former founder of a venture-backed MedTech startup, supported by Emergent Ventures, building intelligent monitoring and embedded systems for reliability and continuous care in neonatal and clinical environments, including deployments in remote and challenging settings such as the Himalayas. Holds a granted Indian utility patent for the same. Contributes across product and engineering at CapMatch.',
+    education: 'IIT Mandi; TU Munich (semester abroad)',
+    relevantExperienceYears: 1,
+    showRelevantExperience: true,
   },
 ];
 
@@ -105,11 +93,15 @@ export default function TeamPage() {
             <div key={member.name} className="border-b border-gray-100 pb-6 last:border-0 last:pb-0">
               <h3 className="text-base font-semibold text-gray-900">{member.name}</h3>
               <p className="text-blue-600 text-sm font-medium mb-2">{member.role}</p>
-              <ul className="space-y-1.5">
-                {member.content.map((item, i) => (
-                  <li key={i} className="text-gray-600 text-sm leading-relaxed">{item}</li>
-                ))}
-              </ul>
+              <p className="text-gray-700 text-sm leading-relaxed mb-3">{member.oneLine}</p>
+              <p className="text-gray-600 text-sm">
+                <strong>Relevant experience:</strong> {member.relevantExperienceYears} years
+              </p>
+              {'companies' in member && member.companies && (
+                <p className="text-gray-600 text-sm mt-1">
+                  <strong>Companies / real estate:</strong> {member.companies}
+                </p>
+              )}
             </div>
           ))}
         </div>
@@ -119,24 +111,29 @@ export default function TeamPage() {
         <p className="text-gray-700 text-sm mb-6">
           Our technical and advisory teams bring deep domain expertise and engineering rigor to CapMatch&apos;s platform and client outcomes.
         </p>
+        <hr className="border-gray-200 mb-8" />
         <div className="space-y-6">
           {technicalStaff.map((member) => (
             <div key={member.name} className="border-b border-gray-100 pb-6 last:border-0 last:pb-0">
               <h3 className="text-base font-semibold text-gray-900">{member.name}</h3>
               <p className="text-blue-600 text-sm font-medium mb-2">{member.role}</p>
-              <ul className="space-y-1.5">
-                {member.content.map((item, i) => (
-                  <li key={i} className="text-gray-600 text-sm leading-relaxed">{item}</li>
-                ))}
-              </ul>
+              <p className="text-gray-700 text-sm leading-relaxed mb-3">{member.oneLine}</p>
+              {'showRelevantExperience' in member && member.showRelevantExperience && (
+                <p className="text-gray-600 text-sm">
+                  <strong>Relevant experience:</strong> {member.relevantExperienceYears} years
+                </p>
+              )}
+              {'education' in member && member.education && (
+                <p className="text-gray-600 text-sm mt-1">
+                  <strong>Education:</strong> {member.education}
+                </p>
+              )}
             </div>
           ))}
         </div>
       </DocumentSection>
 
-      <p className="text-sm text-gray-500">
-        <Link href="/" className="text-gray-600 hover:text-gray-900 hover:underline">← Back to Index</Link>
-      </p>
+      <SectionNav />
     </article>
   );
 }

@@ -8,7 +8,7 @@ const DIAGRAM = `graph TB
         Browser["🌐 Web Browser"]
     end
 
-    subgraph Frontend["Frontend — Next.js"]
+    subgraph Frontend["Frontend - Next.js"]
         NextApp["⚛️ Next.js App Router<br/>(SSR / SSG)"]
         subgraph NextAPIs["Next.js API Routes"]
             API_ProjectResume["Project Resume<br/>autofill · save-version · realtime-sanity-check"]
@@ -23,7 +23,7 @@ const DIAGRAM = `graph TB
         end
     end
 
-    subgraph Backend["Backend — FastAPI"]
+    subgraph Backend["Backend - FastAPI"]
         FastAPI["🐍 FastAPI Main Server<br/>Python 3.11 · Port 8000"]
         subgraph BackendRouters["API Routers"]
             R_ProjectResume["Project Resume<br/>/project-resume"]
@@ -51,7 +51,7 @@ const DIAGRAM = `graph TB
             MW_Metrics["Metrics"]
             MW_Perf["Performance"]
         end
-        RAG["🧠 RAG Service<br/>LightRAG · Neo4j + PGVector"]
+        InfoExtractor["🧠 Information Extractor<br/>LightRAG · Neo4j + PGVector"]
     end
 
     subgraph LenderMatching["Lender Matching"]
@@ -67,24 +67,30 @@ const DIAGRAM = `graph TB
         Mistral["Mistral API"]
     end
 
-    subgraph PlatformData["Data Layer — Supabase"]
+    subgraph PlatformData["Platform Data - Supabase"]
         PlatformDB[("🗄️ PostgreSQL<br/>Users · Projects · Resumes · Chat")]
         Storage[("📦 Storage<br/>Documents · Images")]
         Auth[("🔑 Auth<br/>JWT · Accounts")]
     end
 
-    subgraph Warehouse["Data Warehouse — Supabase"]
-        WarehouseDB[("📚 PostgreSQL + PostGIS<br/>Census · BLS · HUD · FEMA · Marts")]
-        DataLake[("☁️ Data Lake<br/>Raw API Responses")]
-        VectorStore[("🧬 PGVector<br/>Document Chunks")]
+    subgraph Warehouse["Data Warehouse"]
+        subgraph GeoSchema["Georeferenced Schema"]
+            WarehouseDB[("📊 PostGIS-Enabled PostgreSQL<br/>All records indexed by census tract, county, MSA")]
+            GeoIndex["🗺️ Spatial Indexing<br/>Query by tract · county · MSA · lat/lng"]
+        end
+        subgraph KnowledgeStore["Knowledge Store"]
+            Neo4j[("🕸️ Neo4j<br/>Property · Sponsor · Lender<br/>entity relationship graph")]
+            VectorStore[("🧬 PGVector<br/>Document chunk embeddings<br/>semantic search")]
+        end
+        DataLake[("☁️ Data Lake<br/>Raw API responses<br/>Supabase Storage")]
     end
 
-    subgraph ETL["ETL — Prefect"]
+    subgraph ETL["ETL - Prefect"]
         Prefect["🎡 Prefect Orchestrator"]
         Ingest["⬇️ Ingest Flows"]
-        Transform["✂️ Transform Flows"]
-        Mart["📊 Mart Flows"]
-        subgraph Sources["Data Sources"]
+        Transform["✂️ Transform Flows<br/>clean · normalize · georeference"]
+        Mart["📊 Mart Flows<br/>join · aggregate · query-ready views"]
+        subgraph Sources["Data Sources (20+)"]
             S_Census["Census Bureau"]
             S_BLS["BLS"]
             S_HUD["HUD"]
@@ -92,11 +98,14 @@ const DIAGRAM = `graph TB
             S_EPA["EPA"]
             S_FRED["FRED"]
             S_Redfin["Redfin"]
+            S_NHGIS["NHGIS"]
+            S_FHFA["FHFA"]
+            S_CDFI["CDFI"]
+            S_Other["RentCafe · Eviction Lab<br/>NPS · USFWS · USGS<br/>GoodJobsFirst · Municipal"]
         end
     end
 
     subgraph Infra["Backend Infrastructure"]
-        Neo4j[("🕸️ Neo4j<br/>Knowledge Graph")]
         Redis[("⚡ Redis<br/>Rate Limit · Cache")]
         Celery["⚙️ Celery<br/>Background Tasks"]
     end
@@ -108,27 +117,25 @@ const DIAGRAM = `graph TB
         Prometheus["📊 Prometheus<br/>/metrics"]
     end
 
-    subgraph Planned["Planned / Future"]
-        RefiRadar["📡 Refi Radar<br/>AI monitors market conditions & rates<br/>Alerts developers when refinance<br/>opportunity is favorable"]
-        RefiRadarSearch["🌐 Continuous<br/>Internet / Market Search"]
-        RefiRadarAlerts["🔔 Refinance<br/>Opportunity Alerts"]
-    end
-
     Browser --> NextApp --> NextAPIs
     API_ProjectResume & API_BorrowerResume & API_AI & API_OM & API_Meetings & API_Calendar & API_Daily & API_OnlyOffice --> FastAPI
     FastAPI --> BackendRouters
     FastAPI --> BackendMiddleware
-    FastAPI --> RAG
+    FastAPI --> InfoExtractor
     FastAPI --> PlatformDB & Storage & Auth
-    FastAPI --> Neo4j & Redis
-    RAG --> Neo4j & VectorStore
-    FastAPI & RAG --> LiteLLM
+    FastAPI --> Redis
+    InfoExtractor --> Neo4j & VectorStore
+    FastAPI & InfoExtractor --> LiteLLM
     LiteLLM --> Gemini & Mistral
-    S_Census & S_BLS & S_HUD & S_FEMA & S_EPA & S_FRED & S_Redfin --> Ingest
+    S_Census & S_BLS & S_HUD & S_FEMA & S_EPA & S_FRED & S_Redfin & S_NHGIS & S_FHFA & S_CDFI & S_Other --> Ingest
     Prefect --> Ingest --> DataLake
     DataLake --> Transform --> WarehouseDB
+    WarehouseDB --> GeoIndex
     Mart --> WarehouseDB
     WarehouseDB -.-> FastAPI
+    GeoIndex -.->|"tract · county · MSA queries"| FastAPI
+    Neo4j -.->|"entity relationships"| FastAPI
+    VectorStore -.->|"semantic search"| InfoExtractor
     R_Webhooks --> Celery
     FastAPI --> GoogleCal & Daily
     GoogleCal & Daily -.->|Webhooks| FastAPI
@@ -142,39 +149,24 @@ const DIAGRAM = `graph TB
     MatchedLenders --> FastAPI
     FastAPI --> LenderMatchingCore
 
-    RefiRadarSearch -.->|"feeds"| RefiRadar
-    RefiRadar -.->|"AI analysis"| LiteLLM
-    RefiRadar -.->|"alerts"| RefiRadarAlerts
-    RefiRadarAlerts -.->|"notify users"| FastAPI
-    RefiRadarAlerts -.->|"email/push"| Resend
-    WarehouseDB -.->|"rates · market data"| RefiRadar
-
-    classDef client fill:#ffffff,stroke:#1976d2,stroke-width:2px
-    classDef frontend fill:#e8f4fc,stroke:#1976d2,stroke-width:2px
-    classDef backend fill:#bbdefb,stroke:#1565c0,stroke-width:2px
-    classDef data fill:#e3f2fd,stroke:#1976d2,stroke-width:2px
-    classDef external fill:#e3f2fd,stroke:#1565c0,stroke-width:2px
-    classDef llm fill:#e8f4fc,stroke:#1565c0,stroke-width:2px
-    classDef etl fill:#e3f2fd,stroke:#1565c0,stroke-width:2px
-    classDef infra fill:#ffffff,stroke:#1976d2,stroke-width:2px
-    classDef planned fill:#e8f4fc,stroke:#1565c0,stroke-width:2px,stroke-dasharray: 5 5
-    classDef matching fill:#bbdefb,stroke:#1565c0,stroke-width:2px
-
-    class Browser client
-    class NextApp,NextAPIs,API_ProjectResume,API_BorrowerResume,API_AI,API_OM,API_Meetings,API_Calendar,API_Daily,API_OnlyOffice,API_Other frontend
-    class FastAPI,BackendRouters,R_ProjectResume,R_BorrowerResume,R_Webhooks,R_OM,R_AI,R_Underwriting,R_UnderwritingChat,R_Documents,R_Auth,R_Users,R_Projects,R_Chat,R_Calendar,R_Health,BackendMiddleware,MW_Auth,MW_CORS,MW_RateLimit,MW_Security,MW_GZip,MW_Cache,MW_Metrics,MW_Perf,RAG backend
-    class PlatformDB,Storage,Auth,WarehouseDB,DataLake,VectorStore data
-    class GoogleCal,Daily,Resend,Prometheus external
-    class LiteLLM,Gemini,Mistral llm
-    class Prefect,Ingest,Transform,Mart,Sources,S_Census,S_BLS,S_HUD,S_FEMA,S_EPA,S_FRED,S_Redfin etl
-    class Neo4j,Redis,Celery infra
-    class RefiRadar,RefiRadarSearch,RefiRadarAlerts planned
-    class LenderMatchingCore,DeveloperFeatures,LenderCriteria,MatchedLenders matching
+    classDef default fill:#e3f2fd,stroke:#1565c0,stroke-width:2px,color:#1a1a1a
 `;
 
 mermaid.initialize({
   startOnLoad: false,
-  theme: "default",
+  theme: "base",
+  themeVariables: {
+    primaryColor: "#e3f2fd",
+    primaryBorderColor: "#1565c0",
+    primaryTextColor: "#1a1a1a",
+    secondaryColor: "#e3f2fd",
+    tertiaryColor: "#e3f2fd",
+    lineColor: "#1565c0",
+    clusterBkg: "#f0f7ff",
+    clusterBorder: "#1565c0",
+    edgeLabelBackground: "#ffffff",
+    nodeTextColor: "#1a1a1a",
+  },
   flowchart: { curve: "basis", htmlLabels: true },
   securityLevel: "loose",
 });
@@ -191,6 +183,12 @@ export function ArchitectureDiagram() {
   const [isPanning, setIsPanning] = useState(false);
   const panStart = useRef({ x: 0, y: 0 });
   const translateStart = useRef({ x: 0, y: 0 });
+
+  // Keep refs in sync so event handlers always read current values
+  const scaleRef = useRef(scale);
+  const translateRef = useRef(translate);
+  useEffect(() => { scaleRef.current = scale; }, [scale]);
+  useEffect(() => { translateRef.current = translate; }, [translate]);
 
   // Render mermaid once
   useEffect(() => {
@@ -218,7 +216,7 @@ export function ArchitectureDiagram() {
     render();
   }, []);
 
-  // Wheel zoom (centered on cursor)
+  // Wheel zoom (centered on cursor) - uses refs to avoid stale closures
   useEffect(() => {
     const wrapper = wrapperRef.current;
     if (!wrapper) return;
@@ -230,16 +228,18 @@ export function ArchitectureDiagram() {
       const cursorY = e.clientY - rect.top;
 
       const zoomFactor = e.deltaY < 0 ? 1.12 : 1 / 1.12;
+      const prevScale = scaleRef.current;
+      const nextScale = Math.min(MAX_SCALE, Math.max(MIN_SCALE, prevScale * zoomFactor));
+      const ratio = nextScale / prevScale;
 
-      setScale((prev) => {
-        const next = Math.min(MAX_SCALE, Math.max(MIN_SCALE, prev * zoomFactor));
-        const ratio = next / prev;
-        setTranslate((t) => ({
-          x: cursorX - ratio * (cursorX - t.x),
-          y: cursorY - ratio * (cursorY - t.y),
-        }));
-        return next;
-      });
+      const prevT = translateRef.current;
+      const newTranslate = {
+        x: cursorX - ratio * (cursorX - prevT.x),
+        y: cursorY - ratio * (cursorY - prevT.y),
+      };
+
+      setScale(nextScale);
+      setTranslate(newTranslate);
     };
 
     wrapper.addEventListener("wheel", handleWheel, { passive: false });

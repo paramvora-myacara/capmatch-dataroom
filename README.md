@@ -55,7 +55,7 @@ Open [http://localhost:3000](http://localhost:3000). You'll be redirected to `/l
 
 | Route | Content |
 |-------|---------|
-| `/` | Read Me First — Index, Company Snapshot, Built vs In-Progress |
+| `/` | Read Me First - Index, Company Snapshot, Built vs In-Progress |
 | `/company` | Pitch deck, product one-pager, demo video |
 | `/product-tech` | Product + Tech Overview |
 | `/market-strategy` | Market + Strategy Brief |

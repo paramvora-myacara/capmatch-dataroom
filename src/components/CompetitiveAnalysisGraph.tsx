@@ -33,12 +33,12 @@ const competitors: Competitor[] = [
   },
   {
     name: 'Lev',
-    automation: 7.8,
-    integration: 7.2,
+    automation: 5.5,
+    integration: 5.5,
     logoUrl: '/logos/LevLogo.jpg',
     description:
       'AI-driven platform that matches CRE borrowers with lenders while automating workflows and providing real-time credit data for efficient deal sourcing.',
-    positionOffset: { x: 18, y: -3 },
+    positionOffset: { x: 10, y: -3 },
   },
   {
     name: 'Henry AI',
@@ -165,7 +165,24 @@ const competitors: Competitor[] = [
     description:
       'The leading online marketplace for commercial real estate, where users search, list, and advertise properties for sale or lease (part of CoStar Group).',
   },
-  { name: 'Traditional Brokers', automation: 0.5, integration: 3, text: true },
+  {
+    name: 'Cadastral',
+    automation: 7.0,
+    integration: 3.5,
+    logoUrl: '/logos/cadastral.jpeg',
+    description:
+      'AI-powered platform for commercial real estate property research, due diligence, and analytics.',
+    positionOffset: { x: -5, y: -3 },
+  },
+  {
+    name: 'APERS',
+    automation: 6.5,
+    integration: 2.5,
+    logoUrl: '/logos/apers.jpeg',
+    description:
+      'AI-driven property evaluation and risk scoring platform for commercial real estate portfolios.',
+    positionOffset: { x: 0, y: 5 },
+  },
 ];  
 
 // Deterministic jitter from name to spread overlapping logos (same quadrant)
@@ -236,7 +253,7 @@ export default function CompetitiveAnalysisGraph() {
                 </div>
               )}
               <div className={`relative ${isCapMatch ? 'w-32 h-16 md:w-48 md:h-24' : isAgrippa ? 'w-20 h-10 md:w-32 md:h-16' : 'w-14 h-7 md:w-24 md:h-12'}`}>
-                {c.logoUrl ? (
+                {c.logoUrl && (
                   <Image
                     src={c.logoUrl}
                     alt={`${c.name} logo`}
@@ -246,17 +263,21 @@ export default function CompetitiveAnalysisGraph() {
                     className={isCapMatch ? 'drop-shadow-lg' : ''}
                     unoptimized
                   />
-                ) : 'text' in c && c.text ? (
-                  <div className="flex items-center justify-center h-full">
-                    <p className="text-center text-[9px] md:text-sm font-semibold text-gray-800">
-                      Traditional Brokers
-                    </p>
-                  </div>
-                ) : null}
+                )}
+                {isCapMatch && (
+                  <div className="absolute inset-[-6px] rounded-xl border-2 border-blue-400" style={{ animation: 'pulse-ring 2s ease-in-out infinite' }} />
+                )}
               </div>
             </div>
           );
         })}
+
+        <style jsx>{`
+          @keyframes pulse-ring {
+            0%, 100% { opacity: 0.3; box-shadow: 0 0 0 0 rgba(59,130,246,0.3); }
+            50% { opacity: 1; box-shadow: 0 0 12px 4px rgba(59,130,246,0.25); }
+          }
+        `}</style>
       </div>
     </div>
   );

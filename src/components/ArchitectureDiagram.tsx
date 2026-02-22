@@ -192,6 +192,12 @@ export function ArchitectureDiagram() {
   const panStart = useRef({ x: 0, y: 0 });
   const translateStart = useRef({ x: 0, y: 0 });
 
+  // Keep refs in sync so event handlers always read current values
+  const scaleRef = useRef(scale);
+  const translateRef = useRef(translate);
+  useEffect(() => { scaleRef.current = scale; }, [scale]);
+  useEffect(() => { translateRef.current = translate; }, [translate]);
+
   // Render mermaid once
   useEffect(() => {
     const render = async () => {
@@ -218,7 +224,7 @@ export function ArchitectureDiagram() {
     render();
   }, []);
 
-  // Wheel zoom (centered on cursor)
+  // Wheel zoom (centered on cursor) - uses refs to avoid stale closures
   useEffect(() => {
     const wrapper = wrapperRef.current;
     if (!wrapper) return;
@@ -230,16 +236,18 @@ export function ArchitectureDiagram() {
       const cursorY = e.clientY - rect.top;
 
       const zoomFactor = e.deltaY < 0 ? 1.12 : 1 / 1.12;
+      const prevScale = scaleRef.current;
+      const nextScale = Math.min(MAX_SCALE, Math.max(MIN_SCALE, prevScale * zoomFactor));
+      const ratio = nextScale / prevScale;
 
-      setScale((prev) => {
-        const next = Math.min(MAX_SCALE, Math.max(MIN_SCALE, prev * zoomFactor));
-        const ratio = next / prev;
-        setTranslate((t) => ({
-          x: cursorX - ratio * (cursorX - t.x),
-          y: cursorY - ratio * (cursorY - t.y),
-        }));
-        return next;
-      });
+      const prevT = translateRef.current;
+      const newTranslate = {
+        x: cursorX - ratio * (cursorX - prevT.x),
+        y: cursorY - ratio * (cursorY - prevT.y),
+      };
+
+      setScale(nextScale);
+      setTranslate(newTranslate);
     };
 
     wrapper.addEventListener("wheel", handleWheel, { passive: false });

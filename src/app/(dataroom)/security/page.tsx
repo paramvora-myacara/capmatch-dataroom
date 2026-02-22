@@ -1,5 +1,5 @@
 import DocumentSection from '@/components/DocumentSection';
-import Link from 'next/link';
+import SectionNav from '@/components/SectionNav';
 
 export default function SecurityPage() {
   return (
@@ -50,7 +50,7 @@ export default function SecurityPage() {
 
       <DocumentSection title="Road to SOC 2 Compliance">
         <p className="text-gray-700 text-sm mb-4">
-          CapMatch is working toward SOC 2 Type I/II readiness to meet enterprise and institutional expectations. The roadmap below outlines current status and planned milestones. Target: complete readiness work and engage an auditor for a SOC 2 Type I examination within the planned window (e.g. 12–18 months from kickoff, depending on scope and auditor availability).
+          CapMatch is working toward SOC 2 Type I/II readiness to meet enterprise and institutional expectations. The roadmap below outlines current status and planned milestones. Target: complete readiness work and engage an auditor for a SOC 2 Type I examination within the planned window (e.g. 12 to 18 months from kickoff, depending on scope and auditor availability).
         </p>
         <div className="border border-gray-200 rounded-lg overflow-hidden mb-4">
           <div className="bg-gray-50 px-4 py-3 border-b border-gray-200">
@@ -98,9 +98,7 @@ export default function SecurityPage() {
         </p>
       </DocumentSection>
 
-      <p className="text-sm text-gray-500">
-        <Link href="/" className="text-gray-600 hover:text-gray-900 hover:underline">← Back to Index</Link>
-      </p>
+      <SectionNav />
     </article>
   );
 }

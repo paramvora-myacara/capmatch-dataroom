@@ -1,14 +1,14 @@
-import Link from 'next/link';
+import SectionNav from '@/components/SectionNav';
 import { Download } from 'lucide-react';
 
 export default function FinancialsPage() {
   return (
     <article>
       <header className="mb-10">
-        <h1 className="text-3xl font-bold text-gray-900 mb-2">Financial Summary (2026–2028)</h1>
-        <p className="text-gray-500 text-sm">CapMatch™ - The operating system for CRE debt</p>
+        <h1 className="text-3xl font-bold text-gray-900 mb-2">Financial Summary (2026 to 2028)</h1>
+        <p className="text-gray-500 text-sm">CapMatch™: the operating system for CRE debt</p>
         <p className="text-gray-600 mt-4 leading-relaxed">
-          This page provides a high-level, investor-ready overview of CapMatch&apos;s business model, market opportunity, and financial trajectory. A full 3-Year P&amp;L (Base Case: Conservative → Aggressive Growth) is available for download at the bottom of this page.
+          This page provides a high-level, investor-ready overview of CapMatch&apos;s business model, market opportunity, and financial trajectory. A full 3-Year P&amp;L (Base Case: Conservative to Aggressive Growth) is available for download at the bottom of this page.
         </p>
       </header>
 
@@ -16,7 +16,7 @@ export default function FinancialsPage() {
       <section className="mb-10 border border-blue-200 bg-blue-50/50 rounded-lg p-6">
         <h2 className="text-lg font-semibold text-gray-900 mb-3">Contracted Pipeline</h2>
         <p className="text-gray-700 leading-relaxed">
-          CapMatch currently has <strong>$291M in loan contracts</strong> across <strong>7 deals</strong> in processing. Assuming conversion at a 1% fee rate, this pipeline represents approximately <strong>$2.9M in revenue</strong> for the company - validating the unit economics before the platform has formally launched.
+          CapMatch currently has <strong>$291M in loan contracts</strong> across <strong>7 deals</strong> in processing. Assuming conversion at a 1% fee rate, this pipeline represents approximately <strong>$2.9M in revenue</strong> for the company, validating the unit economics before the platform has formally launched.
         </p>
       </section>
 
@@ -27,7 +27,7 @@ export default function FinancialsPage() {
           <table className="w-full text-sm">
             <tbody className="divide-y divide-gray-200">
               <tr><td className="py-2.5 text-gray-500 pr-6">Target Market</td><td className="py-2.5 font-medium text-gray-900">$1T+ CRE debt market</td></tr>
-              <tr><td className="py-2.5 text-gray-500 pr-6">Total Addressable Loans</td><td className="py-2.5 font-medium text-gray-900">1,307 per year (&gt;$50M deals) - Source: HMDA 2024</td></tr>
+              <tr><td className="py-2.5 text-gray-500 pr-6">Total Addressable Loans</td><td className="py-2.5 font-medium text-gray-900">1,307 per year (&gt;$50M deals). Source: HMDA 2024</td></tr>
               <tr><td className="py-2.5 text-gray-500 pr-6">Average Deal Size</td><td className="py-2.5 font-medium text-gray-900">$50M</td></tr>
               <tr><td className="py-2.5 text-gray-500 pr-6">CapMatch Fee Rate</td><td className="py-2.5 font-medium text-gray-900">1.0% (transaction-based commission)</td></tr>
               <tr><td className="py-2.5 text-gray-500 pr-6">Net Revenue per Deal</td><td className="py-2.5 font-medium text-gray-900">$300K (after broker referral payout)</td></tr>
@@ -133,7 +133,7 @@ export default function FinancialsPage() {
       {/* 3-Year P&L Statement */}
       <section className="mb-10">
         <h2 className="text-lg font-semibold text-gray-900 mb-2">3-Year P&amp;L Statement</h2>
-        <p className="text-gray-500 text-xs mb-4">All figures in $000s. Calendar year, accrual accounting. Base Case - Conservative to Aggressive Growth.</p>
+        <p className="text-gray-500 text-xs mb-4">All figures in $000s. Calendar year, accrual accounting. Base Case: Conservative to Aggressive Growth.</p>
         <div className="overflow-x-auto">
           <table className="w-full text-sm border border-gray-200 rounded-lg overflow-hidden">
             <thead className="bg-gray-100">
@@ -205,9 +205,9 @@ export default function FinancialsPage() {
           </table>
         </div>
         <ul className="mt-4 text-sm text-gray-600 space-y-1.5">
-          <li><strong>Month 7 Cashflow Positive</strong> - After an initial six-month burn of $480K, the company reaches cashflow positive operations in mid-2026.</li>
-          <li><strong>No Additional Funding Required</strong> - $3.5M provides runway through Year 3 with $15.1M ending cash.</li>
-          <li><strong>Improving Capital Efficiency</strong> - Burn multiple improves from 1.63× to 0.47×.</li>
+          <li><strong>Month 7 Cashflow Positive:</strong> After an initial six-month burn of $480K, the company reaches cashflow positive operations in mid-2026.</li>
+          <li><strong>No Additional Funding Required:</strong> $3.5M provides runway through Year 3 with $15.1M ending cash.</li>
+          <li><strong>Improving Capital Efficiency:</strong> Burn multiple improves from 1.63× to 0.47×.</li>
         </ul>
       </section>
 
@@ -352,7 +352,7 @@ export default function FinancialsPage() {
           className="inline-flex items-center gap-2 px-4 py-2.5 bg-gray-900 hover:bg-gray-800 text-white rounded-lg text-sm font-medium transition-colors"
         >
           <Download className="w-4 h-4" />
-          Download Full 3-Year Financial Model (P&amp;L 2026–2028)
+          Download Full 3-Year Financial Model (P&amp;L 2026 to 2028)
         </a>
         <p className="text-gray-500 text-xs mt-3">Includes detailed financial statements, sensitivity scenarios, and assumptions.</p>
       </section>
@@ -364,9 +364,7 @@ export default function FinancialsPage() {
         </p>
       </section>
 
-      <p className="text-sm text-gray-500">
-        <Link href="/" className="text-gray-600 hover:text-gray-900 hover:underline">← Back to Index</Link>
-      </p>
+      <SectionNav />
     </article>
   );
 }

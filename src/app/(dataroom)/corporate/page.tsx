@@ -1,5 +1,5 @@
 import DocumentSection from '@/components/DocumentSection';
-import Link from 'next/link';
+import SectionNav from '@/components/SectionNav';
 
 export default function CorporatePage() {
   return (
@@ -52,9 +52,7 @@ export default function CorporatePage() {
         <p className="text-gray-500 text-sm">[Link from Index - include here or in Financial Overview]</p>
       </DocumentSection>
 
-      <p className="text-sm text-gray-500">
-        <Link href="/" className="text-gray-600 hover:text-gray-900 hover:underline">← Back to Index</Link>
-      </p>
+      <SectionNav />
     </article>
   );
 }

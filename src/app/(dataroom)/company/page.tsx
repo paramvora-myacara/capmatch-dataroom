@@ -1,5 +1,5 @@
 import DocumentSection from '@/components/DocumentSection';
-import Link from 'next/link';
+import SectionNav from '@/components/SectionNav';
 
 export default function CompanyPage() {
   return (
@@ -35,9 +35,7 @@ export default function CompanyPage() {
         <p className="text-gray-600 text-sm">[Add investor memo document - link when available]</p>
       </DocumentSection>
 
-      <p className="text-sm text-gray-500">
-        <Link href="/" className="text-gray-600 hover:text-gray-900 hover:underline">← Back to Index</Link>
-      </p>
+      <SectionNav />
     </article>
   );
 }

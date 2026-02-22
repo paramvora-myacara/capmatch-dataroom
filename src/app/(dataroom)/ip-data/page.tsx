@@ -1,5 +1,5 @@
 import DocumentSection from '@/components/DocumentSection';
-import Link from 'next/link';
+import SectionNav from '@/components/SectionNav';
 
 export default function IpDataPage() {
   return (
@@ -179,9 +179,7 @@ export default function IpDataPage() {
         </ul>
       </DocumentSection>
 
-      <p className="text-sm text-gray-500">
-        <Link href="/" className="text-gray-600 hover:text-gray-900 hover:underline">← Back to Index</Link>
-      </p>
+      <SectionNav />
     </article>
   );
 }

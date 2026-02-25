@@ -5,14 +5,13 @@ export default function IpDataPage() {
   return (
     <article>
       <header className="mb-10">
-        <h1 className="text-2xl font-semibold text-gray-900 tracking-tight">IP + Data Rights</h1>
+        <h1 className="text-3xl font-bold text-gray-900 tracking-tight">IP + Data Rights</h1>
       </header>
       
-      <DocumentSection
-        title="IP Assignment"
-        documents={[{ label: 'IP Assignment (employee/contractor)', href: '/dataroom/ip-assignment.pdf' }]}
-      >
-        <p className="text-gray-500 text-sm">[Add IP assignment agreements]</p>
+      <DocumentSection title="IP Ownership">
+        <p className="text-gray-700 text-sm">
+          All intellectual property, including source code, algorithms, models, and data pipelines, is owned by CapMatch, Inc. Standard IP assignment agreements are in place for all employees and contractors.
+        </p>
       </DocumentSection>
 
       <DocumentSection title="Open-Source Audit &amp; License Inventory">
@@ -168,15 +167,6 @@ export default function IpDataPage() {
         <p className="text-gray-600 text-xs mt-2">
           Licenses are as of the audit date; verify current terms via npmjs.com, pypi.org, or the project repositories. LGPL components (e.g. psycopg2) are used in a way that does not require disclosure of proprietary code; commercial components (e.g. Daily.co) are used under their respective agreements.
         </p>
-      </DocumentSection>
-
-      <DocumentSection title="Data Rights Summary">
-        <ul className="list-disc list-inside text-gray-700 text-sm space-y-1.5">
-          <li><strong>What data is used today:</strong> Deal data, borrower/project info, ingestion pipelines</li>
-          <li><strong>License terms:</strong> [NEEDED: Legal]</li>
-          <li><strong>Risks / renewals:</strong> [NEEDED]</li>
-          <li><strong>Planned purchases:</strong> Lender/buy-box data for matching (use-of-funds)</li>
-        </ul>
       </DocumentSection>
 
       <SectionNav />

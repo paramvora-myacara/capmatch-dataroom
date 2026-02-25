@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useRef, useEffect, useState, useCallback } from "react";
-import mermaid from "mermaid";
 
 const DIAGRAM = `graph TB
     subgraph Client["Client Layer"]
@@ -152,25 +151,6 @@ const DIAGRAM = `graph TB
     classDef default fill:#e3f2fd,stroke:#1565c0,stroke-width:2px,color:#1a1a1a
 `;
 
-mermaid.initialize({
-  startOnLoad: false,
-  theme: "base",
-  themeVariables: {
-    primaryColor: "#e3f2fd",
-    primaryBorderColor: "#1565c0",
-    primaryTextColor: "#1a1a1a",
-    secondaryColor: "#e3f2fd",
-    tertiaryColor: "#e3f2fd",
-    lineColor: "#1565c0",
-    clusterBkg: "#f0f7ff",
-    clusterBorder: "#1565c0",
-    edgeLabelBackground: "#ffffff",
-    nodeTextColor: "#1a1a1a",
-  },
-  flowchart: { curve: "basis", htmlLabels: true },
-  securityLevel: "loose",
-});
-
 const MIN_SCALE = 0.2;
 const MAX_SCALE = 8;
 
@@ -190,20 +170,41 @@ export function ArchitectureDiagram() {
   useEffect(() => { scaleRef.current = scale; }, [scale]);
   useEffect(() => { translateRef.current = translate; }, [translate]);
 
-  // Render mermaid once
+  // Render mermaid once (dynamic import so ESM-only mermaid loads only on client)
   useEffect(() => {
     const render = async () => {
       if (!svgContainerRef.current) return;
       try {
+        const mermaid = (await import("mermaid")).default;
+        mermaid.initialize({
+          startOnLoad: false,
+          theme: "base",
+          themeVariables: {
+            primaryColor: "#e3f2fd",
+            primaryBorderColor: "#1565c0",
+            primaryTextColor: "#1a1a1a",
+            secondaryColor: "#e3f2fd",
+            tertiaryColor: "#e3f2fd",
+            lineColor: "#1565c0",
+            clusterBkg: "#f0f7ff",
+            clusterBorder: "#1565c0",
+            edgeLabelBackground: "#ffffff",
+            nodeTextColor: "#1a1a1a",
+          },
+          flowchart: { curve: "basis", htmlLabels: true },
+          securityLevel: "loose",
+        });
         const id = "arch-diagram-" + Date.now();
         const { svg } = await mermaid.render(id, DIAGRAM);
-        svgContainerRef.current.innerHTML = svg;
-        const svgEl = svgContainerRef.current.querySelector("svg");
-        if (svgEl) {
-          svgEl.removeAttribute("height");
-          svgEl.removeAttribute("width");
-          svgEl.style.width = "100%";
-          svgEl.style.height = "auto";
+        if (svgContainerRef.current) {
+          svgContainerRef.current.innerHTML = svg;
+          const svgEl = svgContainerRef.current.querySelector("svg");
+          if (svgEl) {
+            svgEl.removeAttribute("height");
+            svgEl.removeAttribute("width");
+            svgEl.style.width = "100%";
+            svgEl.style.height = "auto";
+          }
         }
       } catch (err) {
         console.error("Mermaid render error:", err);
@@ -322,7 +323,7 @@ export function ArchitectureDiagram() {
       <div
         ref={wrapperRef}
         className="relative overflow-hidden"
-        style={{ height: "680px", cursor: isPanning ? "grabbing" : "grab" }}
+        style={{ height: "85vh", cursor: isPanning ? "grabbing" : "grab" }}
         onPointerDown={onPointerDown}
         onPointerMove={onPointerMove}
         onPointerUp={onPointerUp}

@@ -192,7 +192,7 @@ function jitterFromName(name: string): { dx: number; dy: number } {
 export default function CompetitiveAnalysisGraph() {
   return (
     <div className="w-full max-w-6xl mx-auto p-4 py-8 md:p-12 bg-white rounded-xl border border-gray-200">
-      <div className="relative w-full aspect-square min-h-[320px] md:min-h-[480px]">
+      <div className="relative w-full aspect-square min-h-[480px] md:min-h-[640px]">
         {/* Axis lines */}
         <div className="absolute top-0 left-1/2 w-0.5 h-full bg-gray-300 -translate-x-1/2" />
         <div className="absolute top-1/2 left-0 h-0.5 w-full bg-gray-300 -translate-y-1/2" />

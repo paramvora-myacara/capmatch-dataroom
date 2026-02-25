@@ -1,25 +1,34 @@
 import DocumentSection from '@/components/DocumentSection';
 import SectionNav from '@/components/SectionNav';
 import CompetitiveAnalysisGraph from '@/components/CompetitiveAnalysisGraph';
+import PageIndex from '@/components/PageIndex';
+
+const MARKET_STRATEGY_INDEX = [
+  { id: 'market-map', label: 'Market map' },
+  { id: 'icp', label: 'ICP' },
+  { id: 'competitive', label: 'Competitive landscape' },
+  { id: 'gtm', label: 'Go-to-market' },
+  { id: 'refi-radar', label: 'Refi Radar' },
+  { id: 'timing', label: 'Timing thesis' },
+];
 
 export default function MarketStrategyPage() {
   return (
-    <article>
+    <div className="flex gap-8">
+      <PageIndex sections={MARKET_STRATEGY_INDEX} />
+      <article className="flex-1 min-w-0">
       <header className="mb-10">
-        <h1 className="text-2xl font-semibold text-gray-900 tracking-tight">Market + Strategy Brief</h1>
+        <h1 className="text-3xl font-bold text-gray-900 tracking-tight">Market + Strategy Brief</h1>
       </header>
       
       <DocumentSection title="Market + Strategy Brief">
         <div className="space-y-10">
 
           {/* Market Map */}
-          <div>
+          <div id="market-map">
             <h3 className="font-semibold text-gray-900 mb-4">Market map</h3>
-            <p className="text-gray-700 text-sm mb-3">
-              Commercial real estate capital flows among three core actors: borrowers (sponsors and developers seeking debt), brokers (advisors and intermediaries who source and package deals), and lenders (banks, debt funds, and agencies that provide capital). Today this workflow is broken. Deals move on email and PDFs, with no shared data standard. With 3,000+ lenders in the market, each with different formats, timelines, and criteria, every placement is manually reassembled and re-sent. That fragmentation slows execution, increases errors, and leaves value on the table for everyone in the chain.
-            </p>
             <p className="text-gray-700 text-sm mb-4">
-              CapMatch addresses this by unifying intake, packaging, and placement in one platform so that borrowers and brokers build a profile once and lenders receive standardized, queryable deal packages. The market is large and growing: nearly $957B in CRE refinancing in 2025, a $6T market by 2030, over 120K licensed CRE brokers, and those 3,000+ lenders with no common format.
+              CRE capital flows among borrowers, brokers, and 3,000+ lenders with no shared data standard. Deals move on email and PDFs, every placement is manually reassembled, and fragmentation slows execution. CapMatch unifies intake, packaging, and placement so borrowers build a profile once and lenders receive standardized, queryable deal packages in a $957B refi wave and $6T market by 2030.
             </p>
 
             {/* Stat cards: neutral gray palette */}
@@ -39,7 +48,7 @@ export default function MarketStrategyPage() {
           </div>
 
           {/* ICP */}
-          <div>
+          <div id="icp">
             <h3 className="font-semibold text-gray-900 mb-3">ICP (Ideal Customer Profile)</h3>
             <p className="text-gray-700 text-sm mb-4">
               We focus on borrowers and lenders where our platform delivers the clearest value: multifamily, Opportunity Zone, and development debt; banks, debt funds, and agencies as lender segments; and both ground-up and refinance deal types. This ICP aligns with our team&apos;s experience and the refi wave driving near-term volume.
@@ -73,19 +82,14 @@ export default function MarketStrategyPage() {
           </div>
 
           {/* Competitive Landscape */}
-          <div>
+          <div id="competitive">
             <h3 className="font-semibold text-gray-900 mb-3">Competitive landscape</h3>
             <div className="mb-6">
               <CompetitiveAnalysisGraph />
             </div>
-            <div className="text-[15px] text-gray-700 space-y-4 mb-6">
-              <p>
-                Most incumbents do either lending or software, not both. Lenders optimize for their own balance sheet and underwriting; software vendors sell point solutions or seat licenses that leave workflows fragmented. CapMatch is building the operating system for all CRE capital markets: one platform that handles intake, packaging, matching, and execution with high automation and deep integration. We occupy the high-automation, high-integration quadrant that traditional players have not addressed.
-              </p>
-              <p>
-                First-mover advantage and the ability to scale quickly position us roughly 18 months ahead. Every transaction on the platform trains our AI and improves matching and packaging, creating a data moat that compounds over time. Winner-take-most dynamics (similar to Uber or Airbnb in their categories) favor the platform that reaches critical mass first; we are focused on getting there through broker activation, direct borrower acquisition, and Refi Radar.
-              </p>
-            </div>
+            <p className="text-[15px] text-gray-700 mb-6">
+              CapMatch occupies the high-automation, high-integration quadrant — building the end-to-end operating system for CRE capital markets that traditional lenders and point-solution vendors have not addressed.
+            </p>
             <div className="overflow-hidden border border-gray-200 rounded-lg">
               <table className="w-full text-sm">
                 <thead>
@@ -115,7 +119,7 @@ export default function MarketStrategyPage() {
           </div>
 
           {/* Go-to-market */}
-          <div>
+          <div id="gtm">
             <h3 className="font-semibold text-gray-900 mb-3">Go-to-market</h3>
             <p className="text-gray-700 text-sm mb-4">
               We activate demand through two core channels: broker-led deal flow and direct borrower acquisition. Each reinforces the other and drives volume onto the platform.
@@ -137,12 +141,12 @@ export default function MarketStrategyPage() {
           </div>
 
           {/* Refi Radar */}
-          <div>
+          <div id="refi-radar">
             <h3 className="font-semibold text-gray-900 mb-3">Refi Radar</h3>
             <p className="text-gray-700 text-sm mb-4">
               Refi Radar uses market and rate data to identify when a refinance is likely to be favorable for a given property or sponsor. We surface proactive refinance timing alerts so we can reach borrowers before they start searching. That positions CapMatch as the natural first stop when the refi wave and maturities drive demand.
             </p>
-            <div className="relative left-1/2 -translate-x-1/2 w-[min(100vw,72rem)]">
+            <div className="w-full">
               <div className="w-full rounded-lg overflow-hidden border border-gray-200" style={{ height: '70vh' }}>
                 <iframe
                   src="https://www.capmatch.com/refi-radar"
@@ -155,7 +159,7 @@ export default function MarketStrategyPage() {
           </div>
 
           {/* Timing Thesis */}
-          <div>
+          <div id="timing">
             <h3 className="font-semibold text-gray-900 mb-3">Timing thesis (why now)</h3>
             <p className="text-gray-700 text-sm mb-4">
               Market timing favors a platform that can capture refi volume and standardize placement. Three factors make now the right moment to scale.
@@ -193,5 +197,6 @@ export default function MarketStrategyPage() {
 
       <SectionNav />
     </article>
+    </div>
   );
 }

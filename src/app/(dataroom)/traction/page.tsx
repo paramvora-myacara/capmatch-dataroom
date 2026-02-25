@@ -5,7 +5,7 @@ export default function TractionPage() {
   return (
     <article>
       <header className="mb-10">
-        <h1 className="text-2xl font-semibold text-gray-900 tracking-tight">Traction Proof Pack</h1>
+        <h1 className="text-3xl font-bold text-gray-900 tracking-tight">Traction Proof Pack</h1>
       </header>
       
       <DocumentSection title="Traction Summary">
@@ -32,15 +32,9 @@ export default function TractionPage() {
         </div>
       </DocumentSection>
 
-      <DocumentSection
-        title="Signed Contracts"
-        documents={[
-          { label: 'Deal contracts', href: '/dataroom/deal-contracts.pdf' },
-          { label: 'Broker affiliate agreements', href: '/dataroom/broker-agreements.pdf' },
-        ]}
-      >
-        <p className="text-gray-500 text-sm">
-          [Add signed contracts to <code>public/dataroom/</code> - sanitize PII]
+      <DocumentSection title="Signed Contracts">
+        <p className="text-gray-700 text-sm">
+          Deal contracts signed by CapMatch for active deals and affiliate agreements signed with partner brokerages. Documents will be uploaded as they are finalized and PII-sanitized.
         </p>
       </DocumentSection>
 
@@ -107,7 +101,7 @@ export default function TractionPage() {
           <p className="text-sm text-gray-700">
             The following is an OM (offering memorandum) generated for a live deal on our platform: SoGood Apartments, a ground-up mixed-use project in Dallas, TX. The deal has an $18 million loan value.
           </p>
-          <div className="rounded-lg overflow-hidden border border-gray-200 bg-gray-50">
+          <div className="rounded-lg overflow-hidden border border-gray-200 bg-gray-50" style={{ minHeight: '70vh' }}>
             <video
               className="w-full"
               controls

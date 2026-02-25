@@ -109,7 +109,7 @@ export default function DataRoomLayout({ children }: DataRoomLayoutProps) {
 
       {/* Main content */}
       <main className="lg:ml-60 min-h-screen pt-14 lg:pt-0">
-        <div className="max-w-3xl mx-auto px-6 lg:px-10 py-10 lg:py-14">{children}</div>
+        <div className="max-w-7xl px-6 lg:px-10 py-10 lg:py-14">{children}</div>
       </main>
     </div>
   );

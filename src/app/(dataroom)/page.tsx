@@ -5,10 +5,7 @@ export default function IndexPage() {
   return (
     <article>
       <header className="mb-12">
-        <h1 className="text-2xl font-semibold text-gray-900 mb-2 tracking-tight">CapMatch Investor Data Room</h1>
-        <p className="text-gray-500 text-sm">
-          Login-protected diligence workspace. Pre-seed / seed round. First-pass review: 30 to 45 minutes.
-        </p>
+        <h1 className="text-3xl font-bold text-gray-900 mb-2 tracking-tight">CapMatch Investor Data Room</h1>
       </header>
 
       {/* Company Snapshot */}
@@ -17,9 +14,6 @@ export default function IndexPage() {
         <div className="text-[15px] text-gray-700 space-y-4">
           <p>
             <strong>CapMatch</strong> is the operating system for commercial real estate financing, from document intake to loan closing, with real adoption. We are powered by a proven incentive system for both commercial real estate brokers and lenders, and we activate distribution through broker networks and direct borrower demand.
-          </p>
-          <p>
-            Our platform unifies fragmented workflows (email, PDFs, spreadsheets) into a single pipeline: borrower intake, AI-powered packaging and underwriting, lender matching, and closing. We are building toward AI-enabled matching that standardizes lender discovery and execution across a market of 3,000+ lenders with no common format.
           </p>
           <p>
             <strong>Market:</strong> We focus on multifamily, Opportunity Zone, and development debt in a $1T+ CRE debt market. Target customers include sponsors, developers, and brokers who need faster, more transparent capital placement.
@@ -61,9 +55,6 @@ export default function IndexPage() {
           </p>
           <p>
             <strong>Round focus:</strong> Pre-seed and seed investors. We are raising to scale contracted pipeline into repeatable platform revenue, expand broker and lender coverage, and solidify our position as the operating system for CRE debt.
-          </p>
-          <p>
-            <strong>Contact & next steps:</strong> For more detail, expression of interest, or to request access to this data room, visit <a href="https://invest.capmatch.com" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:text-blue-800 underline">invest.capmatch.com</a> or see the Team page for key contacts.
           </p>
         </div>
       </section>

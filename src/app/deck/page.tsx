@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import CompetitiveAnalysisGraphDeck from '@/components/CompetitiveAnalysisGraphDeck';
 
 export const metadata: Metadata = {
   title: 'CapMatch — Company Brief',
@@ -48,6 +49,7 @@ export default function DeckPage() {
   font-family: 'DM Sans', sans-serif;
   -webkit-font-smoothing: antialiased;
   font-size: 17px;
+  zoom: 1.25;
 }
 .deck-shell * { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -99,7 +101,7 @@ export default function DeckPage() {
   font-size: 11px;
   letter-spacing: 1px;
   text-transform: uppercase;
-  color: var(--g3);
+  color: var(--g2);
   margin-top: 4px;
 }
 
@@ -113,7 +115,7 @@ export default function DeckPage() {
 .datebar span {
   font-family: 'JetBrains Mono', monospace;
   font-size: 12px;
-  color: var(--g3);
+  color: var(--g2);
   letter-spacing: 0.5px;
 }
 .datebar .tag {
@@ -315,7 +317,7 @@ table.pain-table tr:last-child td { border-bottom: none; }
   margin-bottom: 4px;
 }
 .chart-title em { font-style: italic; color: var(--gold); }
-.chart-subtitle { font-size: 14px; color: var(--g3); font-weight: 300; margin-bottom: 20px; }
+.chart-subtitle { font-size: 14px; color: var(--g2); font-weight: 300; margin-bottom: 20px; }
 .chart-subtitle b { color: var(--gold); font-weight: 500; }
 .hbar-row {
   display: grid;
@@ -435,7 +437,7 @@ table.gtm-table .gtm-tag {
   text-transform: uppercase;
   color: var(--g3);
   position: absolute;
-  opacity: 0.55;
+  opacity: 0.8;
   font-weight: 500;
 }
 .ax.top { top: 12px; left: 50%; transform: translateX(-50%); color: var(--teal); }
@@ -445,10 +447,10 @@ table.gtm-table .gtm-tag {
 .qlabel {
   position: absolute;
   font-size: 11px;
-  color: var(--g3);
+  color: var(--g2);
   font-weight: 300;
   line-height: 1.45;
-  opacity: 0.45;
+  opacity: 0.7;
   max-width: 200px;
 }
 .cdot {
@@ -481,6 +483,109 @@ table.gtm-table .gtm-tag {
   box-shadow: 0 0 24px rgba(43,138,255,.1);
   z-index: 5;
 }
+.comp-map-logos {
+  position: relative;
+  aspect-ratio: 1 / 1;
+  min-height: 480px;
+  border: 1px solid var(--ln2);
+  border-radius: 10px;
+  background: var(--s1);
+  overflow: hidden;
+}
+.comp-map-logos::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: var(--ln2);
+}
+.comp-map-logos::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: var(--ln2);
+}
+.ax-dk {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  position: absolute;
+  opacity: 0.8;
+  font-weight: 500;
+  z-index: 2;
+}
+.ax-dk.top { top: 12px; left: 50%; transform: translateX(-50%); color: var(--teal); }
+.ax-dk.bottom { bottom: 12px; left: 50%; transform: translateX(-50%); color: var(--red); }
+.ax-dk.left { left: 12px; top: 50%; transform: translateY(-50%) rotate(-90deg); color: var(--red); }
+.ax-dk.right { right: 12px; top: 50%; transform: translateY(-50%) rotate(90deg); color: var(--teal); }
+.ql-dk {
+  position: absolute;
+  font-size: 11px;
+  color: var(--g2);
+  font-weight: 300;
+  line-height: 1.45;
+  opacity: 0.7;
+  max-width: 200px;
+  z-index: 2;
+}
+.ql-dk-title { font-weight: 500; color: var(--g1); }
+.logo-dot {
+  position: absolute;
+  transition: all 0.3s ease;
+  cursor: default;
+}
+.logo-dot:hover { z-index: 100 !important; }
+.logo-dot:hover .logo-tooltip { opacity: 1; }
+.logo-tooltip {
+  pointer-events: none;
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-bottom: 8px;
+  border-radius: 8px;
+  border: 1px solid var(--ln2);
+  background: var(--card);
+  padding: 10px 14px;
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--g1);
+  box-shadow: 0 8px 32px rgba(0,0,0,.4);
+  opacity: 0;
+  transition: opacity 0.2s;
+  width: max(200px, min(280px, 90vw));
+  z-index: 1;
+}
+.logo-tooltip-name { font-weight: 600; color: var(--w); margin-bottom: 4px; font-size: 13px; }
+.logo-tooltip-desc { white-space: normal; line-height: 1.5; }
+.logo-tooltip-arrow {
+  position: absolute;
+  left: 50%;
+  top: 100%;
+  transform: translateX(-50%);
+  border: 5px solid transparent;
+  border-top-color: var(--card);
+}
+.logo-img-wrap { position: relative; }
+.logo-cm { width: 120px; height: 60px; }
+.logo-agrippa { width: 72px; height: 36px; }
+.logo-std { width: 52px; height: 26px; }
+.logo-dot:hover .logo-img-wrap { transform: scale(1.1); transition: transform 0.2s; }
+.cm-shadow { filter: drop-shadow(0 4px 12px rgba(43,138,255,.25)); }
+.cm-ring {
+  position: absolute;
+  inset: -6px;
+  border-radius: 12px;
+  border: 2px solid var(--blue);
+  animation: pulse-ring-dk 2s ease-in-out infinite;
+}
+
 .comp-details { display: flex; flex-direction: column; gap: 0; }
 .comp-details-header {
   font-family: 'Playfair Display', serif;
@@ -522,7 +627,7 @@ table.comp-table td {
 }
 table.comp-table tr:last-child td { border-bottom: none; }
 table.comp-table tr.hl td { color: var(--blue); font-weight: 500; background: var(--bbg); }
-table.comp-table td:last-child { font-size: 13px; color: var(--g3); }
+table.comp-table td:last-child { font-size: 13px; color: var(--g2); }
 
 .raise-bar {
   display: flex;
@@ -555,9 +660,9 @@ table.comp-table td:last-child { font-size: 13px; color: var(--g3); }
 .raise-statement b { color: var(--blue); font-weight: 400; }
 
 .ft { padding: 14px 0 24px; display: flex; justify-content: space-between; }
-.ft span { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--g3); opacity: 0.35; }
+.ft span { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--g3); opacity: 0.55; }
 
-.source { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--g3); opacity: 0.5; padding: 6px 0; }
+.source { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--g2); opacity: 0.7; padding: 6px 0; }
 
 .kpi-strip {
   display: grid;
@@ -584,19 +689,20 @@ table.comp-table td:last-child { font-size: 13px; color: var(--g3); }
   font-size: 10px;
   letter-spacing: 1px;
   text-transform: uppercase;
-  color: var(--g3);
+  color: var(--g2);
 }
 
 /* ── TABLET ── */
-@media (max-width: 1100px) {
+@media (max-width: 880px) {
   .report { padding: 0 32px; }
   .exec-grid { grid-template-columns: 1fr; }
   .comp-grid { grid-template-columns: 1fr; }
   .comp-map { min-height: 420px; aspect-ratio: auto; }
+  .comp-map-logos { min-height: 420px; aspect-ratio: auto; }
 }
 
 /* ── MOBILE ── */
-@media (max-width: 768px) {
+@media (max-width: 614px) {
   .deck-shell { font-size: 15px; }
   .report { padding: 0 18px; }
 
@@ -672,6 +778,12 @@ table.comp-table td:last-child { font-size: 13px; color: var(--g3); }
   /* Competitive */
   .comp-grid { grid-template-columns: 1fr; gap: 20px; }
   .comp-map { min-height: 320px; aspect-ratio: auto; }
+  .comp-map-logos { min-height: 320px; aspect-ratio: auto; }
+  .logo-cm { width: 80px; height: 40px; }
+  .logo-agrippa { width: 52px; height: 26px; }
+  .logo-std { width: 36px; height: 18px; }
+  .ql-dk { font-size: 9px; max-width: 140px; }
+  .ax-dk { font-size: 8px; }
   .cdot { font-size: 9px; padding: 3px 7px; }
   .cdot.cm { font-size: 11px; padding: 5px 10px; }
   .qlabel { font-size: 9px; max-width: 140px; }
@@ -693,13 +805,17 @@ table.comp-table td:last-child { font-size: 13px; color: var(--g3); }
 }
 
 /* ── SMALL PHONES ── */
-@media (max-width: 400px) {
+@media (max-width: 320px) {
   .report { padding: 0 14px; }
   .masthead-left h1 { font-size: 28px; }
   .kpi-strip { grid-template-columns: 1fr 1fr; }
   .ks-val { font-size: 18px; }
   .sec-label { font-size: 18px; }
   .comp-map { min-height: 280px; }
+  .comp-map-logos { min-height: 280px; }
+  .logo-cm { width: 64px; height: 32px; }
+  .logo-agrippa { width: 40px; height: 20px; }
+  .logo-std { width: 28px; height: 14px; }
   .cdot { font-size: 8px; padding: 2px 5px; }
   .cdot.cm { font-size: 10px; padding: 4px 8px; }
 }
@@ -908,37 +1024,7 @@ table.comp-table td:last-child { font-size: 13px; color: var(--g3); }
           <div className="sec-label">Competitive <em>Positioning</em></div>
           <div className="comp-section">
             <div className="comp-grid">
-              <div className="comp-map">
-                <span className="ax top">AI-Driven</span>
-                <span className="ax bottom">Manual</span>
-                <span className="ax left">Tool Based</span>
-                <span className="ax right">Platform</span>
-
-                <div className="qlabel" style={{ top: 20, left: 20 }}>SaaS tools or AI agents embedding into existing workflows</div>
-                <div className="qlabel" style={{ top: 20, right: 20, textAlign: 'right' }}>Full end-to-end platforms</div>
-                <div className="qlabel" style={{ bottom: 20, left: 20 }}>Traditional databases, listing services, spreadsheets</div>
-                <div className="qlabel" style={{ bottom: 20, right: 20, textAlign: 'right' }}>Integrated marketplaces, manual coordination</div>
-
-                <div className="cdot cm" style={{ top: '9%', right: '9%' }}>CapMatch</div>
-                <div className="cdot" style={{ top: '14%', right: '22%' }}>Agrippa</div>
-                <div className="cdot" style={{ top: '9%', left: '28%' }}>Henry AI</div>
-                <div className="cdot" style={{ top: '12%', left: '10%' }}>Bryckel</div>
-                <div className="cdot" style={{ top: '20%', left: '22%' }}>Cadastral</div>
-                <div className="cdot" style={{ top: '24%', left: '38%' }}>APERS</div>
-                <div className="cdot" style={{ top: '38%', left: '28%' }}>CompStak</div>
-                <div className="cdot" style={{ top: '42%', right: '30%' }}>Lev</div>
-                <div className="cdot" style={{ top: '38%', right: '14%' }}>StackSource</div>
-                <div className="cdot" style={{ top: '42%', left: '42%' }}>CrowdStreet</div>
-                <div className="cdot" style={{ bottom: '24%', left: '22%' }}>VTS</div>
-                <div className="cdot" style={{ bottom: '18%', left: '8%' }}>Buildout</div>
-                <div className="cdot" style={{ bottom: '32%', left: '14%' }}>RCM</div>
-                <div className="cdot" style={{ bottom: '12%', left: '30%' }}>LoopNet</div>
-                <div className="cdot" style={{ bottom: '14%', right: '10%' }}>JLL</div>
-                <div className="cdot" style={{ bottom: '22%', right: '24%' }}>CBRE</div>
-                <div className="cdot" style={{ bottom: '26%', right: '8%' }}>Cushman</div>
-                <div className="cdot" style={{ bottom: '20%', right: '36%' }}>Finance Lobby</div>
-                <div className="cdot" style={{ bottom: '30%', right: '20%' }}>Northmarq</div>
-              </div>
+              <CompetitiveAnalysisGraphDeck />
 
               <div className="comp-details">
                 <div className="comp-details-header"><b>Unified</b> operating system, <em>performance</em>-compensated</div>

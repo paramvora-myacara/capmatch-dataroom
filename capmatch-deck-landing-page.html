@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CapMatch — The Operating System for CRE Debt</title>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,300;1,9..40,400&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #060810;
+  --bg-alt: #0A0D15;
+  --surface: #0F1219;
+  --card: #141821;
+  --card-h: #191E29;
+  --blue: #2B8AFF;
+  --blue-dim: rgba(43,138,255,0.08);
+  --blue-border: rgba(43,138,255,0.16);
+  --blue-glow: rgba(43,138,255,0.12);
+  --gold: #FBBF24;
+  --gold-dim: rgba(251,191,36,0.08);
+  --white: #F1F5F9;
+  --gray: #94A3B8;
+  --muted: #64748B;
+  --faint: #475569;
+  --line: rgba(255,255,255,0.04);
+  --line2: rgba(255,255,255,0.07);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--white);font-family:'DM Sans',sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+
+/* ─── NAV ─── */
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:14px 40px;display:flex;justify-content:space-between;align-items:center;background:rgba(6,8,16,0.88);backdrop-filter:blur(24px);border-bottom:1px solid var(--line)}
+.nav-brand{font-weight:700;font-size:16px;letter-spacing:-0.4px;display:flex;align-items:center;gap:7px}
+.nav-brand .mark{width:24px;height:24px;background:var(--blue);border-radius:5px;display:grid;place-items:center;font-size:11px;color:#fff}
+.nav-brand b{color:var(--blue)}
+.nav-badge{font-family:'DM Mono',monospace;font-size:8.5px;letter-spacing:1.8px;text-transform:uppercase;color:var(--blue);background:var(--blue-dim);padding:4px 10px;border-radius:3px;border:1px solid var(--blue-border)}
+
+/* ─── LAYOUT ─── */
+.sec{min-height:100vh;padding:110px 72px 80px;display:flex;flex-direction:column;justify-content:center;position:relative}
+.sec.alt{background:var(--bg-alt)}
+.sec.center{align-items:center;text-align:center}
+.inner{max-width:1120px;width:100%;margin:0 auto}
+.tag{font-family:'DM Mono',monospace;font-size:8.5px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);opacity:0.5;margin-bottom:10px}
+h2{font-family:'Instrument Serif',serif;font-weight:400;line-height:1.1;letter-spacing:-1.2px}
+h2 em{font-style:italic;color:var(--blue)}
+.sub{font-size:14.5px;color:var(--gray);line-height:1.65;font-weight:300;max-width:540px;margin-top:8px}
+.sub b{color:var(--blue);font-weight:400}
+.bar{width:40px;height:2px;background:linear-gradient(90deg,var(--blue),transparent);margin:14px 0}
+
+/* ─── HERO ─── */
+.hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:0 40px;position:relative;overflow:hidden}
+.hero::after{content:'';position:absolute;top:-10%;right:-5%;width:55%;height:120%;background:linear-gradient(210deg,rgba(43,138,255,0.05) 0%,transparent 55%);pointer-events:none}
+.hero-mark{width:64px;height:64px;background:var(--blue);border-radius:14px;display:grid;place-items:center;font-size:28px;margin-bottom:26px;box-shadow:0 0 50px var(--blue-glow)}
+.hero h1{font-family:'Instrument Serif',serif;font-size:58px;font-weight:400;letter-spacing:-2.5px;line-height:1.06;max-width:720px}
+.hero h1 span{color:var(--blue)}
+.hero-sub{font-family:'Instrument Serif',serif;font-size:18px;font-style:italic;color:var(--blue);margin:18px 0 10px;font-weight:400;opacity:0.8}
+.hero-desc{font-size:15px;color:var(--gray);max-width:500px;line-height:1.7;font-weight:300}
+.hero-foot{position:absolute;bottom:28px;font-family:'DM Mono',monospace;font-size:7.5px;color:var(--muted);opacity:0.35;letter-spacing:0.4px}
+.scroll-cue{position:absolute;bottom:52px;display:flex;flex-direction:column;align-items:center;gap:4px;animation:bob 2.5s ease infinite}
+.scroll-cue span{font-family:'DM Mono',monospace;font-size:7px;letter-spacing:2.5px;text-transform:uppercase;color:var(--muted);opacity:0.5}
+.scroll-cue i{width:1px;height:16px;background:linear-gradient(180deg,var(--muted),transparent)}
+@keyframes bob{0%,100%{opacity:.35;transform:translateY(0)}50%{opacity:.7;transform:translateY(4px)}}
+
+/* ─── TEAM ─── */
+.team-g{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;margin-top:32px}
+.tc{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:24px 16px 20px;text-align:center;transition:border-color .3s,transform .3s}
+.tc:hover{border-color:var(--line2);transform:translateY(-2px)}
+.tc-av{width:48px;height:48px;border-radius:50%;background:linear-gradient(135deg,#1E293B,#334155);margin:0 auto 12px;display:grid;place-items:center;font-size:13px;font-weight:600;color:var(--gray);letter-spacing:-0.3px}
+.tc-name{font-size:12.5px;font-weight:600;color:var(--white);margin-bottom:2px}
+.tc-role{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:1.5px;text-transform:uppercase;color:var(--blue);margin-bottom:10px}
+.tc-bio{font-size:11px;color:var(--gray);line-height:1.5;font-weight:300}
+
+/* ─── PROBLEM ─── */
+.prob-g{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:32px}
+.pc{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:28px 22px;position:relative;overflow:hidden}
+.pc::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--blue),transparent);opacity:0.3}
+.pc-label{font-size:16px;font-weight:600;margin-bottom:18px}
+.pi{display:flex;gap:9px;align-items:flex-start;margin-bottom:12px}
+.pi:last-child{margin-bottom:0}
+.pi-d{width:4px;height:4px;border-radius:50%;background:var(--blue);margin-top:6px;flex-shrink:0;opacity:0.4}
+.pi-t{font-size:12.5px;color:var(--gray);line-height:1.5;font-weight:300}
+
+/* ─── PRODUCT ─── */
+.prod-box{margin-top:36px;width:100%;max-width:660px;height:320px;background:var(--card);border:1px solid var(--line2);border-radius:16px;display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative;overflow:hidden}
+.prod-box::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(43,138,255,0.02),rgba(251,191,36,0.01))}
+.prod-logo{font-size:34px;font-weight:700;letter-spacing:-1px;position:relative;z-index:1}
+.prod-logo b{color:var(--blue)}
+.prod-sub{font-family:'Instrument Serif',serif;font-size:16px;font-style:italic;color:var(--gray);margin:6px 0 22px;position:relative;z-index:1}
+.prod-btn{padding:10px 28px;background:var(--surface);border:1px solid var(--line2);border-radius:8px;font-size:12.5px;color:var(--gray);position:relative;z-index:1;cursor:default;transition:border-color .3s}
+.prod-btn:hover{border-color:var(--blue-border)}
+
+/* ─── GTM ─── */
+.gtm-g{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:32px;position:relative}
+.gc{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:24px 20px;position:relative}
+.gc::after{content:'→';position:absolute;right:-14px;top:50%;transform:translateY(-50%);font-size:14px;color:var(--faint);opacity:0.3}
+.gc:last-child::after{display:none}
+.gc-title{font-size:14.5px;font-weight:600;margin-bottom:3px}
+.gc-tag{font-family:'DM Mono',monospace;font-size:9px;color:var(--blue);margin-bottom:14px;letter-spacing:0.3px}
+.gc-desc{font-size:12px;color:var(--gray);line-height:1.6;font-weight:300}
+
+/* ─── TRACTION ─── */
+.tr-num{font-family:'Instrument Serif',serif;font-size:88px;font-weight:400;color:var(--blue);letter-spacing:-3.5px;line-height:1;margin-bottom:4px}
+.tr-stats{display:flex;gap:48px;margin-top:32px}
+.ts{text-align:center}
+.ts-v{font-family:'Instrument Serif',serif;font-size:36px;font-weight:400;letter-spacing:-1.5px;line-height:1}
+.ts-l{font-size:11.5px;color:var(--gray);margin-top:5px;font-weight:300;line-height:1.4}
+.tr-note{margin-top:20px;font-family:'DM Mono',monospace;font-size:9px;color:var(--muted);opacity:0.5}
+
+/* ─── TAM / WHY NOW ─── */
+.tw-g{display:grid;grid-template-columns:1fr 1fr;gap:32px;margin-top:32px}
+.tw-col{display:flex;flex-direction:column;gap:12px}
+.tw-head{font-size:15px;font-weight:600;margin-bottom:2px}
+.tr2{display:flex;align-items:center;gap:12px;padding:13px 16px;border-radius:9px;border:1px solid var(--line);background:var(--surface);position:relative}
+.tr2::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;border-radius:3px 0 0 3px}
+.tr2.a::before{background:var(--gray)}.tr2.b::before{background:var(--blue)}.tr2.c::before{background:var(--gold)}
+.tr2-badge{font-family:'DM Mono',monospace;font-size:8.5px;letter-spacing:1.5px;text-transform:uppercase;width:32px;flex-shrink:0}
+.tr2.a .tr2-badge{color:var(--gray)}.tr2.b .tr2-badge{color:var(--blue)}.tr2.c .tr2-badge{color:var(--gold)}
+.tr2-val{font-family:'Instrument Serif',serif;font-size:30px;font-weight:400;letter-spacing:-1.5px;line-height:1;min-width:72px}
+.tr2.a .tr2-val{color:var(--white)}.tr2.b .tr2-val{color:var(--blue)}.tr2.c .tr2-val{color:var(--gold)}
+.tr2-desc{font-size:11px;color:var(--gray);line-height:1.4;font-weight:300}
+
+.wn-label{font-family:'DM Mono',monospace;font-size:8.5px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);display:flex;align-items:center;gap:8px}
+.wn-label::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,rgba(251,191,36,0.2),transparent)}
+.cat{display:flex;gap:9px;align-items:flex-start;padding:9px 13px;background:var(--surface);border:1px solid var(--line);border-radius:7px}
+.cat-n{font-family:'DM Mono',monospace;font-size:8.5px;color:var(--gold);opacity:0.45;margin-top:1px;flex-shrink:0}
+.cat-t{font-size:11.5px;color:var(--gray);line-height:1.45;font-weight:300}
+.cat-t strong{color:var(--white);font-weight:600}
+.cat-t .n{font-family:'DM Mono',monospace;font-size:10.5px;color:var(--blue)}
+.tw-src{font-family:'DM Mono',monospace;font-size:7.5px;color:var(--muted);opacity:0.45;margin-top:6px}
+
+/* ─── COMPETITIVE ─── */
+.comp-wrap{margin-top:32px;max-width:880px}
+.comp-ax{display:flex;justify-content:space-between;margin-bottom:6px}
+.comp-ax span{font-family:'DM Mono',monospace;font-size:7.5px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);opacity:0.4}
+.comp-m{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;gap:1px;background:var(--line);border-radius:12px;overflow:hidden}
+.cq{background:var(--card);padding:24px 20px}
+.cq.hl{background:linear-gradient(135deg,rgba(43,138,255,0.05),rgba(43,138,255,0.01))}
+.cq-title{font-size:9.5px;font-weight:600;letter-spacing:0.5px;text-transform:uppercase;color:var(--gray);margin-bottom:4px}
+.cq-title.ac{color:var(--blue)}
+.cq-sub{font-size:10px;color:var(--muted);margin-bottom:12px;font-weight:300;line-height:1.4}
+.cq-logos{display:flex;flex-wrap:wrap;gap:6px}
+.cl{font-family:'DM Mono',monospace;font-size:9.5px;padding:3px 9px;border-radius:3px;border:1px solid var(--line);color:var(--gray);background:rgba(255,255,255,0.01)}
+.cl.cm{border-color:var(--blue-border);color:var(--blue);background:var(--blue-dim);font-weight:500;font-size:11px;padding:5px 12px}
+.comp-yax{display:flex;justify-content:space-between;margin-top:6px}
+.comp-yax span{font-family:'DM Mono',monospace;font-size:7.5px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);opacity:0.4}
+
+/* ─── CTA ─── */
+.cta::before{content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:420px;height:420px;background:radial-gradient(circle,rgba(43,138,255,0.05),transparent 65%);pointer-events:none}
+.cta-pills{display:flex;gap:8px;margin-top:28px;flex-wrap:wrap;justify-content:center}
+.cp{font-family:'DM Mono',monospace;font-size:10px;padding:6px 16px;border-radius:20px;border:1px solid var(--line2);color:var(--gray);background:var(--surface)}
+.cp.on{border-color:var(--blue-border);color:var(--blue);background:var(--blue-dim)}
+
+/* ─── FOOTER ─── */
+.ft{padding:28px 72px;border-top:1px solid var(--line);display:flex;justify-content:space-between}
+.ft span{font-family:'DM Mono',monospace;font-size:8px;color:var(--muted);opacity:0.35}
+
+/* ─── REVEAL ─── */
+.rv{opacity:0;transform:translateY(24px);transition:opacity .65s ease,transform .65s ease}
+.rv.vis{opacity:1;transform:translateY(0)}
+
+@media(max-width:900px){
+  .sec{padding:100px 24px 60px}
+  .hero h1{font-size:36px}
+  .team-g{grid-template-columns:1fr 1fr}
+  .prob-g,.gtm-g,.tw-g,.comp-m{grid-template-columns:1fr}
+  .tr-stats{flex-direction:column;gap:16px}
+  .nav{padding:12px 20px}
+  .gc::after{display:none}
+}
+</style>
+</head>
+<body>
+
+<div class="nav">
+  <div class="nav-brand"><div class="mark">⌂</div>Cap<b>Match</b>™</div>
+  <span class="nav-badge">Confidential · Investor Deck</span>
+</div>
+
+<!-- ━━━ 1. HERO ━━━ -->
+<section class="hero">
+  <div class="hero-mark">🏠</div>
+  <h1>The Operating System<br>for <span>CRE Debt</span></h1>
+  <div class="hero-sub">The Operating System for CRE Debt</div>
+  <p class="hero-desc">Vertical AI platform for borrowers and lenders with a deep-quant matchmaking engine — compensated on performance, not SaaS fees</p>
+  <div class="scroll-cue"><span>Scroll</span><i></i></div>
+  <div class="hero-foot">© Copyright 2026 CapMatch, Inc. All Rights Reserved. No unauthorized duplication, distribution or sale.</div>
+</section>
+
+<!-- ━━━ 2. TEAM ━━━ -->
+<section class="sec alt">
+  <div class="inner">
+    <div class="rv">
+      <div class="tag">02 · Leadership</div>
+      <h2 style="font-size:36px">the <em>leadership</em> team</h2>
+      <div class="sub">synergistic domain expertise<br><b>50+</b> yrs combined experience: real estate / tech</div>
+    </div>
+    <div class="team-g rv" style="transition-delay:.12s">
+      <div class="tc">
+        <div class="tc-av">JR</div>
+        <div class="tc-name">Dr. Jeff Richmond</div>
+        <div class="tc-role">CEO</div>
+        <div class="tc-bio">Built / led $2B+ annual real estate organization. High-performance leadership strategic consultant.</div>
+      </div>
+      <div class="tc">
+        <div class="tc-av">TV</div>
+        <div class="tc-name">Todd Vitzthum</div>
+        <div class="tc-role">Strategy / Real Estate</div>
+        <div class="tc-bio">Former leadership Greystone, Cushman & Wakefield, & CBRE. 20+ yrs corporate CRE experience.</div>
+      </div>
+      <div class="tc">
+        <div class="tc-av">MK</div>
+        <div class="tc-name">Michael Krueger</div>
+        <div class="tc-role">Legal Counsel</div>
+        <div class="tc-bio">Partner, Lucosky Brookman, LLP. Corporate / securities attorney.</div>
+      </div>
+      <div class="tc">
+        <div class="tc-av">PV</div>
+        <div class="tc-name">Param Vora</div>
+        <div class="tc-role">COO / CTO</div>
+        <div class="tc-bio">10+ years AI/ML (Masters). Led AI fastest growing US media company. Recent successful exit.</div>
+      </div>
+      <div class="tc">
+        <div class="tc-av">GK</div>
+        <div class="tc-name">Greg Kapust</div>
+        <div class="tc-role">Finance / Governance</div>
+        <div class="tc-bio">4 successful exits, 3 > $100M+. Active real estate investor.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ━━━ 3. INDUSTRY TODAY ━━━ -->
+<section class="sec">
+  <div class="inner">
+    <div class="rv">
+      <div class="tag">03 · The Problem</div>
+      <h2 style="font-size:36px">the <em>industry</em> today</h2>
+      <div class="sub">a bottom-up system that <b>fragments</b> outcomes<br>a trillion-dollar market <b>still</b> runs on email, PDFs, and relationships</div>
+    </div>
+    <div class="prob-g rv" style="transition-delay:.12s">
+      <div class="pc">
+        <div class="pc-label">Borrowers</div>
+        <div class="pi"><div class="pi-d"></div><div class="pi-t">Hard to compare lenders</div></div>
+        <div class="pi"><div class="pi-d"></div><div class="pi-t">Limited discovery tools</div></div>
+        <div class="pi"><div class="pi-d"></div><div class="pi-t">Lack of process transparency</div></div>
+        <div class="pi"><div class="pi-d"></div><div class="pi-t">Time inefficiencies</div></div>
+      </div>
+      <div class="pc">
+        <div class="pc-label">Debt Advisory</div>
+        <div class="pi"><div class="pi-d"></div><div class="pi-t">Limited origination pipelines</div></div>
+        <div class="pi"><div class="pi-d"></div><div class="pi-t">Inefficient support processes</div></div>
+        <div class="pi"><div class="pi-d"></div><div class="pi-t">Scattered communication</div></div>
+        <div class="pi"><div class="pi-d"></div><div class="pi-t">Repetitive work</div></div>
+      </div>
+      <div class="pc">
+        <div class="pc-label">Lenders</div>
+        <div class="pi"><div class="pi-d"></div><div class="pi-t">Hard to optimize deal flow</div></div>
+        <div class="pi"><div class="pi-d"></div><div class="pi-t">Unreliable data</div></div>
+        <div class="pi"><div class="pi-d"></div><div class="pi-t">Manual screening</div></div>
+        <div class="pi"><div class="pi-d"></div><div class="pi-t">Low standardization</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ━━━ 4. PRODUCT ━━━ -->
+<section class="sec alt center">
+  <div class="inner" style="display:flex;flex-direction:column;align-items:center">
+    <div class="rv">
+      <div class="tag">04 · The Solution</div>
+      <h2 style="font-size:36px">what the <em>future</em> of CRE looks like</h2>
+    </div>
+    <div class="prod-box rv" style="transition-delay:.12s">
+      <div class="prod-logo">Cap<b>Match</b>™</div>
+      <div class="prod-sub">The Operating System for CRE Debt</div>
+      <div class="prod-btn">Preview of Operating System</div>
+    </div>
+  </div>
+</section>
+
+<!-- ━━━ 5. GTM ━━━ -->
+<section class="sec">
+  <div class="inner">
+    <div class="rv">
+      <div class="tag">05 · Go-to-Market</div>
+      <h2 style="font-size:36px">our <em>go-to-market</em> strategy</h2>
+      <div class="sub">activate <b>broker</b> distribution<br>direct <b>borrower</b> demand capture</div>
+    </div>
+    <div class="gtm-g rv" style="transition-delay:.12s">
+      <div class="gc">
+        <div class="gc-title">Broker Network Activation</div>
+        <div class="gc-tag">Brokers bring deals</div>
+        <div class="gc-desc">Activate CRE investment sales brokers (~100k) to place debt on existing client relationships. CRE brokers increase annual income without additional work.</div>
+      </div>
+      <div class="gc">
+        <div class="gc-title">Direct Borrower Acquisition</div>
+        <div class="gc-tag">Proactive deal-making outreach</div>
+        <div class="gc-desc">Leverage owned database of ~29k multifamily owners. Brand building, free use tools, and educational content to incentivize direct lender access.</div>
+      </div>
+      <div class="gc">
+        <div class="gc-title">Refinance Radar</div>
+        <div class="gc-tag">Reverse prospecting</div>
+        <div class="gc-desc">Quant engine continuously monitors loan maturities and evolving market conditions. Conduct proprietary borrower outreach using indicative ('soft') lender term sheets.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ━━━ 6. TRACTION ━━━ -->
+<section class="sec alt center">
+  <div class="inner" style="display:flex;flex-direction:column;align-items:center">
+    <div class="rv">
+      <div class="tag">06 · Traction</div>
+      <h2 style="font-size:36px">we already have</h2>
+      <div class="tr-num">$291M</div>
+      <div class="sub" style="text-align:center;margin:0 auto">in loan volume</div>
+    </div>
+    <div class="tr-stats rv" style="transition-delay:.12s">
+      <div class="ts"><div class="ts-v">4</div><div class="ts-l">brokerages providing<br>recurring deal flow</div></div>
+      <div class="ts"><div class="ts-v">7</div><div class="ts-l">projects in<br>loan processing</div></div>
+      <div class="ts"><div class="ts-v" style="font-size:20px;color:var(--gray)">stealth</div><div class="ts-l">minimal GTM<br>still in stealth</div></div>
+    </div>
+    <div class="tr-note rv" style="transition-delay:.2s">Link to case studies of select current projects</div>
+  </div>
+</section>
+
+<!-- ━━━ 7. WHY NOW / TAM ━━━ -->
+<section class="sec">
+  <div class="inner">
+    <div class="rv">
+      <div class="tag">07 · Market Opportunity</div>
+      <h2 style="font-size:36px">why <em>now</em></h2>
+      <div class="sub"><b>$2.1T refi wave</b> through 2028<br><b>intact</b> first-mover advantage</div>
+    </div>
+    <div class="tw-g rv" style="transition-delay:.12s">
+      <div class="tw-col">
+        <div class="tw-head">Current Market Size</div>
+        <div class="tr2 a"><span class="tr2-badge">TAM</span><span class="tr2-val">$4.8T</span><span class="tr2-desc">Outstanding US CRE mortgage debt — all property types, all capital sources</span></div>
+        <div class="tr2 b"><span class="tr2-badge">SAM</span><span class="tr2-val">$957B</span><span class="tr2-desc">Loans maturing in 2026 — peak of a $2.1T refi wave through 2028</span></div>
+        <div class="tr2 c"><span class="tr2-badge">SOM</span><span class="tr2-val">$48B</span><span class="tr2-desc">1% capture via broker network — multifamily focus</span></div>
+      </div>
+      <div class="tw-col">
+        <div class="tw-head">Why Now</div>
+        <div class="wn-label">Catalysts</div>
+        <div class="cat"><span class="cat-n">01</span><div class="cat-t"><strong>Maturity wall peaks now.</strong> <span class="n">$2.1T</span> in CRE loans must refinance 2025–2028. Borrowers need lender options fast — not broker phone-tag.</div></div>
+        <div class="cat"><span class="cat-n">02</span><div class="cat-t"><strong>Capital sources fragmenting.</strong> Private credit hit <span class="n">37%</span> of closings (vs 14% 10-yr avg). Banks, life cos, CMBS, debt funds — impossible to navigate manually.</div></div>
+        <div class="cat"><span class="cat-n">03</span><div class="cat-t"><strong>Originations surging.</strong> Lending up <span class="n">112% YoY</span> per CBRE (Q3 '25). $585B dry powder seeking deployment. Transaction volume at 2018 highs.</div></div>
+        <div class="tw-src">* Sources: MBA, S&P Global, CBRE, CoStar, Deloitte 2026 CRE Outlook</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ━━━ 8. COMPETITIVE ━━━ -->
+<section class="sec alt">
+  <div class="inner">
+    <div class="rv">
+      <div class="tag">08 · Competition</div>
+      <h2 style="font-size:36px">competitive <em>positioning</em></h2>
+      <div class="sub"><b>unified</b> operating system<br><b>compensated</b> on performance, not SaaS</div>
+    </div>
+    <div class="comp-wrap rv" style="transition-delay:.12s">
+      <div class="comp-ax"><span>Tool Based</span><span>Platform</span></div>
+      <div class="comp-m">
+        <div class="cq">
+          <div class="cq-title">AI-Driven · Tool-Based</div>
+          <div class="cq-sub">SaaS tools or AI agents that embed into existing workflows and ecosystems.</div>
+          <div class="cq-logos"><span class="cl">Heron</span><span class="cl">Bryckel</span></div>
+        </div>
+        <div class="cq hl">
+          <div class="cq-title ac">AI-Driven · Platform ★</div>
+          <div class="cq-sub">Full end-to-end platforms rather than point solutions.</div>
+          <div class="cq-logos"><span class="cl cm">CapMatch</span><span class="cl">Agrippa</span></div>
+        </div>
+        <div class="cq">
+          <div class="cq-title">Manual · Tool-Based</div>
+          <div class="cq-sub">Traditional databases, listing services, and spreadsheet-driven processes.</div>
+          <div class="cq-logos"><span class="cl">VTS</span><span class="cl">Buildout</span><span class="cl">RCM</span><span class="cl">LoopNet</span></div>
+        </div>
+        <div class="cq">
+          <div class="cq-title">Manual · Platform</div>
+          <div class="cq-sub">Integrated marketplaces that consolidate workflows but rely on manual inputs.</div>
+          <div class="cq-logos"><span class="cl">Lev</span><span class="cl">CBRE</span><span class="cl">JLL</span><span class="cl">Cushman</span><span class="cl">Northmarq</span></div>
+        </div>
+      </div>
+      <div class="comp-yax"><span>Manual</span><span>AI-Driven</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ━━━ 9. JOIN US ━━━ -->
+<section class="sec center cta">
+  <div class="inner" style="display:flex;flex-direction:column;align-items:center;position:relative;z-index:1">
+    <div class="rv">
+      <div class="tag">09 · The Ask</div>
+      <h2 style="font-size:44px">join <em>us</em></h2>
+      <div class="bar" style="margin:14px auto"></div>
+      <div class="sub" style="text-align:center;margin:0 auto;max-width:400px;font-size:15.5px;line-height:1.8">
+        <b>bootstrapped</b> to date<br><br>
+        raising <strong style="color:var(--white);font-weight:600">$2M</strong> in pre-seed / seed round<br><br>
+        from strategic partners with<br>industry knowledge & connections
+      </div>
+      <div class="cta-pills">
+        <span class="cp on">Bootstrapped</span>
+        <span class="cp on">$291M Pipeline</span>
+        <span class="cp">Performance Revenue</span>
+        <span class="cp">$2M Raise</span>
+        <span class="cp">Strategic Partners</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="ft">
+  <span>© Copyright 2026 CapMatch, Inc. All Rights Reserved.</span>
+  <span>No unauthorized duplication, distribution or sale.</span>
+</div>
+
+<script>
+const o=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('vis')})},{threshold:.12});
+document.querySelectorAll('.rv').forEach(el=>o.observe(el));
+</script>
+</body>
+</html>

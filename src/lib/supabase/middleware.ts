@@ -4,13 +4,14 @@ import { decodeSession, COOKIE_NAME } from '@/lib/dataroom-session-edge';
 export async function updateSession(request: NextRequest) {
   const path = request.nextUrl.pathname;
   const isLoginPage = path === '/login';
+  const isPublicPage = path === '/deck';
   const isApiRoute = path.startsWith('/api/');
   const isAdminRoute = path === '/admin' || path.startsWith('/admin/');
   const isStaticAsset = /\.(png|jpg|jpeg|gif|svg|ico|css|js|woff2?|ttf|mp4|webp)$/i.test(
     path
   );
 
-  if (isStaticAsset) {
+  if (isStaticAsset || isPublicPage) {
     return NextResponse.next();
   }
 

@@ -70,8 +70,9 @@ export default function DeckPage() {
   font-weight: 600;
   letter-spacing: -1.5px;
   line-height: 1;
+  color: var(--w);
 }
-.masthead-left h1 em { font-style: italic; color: var(--blue); }
+.masthead-left h1 em { font-style: italic; color: var(--blue); font-weight: 600; }
 .masthead-sub {
   font-size: 16px;
   color: var(--g2);
@@ -586,16 +587,121 @@ table.comp-table td:last-child { font-size: 13px; color: var(--g3); }
   color: var(--g3);
 }
 
-@media (max-width: 960px) {
-  .report { padding: 0 24px; }
-  .masthead { flex-direction: column; align-items: flex-start; gap: 16px; }
-  .masthead-right { gap: 20px; }
-  .exec-grid, .team-layout, .problem-grid, .whynow-grid, .comp-grid {
-    grid-template-columns: 1fr;
+/* ── TABLET ── */
+@media (max-width: 1100px) {
+  .report { padding: 0 32px; }
+  .exec-grid { grid-template-columns: 1fr; }
+  .comp-grid { grid-template-columns: 1fr; }
+  .comp-map { min-height: 420px; aspect-ratio: auto; }
+}
+
+/* ── MOBILE ── */
+@media (max-width: 768px) {
+  .deck-shell { font-size: 15px; }
+  .report { padding: 0 18px; }
+
+  /* Masthead */
+  .masthead {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+    padding: 24px 0 18px;
   }
-  .traction-row { grid-template-columns: 1fr !important; }
-  .kpi-strip { grid-template-columns: repeat(3, 1fr); }
-  .comp-map { min-height: 360px; }
+  .masthead-left h1 { font-size: 32px; }
+  .masthead-sub { font-size: 14px; }
+  .masthead-right { gap: 20px; flex-wrap: wrap; }
+  .mstat-val { font-size: 24px; }
+  .mstat-label { font-size: 9px; }
+
+  /* Date bar */
+  .datebar { flex-direction: column; align-items: flex-start; gap: 8px; padding: 8px 0; }
+
+  /* Section headings */
+  .sec-label { font-size: 20px; padding: 24px 0 10px; margin-bottom: 16px; }
+
+  /* KPI strip */
+  .kpi-strip { grid-template-columns: repeat(2, 1fr); }
+  .ks-item { padding: 12px 10px; }
+  .ks-val { font-size: 20px; }
+  .ks-label { font-size: 9px; }
+
+  /* Executive grid */
+  .exec-grid { grid-template-columns: 1fr; gap: 24px; }
+  .exec-narrative .thesis { font-size: 20px; }
+  .exec-narrative p { font-size: 15px; }
+  .traction-row { grid-template-columns: 1fr !important; gap: 8px !important; }
+  .tc-val { font-size: 22px; }
+  .tc-title { font-size: 14px; }
+  .tc-desc { font-size: 13px; }
+
+  /* Team */
+  .team-layout { grid-template-columns: 1fr; gap: 0; }
+  .tm-name { font-size: 14px; }
+  .tm-bio { font-size: 13px; }
+  .team-footer { font-size: 13px; }
+
+  /* Problem */
+  .problem-grid { grid-template-columns: 1fr; gap: 16px; }
+  .problem-quote { font-size: 20px; padding-left: 16px; }
+  .problem-desc { font-size: 14px; }
+  table.pain-table { display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  table.pain-table th { font-size: 10px; padding: 8px 12px; white-space: nowrap; }
+  table.pain-table td { font-size: 13px; padding: 8px 12px; min-width: 140px; }
+
+  /* Why Now */
+  .whynow-grid { grid-template-columns: 1fr; gap: 20px; }
+  .chart-container { padding: 18px 16px 14px; }
+  .chart-title { font-size: 18px; }
+  .chart-subtitle { font-size: 12px; }
+  .hbar-row { grid-template-columns: 50px 1fr 52px; gap: 8px; margin-bottom: 6px; }
+  .hbar-year { font-size: 12px; }
+  .hbar-track { height: 22px; }
+  .hbar-val { font-size: 12px; }
+  .catalyst { padding: 14px 16px; }
+  .catalyst-val { font-size: 20px; }
+  .catalyst-title { font-size: 14px; }
+  .catalyst-desc { font-size: 13px; }
+
+  /* GTM table */
+  table.gtm-table { display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  table.gtm-table th { font-size: 10px; padding: 8px 12px; white-space: nowrap; }
+  table.gtm-table td { font-size: 14px; padding: 10px 12px; min-width: 120px; }
+  table.gtm-table td:nth-child(2) { min-width: 180px; }
+  table.gtm-table td:nth-child(3) { min-width: 240px; }
+
+  /* Competitive */
+  .comp-grid { grid-template-columns: 1fr; gap: 20px; }
+  .comp-map { min-height: 320px; aspect-ratio: auto; }
+  .cdot { font-size: 9px; padding: 3px 7px; }
+  .cdot.cm { font-size: 11px; padding: 5px 10px; }
+  .qlabel { font-size: 9px; max-width: 140px; }
+  .ax { font-size: 8px; }
+  .comp-details-header { font-size: 18px; }
+  .comp-details-sub { font-size: 14px; }
+  table.comp-table th { font-size: 9px; padding: 5px 8px; }
+  table.comp-table td { font-size: 12px; padding: 5px 8px; }
+  table.comp-table td:last-child { font-size: 11px; }
+
+  /* Fundraise */
+  .raise-statement { font-size: 15px; }
+  .raise-bar { flex-wrap: wrap; gap: 8px; padding: 14px 0; }
+  .raise-bar .pill { font-size: 11px; padding: 6px 14px; }
+
+  /* Footer */
+  .ft { flex-direction: column; gap: 4px; padding: 12px 0 20px; }
+  .ft span { font-size: 9px; }
+}
+
+/* ── SMALL PHONES ── */
+@media (max-width: 400px) {
+  .report { padding: 0 14px; }
+  .masthead-left h1 { font-size: 28px; }
+  .kpi-strip { grid-template-columns: 1fr 1fr; }
+  .ks-val { font-size: 18px; }
+  .sec-label { font-size: 18px; }
+  .comp-map { min-height: 280px; }
+  .cdot { font-size: 8px; padding: 2px 5px; }
+  .cdot.cm { font-size: 10px; padding: 4px 8px; }
 }
 `,
         }}

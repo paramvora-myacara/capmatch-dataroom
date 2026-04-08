@@ -216,19 +216,31 @@ export default function CompetitiveAnalysisGraphDeck() {
         const isAgrippa = c.name === 'Agrippa';
         const hasTooltip = Boolean(c.description);
 
+        const topPct = 50 - yPos * 50 + jitter.dy + (offset.y ?? 0);
+        const leftPct = 50 + xPos * 50 + jitter.dx + (offset.x ?? 0);
+        const tooltipBelow = topPct < 35;
+        const tooltipAnchorLeft = leftPct < 35;
+        const tooltipAnchorRight = leftPct > 65;
+        const tooltipClasses = [
+          'logo-tooltip',
+          tooltipBelow ? 'tooltip-below' : '',
+          tooltipAnchorLeft ? 'tooltip-anchor-left' : '',
+          tooltipAnchorRight ? 'tooltip-anchor-right' : '',
+        ].filter(Boolean).join(' ');
+
         return (
           <div
             key={c.name}
             className="logo-dot"
             style={{
-              top: `${50 - yPos * 50 + jitter.dy + (offset.y ?? 0)}%`,
-              left: `${50 + xPos * 50 + jitter.dx + (offset.x ?? 0)}%`,
+              top: `${topPct}%`,
+              left: `${leftPct}%`,
               transform: 'translate(-50%, -50%)',
               zIndex: isCapMatch ? 20 : 10,
             }}
           >
             {hasTooltip && (
-              <div className="logo-tooltip">
+              <div className={tooltipClasses}>
                 <p className="logo-tooltip-name">{c.name}</p>
                 <p className="logo-tooltip-desc">{c.description}</p>
                 <div className="logo-tooltip-arrow" />

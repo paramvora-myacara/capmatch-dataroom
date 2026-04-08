@@ -1,6 +1,8 @@
 import type { Metadata } from 'next';
 import CompetitiveAnalysisGraphDeck from '@/components/CompetitiveAnalysisGraphDeck';
 
+/* eslint-disable @next/next/no-img-element */
+
 export const metadata: Metadata = {
   title: 'CapMatch — Company Brief',
   description:
@@ -490,7 +492,7 @@ table.gtm-table .gtm-tag {
   border: 1px solid var(--ln2);
   border-radius: 10px;
   background: var(--s1);
-  overflow: hidden;
+  overflow: visible;
 }
 .comp-map-logos::before {
   content: '';
@@ -562,6 +564,22 @@ table.gtm-table .gtm-tag {
   width: max(200px, min(280px, 90vw));
   z-index: 1;
 }
+.logo-tooltip.tooltip-below {
+  bottom: auto;
+  top: 100%;
+  margin-bottom: 0;
+  margin-top: 8px;
+}
+.logo-tooltip.tooltip-anchor-left {
+  left: -10px;
+  right: auto;
+  transform: none;
+}
+.logo-tooltip.tooltip-anchor-right {
+  left: auto;
+  right: -10px;
+  transform: none;
+}
 .logo-tooltip-name { font-weight: 600; color: var(--w); margin-bottom: 4px; font-size: 13px; }
 .logo-tooltip-desc { white-space: normal; line-height: 1.5; }
 .logo-tooltip-arrow {
@@ -572,6 +590,14 @@ table.gtm-table .gtm-tag {
   border: 5px solid transparent;
   border-top-color: var(--card);
 }
+.tooltip-below .logo-tooltip-arrow {
+  top: auto;
+  bottom: 100%;
+  border-top-color: transparent;
+  border-bottom-color: var(--card);
+}
+.tooltip-anchor-left .logo-tooltip-arrow { left: 20px; }
+.tooltip-anchor-right .logo-tooltip-arrow { left: auto; right: 20px; }
 .logo-img-wrap { position: relative; }
 .logo-cm { width: 120px; height: 60px; }
 .logo-agrippa { width: 72px; height: 36px; }
@@ -649,6 +675,15 @@ table.comp-table td:last-child { font-size: 13px; color: var(--g2); }
   letter-spacing: 0.3px;
 }
 .raise-bar .pill.on { border-color: var(--bd); color: var(--blue); background: var(--bbg); }
+.pill-sub {
+  display: block;
+  font-size: 9px;
+  font-weight: 300;
+  color: var(--g3);
+  margin-top: 3px;
+  letter-spacing: 0;
+  text-transform: none;
+}
 .raise-statement {
   text-align: center;
   padding: 0 0 12px;
@@ -663,10 +698,12 @@ table.comp-table td:last-child { font-size: 13px; color: var(--g2); }
 .ft span { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--g3); opacity: 0.55; }
 
 .source { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--g2); opacity: 0.7; padding: 6px 0; }
+.chart-total { font-family: 'JetBrains Mono', monospace; font-size: 13px; color: var(--g2); padding: 12px 0 4px; border-top: 1px solid var(--ln); margin-top: 8px; }
+.chart-total b { color: var(--gold); font-weight: 500; }
 
 .kpi-strip {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: 1px;
   background: var(--ln);
   border: 1px solid var(--ln);
@@ -691,6 +728,13 @@ table.comp-table td:last-child { font-size: 13px; color: var(--g2); }
   text-transform: uppercase;
   color: var(--g2);
 }
+.ks-src {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  color: var(--g3);
+  margin-top: 4px;
+  opacity: 0.7;
+}
 
 /* ── TABLET ── */
 @media (max-width: 880px) {
@@ -713,14 +757,11 @@ table.comp-table td:last-child { font-size: 13px; color: var(--g2); }
     gap: 16px;
     padding: 24px 0 18px;
   }
-  .masthead-left h1 { font-size: 32px; }
+  .masthead-left img { height: 36px; }
   .masthead-sub { font-size: 14px; }
   .masthead-right { gap: 20px; flex-wrap: wrap; }
   .mstat-val { font-size: 24px; }
   .mstat-label { font-size: 9px; }
-
-  /* Date bar */
-  .datebar { flex-direction: column; align-items: flex-start; gap: 8px; padding: 8px 0; }
 
   /* Section headings */
   .sec-label { font-size: 20px; padding: 24px 0 10px; margin-bottom: 16px; }
@@ -807,7 +848,7 @@ table.comp-table td:last-child { font-size: 13px; color: var(--g2); }
 /* ── SMALL PHONES ── */
 @media (max-width: 320px) {
   .report { padding: 0 14px; }
-  .masthead-left h1 { font-size: 28px; }
+  .masthead-left img { height: 28px; }
   .kpi-strip { grid-template-columns: 1fr 1fr; }
   .ks-val { font-size: 18px; }
   .sec-label { font-size: 18px; }
@@ -829,56 +870,46 @@ table.comp-table td:last-child { font-size: 13px; color: var(--g2); }
           {/* MASTHEAD */}
           <header className="masthead">
             <div className="masthead-left">
-              <h1>Cap<em>Match</em></h1>
+              <img src="/CapMatchLogo.png" alt="CapMatch" style={{ height: '48px', objectFit: 'contain' }} />
               <div className="masthead-sub">The Operating System for CRE Debt</div>
             </div>
             <div className="masthead-right">
-              <div className="mstat"><div className="mstat-val gold">$4.8T</div><div className="mstat-label">TAM</div></div>
-              <div className="mstat"><div className="mstat-val gold">$957B</div><div className="mstat-label">SAM</div></div>
-              <div className="mstat"><div className="mstat-val">~100k</div><div className="mstat-label">Broker Network</div></div>
+              <div className="mstat"><div className="mstat-val gold">$2.0T</div><div className="mstat-label">Maturing 2026–28</div></div>
+              <div className="mstat"><div className="mstat-val blue">$875B</div><div className="mstat-label">Due This Year</div></div>
             </div>
           </header>
-
-          <div className="datebar">
-            <span>March 2026 &nbsp;&middot;&nbsp; Company Brief</span>
-            <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
-              <span className="tag">Pre-Seed</span>
-              <span className="tag">Bootstrapped</span>
-            </div>
-          </div>
 
           {/* MARKET KPIs */}
           <div className="sec-label">Market <em>Snapshot</em></div>
           <div className="kpi-strip">
-            <div className="ks-item"><div className="ks-val blue">$291M</div><div className="ks-label">Pipeline Volume</div></div>
-            <div className="ks-item"><div className="ks-val gold">$2.1T</div><div className="ks-label">Maturing 2025–28</div></div>
-            <div className="ks-item"><div className="ks-val blue">+112%</div><div className="ks-label">Originations YoY</div></div>
-            <div className="ks-item"><div className="ks-val gold">37%</div><div className="ks-label">Private Credit Share</div></div>
-            <div className="ks-item"><div className="ks-val blue">$585B</div><div className="ks-label">CRE Dry Powder</div></div>
+            <div className="ks-item"><div className="ks-val gold">$2.0T</div><div className="ks-label">Loans Maturing 2026–28</div><div className="ks-src">MBA, March 2026</div></div>
+            <div className="ks-item"><div className="ks-val blue">+67%</div><div className="ks-label">Lending Momentum YoY</div><div className="ks-src">CBRE, Q4 2025</div></div>
+            <div className="ks-item"><div className="ks-val gold">40%</div><div className="ks-label">Non-Bank Lending Share</div><div className="ks-src">CBRE, Q4 2025 — debt funds, mREITs &amp; alt. lenders</div></div>
+            <div className="ks-item"><div className="ks-val blue">$350B+</div><div className="ks-label">Dry Powder in CRE</div><div className="ks-src">Preqin, Mid-2025</div></div>
           </div>
 
           {/* EXECUTIVE SUMMARY */}
           <div className="sec-label">Executive <em>Summary</em></div>
           <div className="exec-grid">
             <div className="exec-narrative">
-              <div className="thesis">Vertical AI platform for borrowers and lenders with a deep-quant <em>matchmaking engine</em> — compensated on performance, not SaaS fees.</div>
-              <p>CapMatch is building the operating system for CRE debt — connecting borrowers, debt advisors, and lenders through an AI-driven platform that replaces the fragmented, relationship-dependent workflows that dominate the <strong>$4.8 trillion</strong> commercial real estate debt market.</p>
+              <div className="thesis">Vertical AI platform for CRE debt — compensated on <em>performance</em>, not SaaS fees.</div>
+              <p>CapMatch earns revenue only when deals close — aligning our incentives with every borrower, broker, and lender on the platform. In less than six months of operations, we have onboarded <strong>4 brokerage firms</strong>, are actively processing <strong>7 projects</strong> representing <strong>$291M</strong> in deal volume, and assembled a leadership team with <strong>50+ years</strong> of combined experience across CBRE, Northmarq, Greystone, and multiple successful exits.</p>
             </div>
             <div className="traction-row" style={{ gridTemplateColumns: '1fr 1fr 1fr', alignSelf: 'start' }}>
               <div className="traction-card">
                 <div className="tc-val blue">4</div>
                 <div className="tc-title">Brokerages</div>
-                <div className="tc-desc">Already providing recurring deal flow</div>
+                <div className="tc-desc">Providing recurring deal flow</div>
               </div>
               <div className="traction-card">
                 <div className="tc-val blue">7</div>
                 <div className="tc-title">Active Projects</div>
-                <div className="tc-desc">Currently in loan processing</div>
+                <div className="tc-desc">$291M in pipeline volume</div>
               </div>
               <div className="traction-card">
-                <div className="tc-val gold">$2M</div>
-                <div className="tc-title">Pre-Seed Round</div>
-                <div className="tc-desc">Strategic partners with industry knowledge</div>
+                <div className="tc-val gold">50+</div>
+                <div className="tc-title">Years Combined</div>
+                <div className="tc-desc">CRE &amp; tech leadership experience</div>
               </div>
             </div>
           </div>
@@ -948,49 +979,54 @@ table.comp-table td:last-child { font-size: 13px; color: var(--g2); }
           <div className="whynow-grid">
             <div className="chart-container">
               <div className="chart-title">The <em>maturity wall</em> is here</div>
-              <div className="chart-subtitle">CRE loan maturities (billions USD) — <b>$2.1T</b> must refinance by 2028</div>
+              <div className="chart-subtitle">CRE loan maturities — <b>$2.5T</b> must refinance 2026–2028</div>
+              {/* Bar widths scaled proportionally: $957B is peak = 100% */}
               <div className="hbar-row">
                 <div className="hbar-year">2024</div>
-                <div className="hbar-track"><div className="hbar-fill" style={{ width: '36%', background: 'linear-gradient(90deg,#475569,#334155)' }} /></div>
-                <div className="hbar-val">$550B</div>
+                <div className="hbar-track"><div className="hbar-fill" style={{ width: '97%', background: 'linear-gradient(90deg,#475569,#334155)' }} /></div>
+                <div className="hbar-val">$929B</div>
               </div>
               <div className="hbar-row">
                 <div className="hbar-year">2025</div>
-                <div className="hbar-track"><div className="hbar-fill" style={{ width: '62%', background: 'linear-gradient(90deg,var(--red),#B91C1C)' }} /></div>
+                <div className="hbar-track"><div className="hbar-fill" style={{ width: '100%', background: 'linear-gradient(90deg,#475569,#334155)' }} /></div>
                 <div className="hbar-val">$957B</div>
               </div>
               <div className="hbar-row">
                 <div className="hbar-year now">2026 ←</div>
-                <div className="hbar-track"><div className="hbar-fill" style={{ width: '75%', background: 'linear-gradient(90deg,var(--gold),#D97706)' }} /></div>
-                <div className="hbar-val">$1.15T</div>
+                <div className="hbar-track"><div className="hbar-fill" style={{ width: '91%', background: 'linear-gradient(90deg,var(--gold),#D97706)' }} /></div>
+                <div className="hbar-val">$875B</div>
               </div>
               <div className="hbar-row">
                 <div className="hbar-year now">2027</div>
-                <div className="hbar-track"><div className="hbar-fill" style={{ width: '82%', background: 'linear-gradient(90deg,var(--gold),#D97706)' }} /></div>
-                <div className="hbar-val">$1.26T</div>
+                <div className="hbar-track"><div className="hbar-fill" style={{ width: '68%', background: 'linear-gradient(90deg,var(--gold),#D97706)' }} /></div>
+                <div className="hbar-val">$652B</div>
               </div>
               <div className="hbar-row">
-                <div className="hbar-year">2028</div>
-                <div className="hbar-track"><div className="hbar-fill" style={{ width: '74%', background: 'linear-gradient(90deg,#475569,#334155)' }} /></div>
-                <div className="hbar-val">$1.14T</div>
+                <div className="hbar-year now">2028</div>
+                <div className="hbar-track"><div className="hbar-fill" style={{ width: '53%', background: 'linear-gradient(90deg,var(--gold),#D97706)' }} /></div>
+                <div className="hbar-val">~$500B</div>
               </div>
-              <div className="source">* Sources: MBA, S&amp;P Global, CBRE, CoStar, Deloitte 2026 CRE Outlook</div>
+              <div className="chart-total">2026–2028 refinancing window: <b>~$2.0T</b> of $5.0T outstanding</div>
+              <div className="source">Source: MBA CREF Survey of Loan Maturity Volumes (Feb 2025 &amp; March 2026). 2028 est. based on MBA &amp; Trepp projections.</div>
             </div>
             <div className="catalyst-stack">
               <div className="catalyst">
-                <div className="catalyst-val">$2.1T</div>
+                <div className="catalyst-val">$2.0T</div>
                 <div className="catalyst-title">Maturity wall peaks now</div>
-                <div className="catalyst-desc">CRE loans must refinance 2025–2028. Borrowers need lender options fast — not broker phone-tag.</div>
+                <div className="catalyst-desc">~$2T in CRE mortgages must refinance 2026–2028 — borrowers need lender options fast, not broker phone-tag.</div>
+                <div className="source">MBA, March 2026</div>
               </div>
               <div className="catalyst">
-                <div className="catalyst-val">37%</div>
+                <div className="catalyst-val">40%</div>
                 <div className="catalyst-title">Capital sources fragmenting</div>
-                <div className="catalyst-desc">Private credit hit 37% of closings (vs 14% 10-yr avg). Banks, life cos, CMBS, debt funds — impossible to navigate manually.</div>
+                <div className="catalyst-desc">Alternative lenders captured 40% of non-agency loan closings in Q4 2025, nearly doubling their share from a year ago. Banks, life cos, CMBS, debt funds — impossible to navigate manually.</div>
+                <div className="source">CBRE U.S. Capital Markets, Q4 2025</div>
               </div>
               <div className="catalyst">
-                <div className="catalyst-val">+112%</div>
-                <div className="catalyst-title">Originations surging</div>
-                <div className="catalyst-desc">Lending up 112% YoY per CBRE (Q3 &apos;25). $585B dry powder seeking deployment. Transaction volume at 2018 highs.</div>
+                <div className="catalyst-val">+67%</div>
+                <div className="catalyst-title">Lending momentum surging</div>
+                <div className="catalyst-desc">CBRE Lending Momentum Index up 67% YoY, reaching levels comparable to 2018. $350B+ in dry powder seeking deployment.</div>
+                <div className="source">CBRE, Q4 2025 &middot; Preqin, Mid-2025</div>
               </div>
             </div>
           </div>
@@ -1005,12 +1041,12 @@ table.comp-table td:last-child { font-size: 13px; color: var(--g2); }
               <tr>
                 <td>01</td>
                 <td>Broker Network Activation<span className="gtm-tag">Brokers bring deals</span></td>
-                <td>Activate CRE investment sales brokers (~100k) to place debt on existing client relationships. CRE brokers increase annual income without additional work.</td>
+                <td>Activate CRE investment sales brokers (~111k licensed brokers in the U.S., BLS 2024) to place debt on existing client relationships. CRE brokers increase annual income without additional work.</td>
               </tr>
               <tr>
                 <td>02</td>
                 <td>Direct Borrower Acquisition<span className="gtm-tag">Proactive outreach</span></td>
-                <td>Leverage owned database of ~29k multifamily owners. Brand building, free-use tools, and educational content to incentivize direct lender access.</td>
+                <td>Leverage proprietary database of ~29k multifamily owners (CapMatch internal data). Brand building, free-use tools, and educational content to incentivize direct lender access.</td>
               </tr>
               <tr>
                 <td>03</td>
@@ -1048,11 +1084,11 @@ table.comp-table td:last-child { font-size: 13px; color: var(--g2); }
           <div className="sec-label"><em>Investment</em></div>
           <div className="raise-statement"><b>Bootstrapped</b> to date. Raising <strong>$2M</strong> in pre-seed / seed round from strategic partners with industry knowledge &amp; connections.</div>
           <div className="raise-bar">
-            <span className="pill on">Bootstrapped</span>
-            <span className="pill on">$291M Pipeline</span>
-            <span className="pill">Performance Revenue</span>
-            <span className="pill">$2M Raise</span>
-            <span className="pill">Strategic Partners</span>
+            <span className="pill on">Bootstrapped<span className="pill-sub">Built to $291M pipeline with zero funding</span></span>
+            <span className="pill on">$291M Pipeline<span className="pill-sub">7 active deals across 4 brokerage partners</span></span>
+            <span className="pill">Performance Revenue<span className="pill-sub">First closed deal triggers revenue</span></span>
+            <span className="pill">$2M Raise<span className="pill-sub">Pre-seed round for engineering &amp; GTM</span></span>
+            <span className="pill">Strategic Partners<span className="pill-sub">Industry LPs with deal flow &amp; domain expertise</span></span>
           </div>
 
           {/* FOOTER */}

@@ -757,6 +757,7 @@ table.comp-table td:last-child { font-size: 13px; color: var(--g2); }
     gap: 16px;
     padding: 24px 0 18px;
   }
+  .masthead-left h1 { font-size: 32px; }
   .masthead-left img { height: 36px; }
   .masthead-sub { font-size: 14px; }
   .masthead-right { gap: 20px; flex-wrap: wrap; }
@@ -848,6 +849,7 @@ table.comp-table td:last-child { font-size: 13px; color: var(--g2); }
 /* ── SMALL PHONES ── */
 @media (max-width: 320px) {
   .report { padding: 0 14px; }
+  .masthead-left h1 { font-size: 28px; }
   .masthead-left img { height: 28px; }
   .kpi-strip { grid-template-columns: 1fr 1fr; }
   .ks-val { font-size: 18px; }
@@ -870,7 +872,10 @@ table.comp-table td:last-child { font-size: 13px; color: var(--g2); }
           {/* MASTHEAD */}
           <header className="masthead">
             <div className="masthead-left">
-              <img src="/CapMatchLogo.png" alt="CapMatch" style={{ height: '48px', objectFit: 'contain' }} />
+              <div style={{ display: 'flex', alignItems: 'center', gap: '14px' }}>
+                <img src="/CapMatchLogo.png" alt="CapMatch" style={{ height: '48px', objectFit: 'contain' }} />
+                <h1>Cap<em>Match</em></h1>
+              </div>
               <div className="masthead-sub">The Operating System for CRE Debt</div>
             </div>
             <div className="masthead-right">
